@@ -92,7 +92,7 @@ const columns = [
 
 const options = {
   filterType: "checkbox",
-  selectableRows: false 
+  selectableRows: false,
 };
 
 export default function Kerjasama() {

@@ -10,7 +10,7 @@ import {
   LibraryBooks as LibraryIcon,
   HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
-  BusinessCenter
+  BusinessCenter,
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
@@ -39,7 +39,12 @@ const structure = [
   //   icon: <TypographyIcon />,
   // },
   { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
-  { id: 3, label: "Kerjasama", link: "/app/kerjasama", icon: <BusinessCenter /> },
+  {
+    id: 3,
+    label: "Kerjasama",
+    link: "/app/kerjasama",
+    icon: <BusinessCenter />,
+  },
   {
     id: 4,
     label: "Notifications",
