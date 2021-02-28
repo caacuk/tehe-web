@@ -128,7 +128,12 @@ export default function Kerjasama() {
       <PageTitle
         title="Kerjasama"
         button={
-          <Button variant="contained" size="medium" color="primary">
+          <Button
+            variant="contained"
+            size="medium"
+            color="primary"
+            href="#/app/tambahKerjasama"
+          >
             Tambah
           </Button>
         }

@@ -27,6 +27,7 @@ import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import Kerjasama from "../../pages/kerjasama/Kerjasama";
+import TambahKerjasama from "../../pages/kerjasama/TambahKerjasama";
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
@@ -53,6 +54,7 @@ function Layout(props) {
             <Route path="/app/typography" component={Typography} />
             <Route path="/app/tables" component={Tables} />
             <Route path="/app/kerjasama" component={Kerjasama} />
+            <Route path="/app/tambahKerjasama" component={TambahKerjasama} />
             <Route path="/app/notifications" component={Notifications} />
             <Route
               exact
@@ -70,7 +72,7 @@ function Layout(props) {
             alignItems={"center"}
             justifyContent="space-between"
           >
-            <div>
+            {/* <div>
               <Link
                 color={"primary"}
                 href={"https://flatlogic.com/"}
@@ -115,7 +117,7 @@ function Layout(props) {
                   <Icon path={GithubIcon} size={1} color="#6E6E6E99" />
                 </IconButton>
               </Link>
-            </div>
+            </div> */}
           </Box>
         </div>
       </>
