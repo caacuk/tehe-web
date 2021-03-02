@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
-import { Grid, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { Grid, Button, IconButton } from "@material-ui/core";
+import { Create, Delete } from "@material-ui/icons";
 import MUIDataTable from "mui-datatables";
 
 // components
@@ -23,6 +23,37 @@ const columns = [
     options: {
       filter: true,
       sort: true,
+    },
+  },
+  {
+    name: "",
+    options: {
+      filter: true,
+      sort: true,
+      customBodyRender: (value, tableMeta, updateValue) => {
+        return (
+          <>
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              onClick={() => console.log(tableMeta.rowData[0])}
+              component="span"
+              size="small"
+            >
+              <Create />
+            </IconButton>
+            <IconButton
+              color="secondary"
+              aria-label="upload picture"
+              onClick={() => console.log(tableMeta.rowData[0])}
+              component="span"
+              size="small"
+            >
+              <Delete />
+            </IconButton>
+          </>
+        );
+      },
     },
   },
 ];
