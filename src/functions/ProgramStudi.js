@@ -19,23 +19,20 @@ export const getProgramStudi = () => {
     });
 };
 
-// export const postProgramStudi = (programStudi) => {
-//   const body = {
-//     name: programStudi.name,
-//     price: programStudi.price,
-//     status: 0,
-//     date: programStudi.date,
-//   };
+export const postProgramStudi = (programStudi) => {
+  const body = {
+    nama: programStudi.nama,
+  };
 
-//   return axios
-//     .post("programStudi/", body, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+  return axios
+    .post("programStudi/", body, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
 
 // export const putProgramStudi = (programStudi) => {
 //   const body = {
