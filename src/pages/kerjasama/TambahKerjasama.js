@@ -68,7 +68,7 @@ export default function TambahKerjasama() {
       status: status,
     };
     const response = await postKerjasama(data);
-    console.log(response);
+
     if (response.errorMessage === null) {
       history.push(`/app/kerjasama`);
     }

@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
-import { Grid, Button } from "@material-ui/core";
+import { Grid, Button, IconButton } from "@material-ui/core";
+import { Create, Delete } from "@material-ui/icons";
 import MUIDataTable from "mui-datatables";
 
 // components
@@ -8,6 +9,24 @@ import PageTitle from "../../components/PageTitle/PageTitle";
 import { getKerjasama } from "../../functions/Kerjasama";
 
 const columns = [
+  {
+    name: "id",
+    label: "ID",
+    options: {
+      filter: true,
+      sort: true,
+      display: false,
+    },
+  },
+  {
+    name: "no",
+    label: "No",
+    options: {
+      filter: true,
+      sort: true,
+      display: false,
+    },
+  },
   {
     name: "nama_program_studi",
     label: "Program Studi",
@@ -88,6 +107,46 @@ const columns = [
       sort: true,
     },
   },
+  {
+    name: "",
+    options: {
+      filter: false,
+      sort: false,
+      empty: true,
+      customBodyRender: (value, tableMeta, updateValue) => {
+        return (
+          <>
+            {/* <Button
+          variant="contained"
+          size="small"
+          color="primary"
+          onClick={() => console.log(tableMeta.rowData[0])}
+        >
+          Edit
+          </Button> */}
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              onClick={() => console.log(tableMeta.rowData[0])}
+              component="span"
+              size="small"
+            >
+              <Create />
+            </IconButton>
+            <IconButton
+              color="secondary"
+              aria-label="upload picture"
+              onClick={() => console.log(tableMeta.rowData[0])}
+              component="span"
+              size="small"
+            >
+              <Delete />
+            </IconButton>
+          </>
+        );
+      },
+    },
+  },
 ];
 
 const options = {
@@ -102,8 +161,9 @@ export default function Kerjasama() {
     async function getData() {
       const data = await getKerjasama();
       let result = [];
-      data.data.map((x) => {
+      data.data.map((x, i) => {
         const flattenData = {
+          no: i + 1,
           id: x.id,
           tanggal_awal: x.tanggal_awal,
           tanggal_akhir: x.tanggal_akhir,
