@@ -8,9 +8,9 @@ export let axiosConfig = {
   },
 };
 
-export const getProgramStudi = () => {
+export const getBentukKegiatan = () => {
   return axios
-    .get("programStudi/", axiosConfig)
+    .get("bentukKegiatan/", axiosConfig)
     .then((response) => {
       return response.data;
     })

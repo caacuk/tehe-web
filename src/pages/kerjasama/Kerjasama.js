@@ -5,7 +5,7 @@ import MUIDataTable from "mui-datatables";
 // components
 import PageTitle from "../../components/PageTitle/PageTitle";
 
-import { getKerjasama } from "./functions/Kerjasama";
+import { getKerjasama } from "../../functions/Kerjasama";
 
 const columns = [
   {

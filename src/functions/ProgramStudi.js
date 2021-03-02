@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:5000/";
+axios.defaults.baseURL = "https://tehe-api.herokuapp.com/";
 
 export let axiosConfig = {
   headers: {
@@ -8,9 +8,9 @@ export let axiosConfig = {
   },
 };
 
-export const getKerjasama = () => {
+export const getProgramStudi = () => {
   return axios
-    .get("kerjasama/", axiosConfig)
+    .get("programStudi/", axiosConfig)
     .then((response) => {
       return response.data;
     })

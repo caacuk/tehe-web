@@ -6,13 +6,16 @@ import {
   Select,
   MenuItem,
   InputLabel,
-  ButtonGroup,
 } from "@material-ui/core";
 
 // components
 import PageTitle from "../../components/PageTitle/PageTitle";
 
-import { getKerjasama } from "./functions/Kerjasama";
+import { getProgramStudi } from "../../functions/ProgramStudi";
+import { getNegara } from "../../functions/Negara";
+import { getJenisPartner } from "../../functions/JenisPartner";
+import { getJenisDokumen } from "../../functions/JenisDokumen";
+import { getBentukKegiatan } from "../../functions/BentukKegiatan";
 
 export default function TambahKerjasama() {
   const [partner, setPartner] = useState("");
@@ -46,6 +49,28 @@ export default function TambahKerjasama() {
   const handleChangeNegara = (event) => {
     setNegara(event.target.value);
   };
+
+  const [dataProgramStudi, setDataProgramStudi] = useState([]);
+  const [dataNegara, setDataNegara] = useState([]);
+  const [dataJenisPartner, setDataJenisPartner] = useState([]);
+  const [dataJenisDokumen, setDataJenisDokumen] = useState([]);
+  const [dataBentukKegiatan, setDataBentukKegiatan] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      const dataProgramStudi = await getProgramStudi();
+      const dataNegara = await getNegara();
+      const dataJenisPartner = await getJenisPartner();
+      const dataJenisDokumen = await getJenisDokumen();
+      const dataBentukKegiatan = await getBentukKegiatan();
+      setDataProgramStudi(dataProgramStudi.data);
+      setDataNegara(dataNegara.data);
+      setDataJenisPartner(dataJenisPartner.data);
+      setDataJenisDokumen(dataJenisDokumen.data);
+      setDataBentukKegiatan(dataBentukKegiatan.data);
+    }
+    getData();
+  }, []);
 
   return (
     <>
@@ -84,9 +109,9 @@ export default function TambahKerjasama() {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>FMIPA</MenuItem>
-            <MenuItem value={20}>FISIP</MenuItem>
-            <MenuItem value={30}>KBPS</MenuItem>
+            {dataProgramStudi.map((x) => 
+              <MenuItem value={x.id}>{x.nama}</MenuItem>
+            )}
           </Select>
         </Grid>
         <Grid item xs={6}>
@@ -95,9 +120,9 @@ export default function TambahKerjasama() {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Negara 1</MenuItem>
-            <MenuItem value={20}>Negara 2</MenuItem>
-            <MenuItem value={30}>Negara 3</MenuItem>
+            {dataNegara.map((x) => 
+              <MenuItem value={x.id}>{x.nicename}</MenuItem>
+            )}
           </Select>
         </Grid>
         <Grid item xs={6}>
@@ -110,9 +135,9 @@ export default function TambahKerjasama() {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Partner 1</MenuItem>
-            <MenuItem value={20}>Partner 2</MenuItem>
-            <MenuItem value={30}>Partner 3</MenuItem>
+            {dataJenisPartner.map((x) => 
+              <MenuItem value={x.id}>{x.nama}</MenuItem>
+            )}
           </Select>
         </Grid>
         <Grid item xs={6}>
@@ -125,9 +150,9 @@ export default function TambahKerjasama() {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Dokumen 1</MenuItem>
-            <MenuItem value={20}>Dokumen 2</MenuItem>
-            <MenuItem value={30}>Dokumen 3</MenuItem>
+            {dataJenisDokumen.map((x) => 
+              <MenuItem value={x.id}>{x.nama}</MenuItem>
+            )}
           </Select>
         </Grid>
         <Grid item xs={6}>
@@ -140,9 +165,9 @@ export default function TambahKerjasama() {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Kegiatan 1</MenuItem>
-            <MenuItem value={20}>Kegiatan 2</MenuItem>
-            <MenuItem value={30}>Kegiatan 3</MenuItem>
+            {dataBentukKegiatan.map((x) => 
+              <MenuItem value={x.id}>{x.nama}</MenuItem>
+            )}
           </Select>
         </Grid>
         <Grid item xs={3}>
@@ -173,8 +198,8 @@ export default function TambahKerjasama() {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Aktif</MenuItem>
-            <MenuItem value={20}>Non Aktif</MenuItem>
+            <MenuItem value={1}>Aktif</MenuItem>
+            <MenuItem value={0}>Non Aktif</MenuItem>
           </Select>
         </Grid>
       </Grid>
@@ -187,7 +212,14 @@ export default function TambahKerjasama() {
             color="primary"
             // href="#/app/kerjasama"
             margin="normal"
-            onClick={() => console.log("clicked")}
+            onClick={() => {
+              console.log(partner);
+              console.log(programStudi);
+              console.log(negara);
+              console.log(jenisPartner);
+              console.log(jenisDokumen);
+              console.log(bentukKegiatan);
+            }}
           >
             Simpan
           </Button>
