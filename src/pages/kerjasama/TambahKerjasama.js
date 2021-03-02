@@ -17,6 +17,8 @@ import { getJenisPartner } from "../../functions/JenisPartner";
 import { getJenisDokumen } from "../../functions/JenisDokumen";
 import { getBentukKegiatan } from "../../functions/BentukKegiatan";
 
+import { postKerjasama } from "../../functions/Kerjasama";
+
 export default function TambahKerjasama() {
   const [partner, setPartner] = useState("");
   const [programStudi, setProgramStudi] = useState("");
@@ -25,30 +27,8 @@ export default function TambahKerjasama() {
   const [bentukKegiatan, setBentukKegiatan] = useState("");
   const [status, setStatus] = useState("");
   const [negara, setNegara] = useState("");
-
-  const handleChangeProgramStudi = (event) => {
-    setProgramStudi(event.target.value);
-  };
-
-  const handleChangeJenisPartner = (event) => {
-    setJenisPartner(event.target.value);
-  };
-
-  const handleChangeJenisDokumen = (event) => {
-    setJenisDokumen(event.target.value);
-  };
-
-  const handleChangeBentukKegiatan = (event) => {
-    setBentukKegiatan(event.target.value);
-  };
-
-  const handleChangeStatus = (event) => {
-    setStatus(event.target.value);
-  };
-
-  const handleChangeNegara = (event) => {
-    setNegara(event.target.value);
-  };
+  const [tanggalAwal, setTanggalAwal] = useState("");
+  const [tanggalAkhir, setTanggalAkhir] = useState("");
 
   const [dataProgramStudi, setDataProgramStudi] = useState([]);
   const [dataNegara, setDataNegara] = useState([]);
@@ -72,6 +52,21 @@ export default function TambahKerjasama() {
     getData();
   }, []);
 
+  const insertKerjasama = async () => {
+    const data = {
+      partner: partner,
+      id_program_studi: programStudi,
+      id_negara: negara,
+      id_jenis_partner: jenisPartner,
+      id_jenis_dokumen: jenisDokumen,
+      id_bentuk_kegiatan: bentukKegiatan,
+      tanggal_awal: tanggalAwal,
+      tanggal_akhir: tanggalAkhir,
+      status: status,
+    };
+    await postKerjasama(data);
+  };
+
   return (
     <>
       <PageTitle
@@ -88,7 +83,7 @@ export default function TambahKerjasama() {
           </Button>
         }
       />
-      <Grid container spacing={4} style={{backgroundColor: "white"}}>
+      <Grid container spacing={4} style={{ backgroundColor: "white" }}>
         <Grid item xs={6}>
           <InputLabel shrink>Partner</InputLabel>
           <TextField
@@ -103,78 +98,84 @@ export default function TambahKerjasama() {
           <InputLabel shrink>Program Studi</InputLabel>
           <Select
             value={programStudi}
-            onChange={handleChangeProgramStudi}
+            onChange={(e) => setProgramStudi(e.target.value)}
             fullWidth
           >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            {dataProgramStudi.map((x) => 
+            {dataProgramStudi.map((x) => (
               <MenuItem value={x.id}>{x.nama}</MenuItem>
-            )}
+            ))}
           </Select>
         </Grid>
         <Grid item xs={6}>
           <InputLabel shrink>Negara</InputLabel>
-          <Select value={negara} onChange={handleChangeNegara} fullWidth>
+          <Select
+            value={negara}
+            onChange={(e) => setNegara(e.target.value)}
+            fullWidth
+          >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            {dataNegara.map((x) => 
+            {dataNegara.map((x) => (
               <MenuItem value={x.id}>{x.nicename}</MenuItem>
-            )}
+            ))}
           </Select>
         </Grid>
         <Grid item xs={6}>
           <InputLabel shrink>Jenis Partner</InputLabel>
           <Select
             value={jenisPartner}
-            onChange={handleChangeJenisPartner}
+            onChange={(e) => setJenisPartner(e.target.value)}
             fullWidth
           >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            {dataJenisPartner.map((x) => 
+            {dataJenisPartner.map((x) => (
               <MenuItem value={x.id}>{x.nama}</MenuItem>
-            )}
+            ))}
           </Select>
         </Grid>
         <Grid item xs={6}>
           <InputLabel shrink>Jenis Dokumen</InputLabel>
           <Select
             value={jenisDokumen}
-            onChange={handleChangeJenisDokumen}
+            onChange={(e) => setJenisDokumen(e.target.value)}
             fullWidth
           >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            {dataJenisDokumen.map((x) => 
+            {dataJenisDokumen.map((x) => (
               <MenuItem value={x.id}>{x.nama}</MenuItem>
-            )}
+            ))}
           </Select>
         </Grid>
         <Grid item xs={6}>
           <InputLabel shrink>Bentuk Kegiatan</InputLabel>
           <Select
             value={bentukKegiatan}
-            onChange={handleChangeBentukKegiatan}
+            onChange={(e) => setBentukKegiatan(e.target.value)}
             fullWidth
           >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            {dataBentukKegiatan.map((x) => 
+            {dataBentukKegiatan.map((x) => (
               <MenuItem value={x.id}>{x.nama}</MenuItem>
-            )}
+            ))}
           </Select>
         </Grid>
         <Grid item xs={3}>
           <TextField
+            value={tanggalAwal}
             id="tanggal_awal"
             label="Tanggal Awal"
             type="date"
+            onChange={(e) => setTanggalAwal(e.target.value)}
             InputLabelProps={{
               shrink: true,
             }}
@@ -183,9 +184,11 @@ export default function TambahKerjasama() {
         </Grid>
         <Grid item xs={3}>
           <TextField
+            value={tanggalAkhir}
             id="tanggal_akhir"
             label="Tanggal Akhir"
             type="date"
+            onChange={(e) => setTanggalAkhir(e.target.value)}
             InputLabelProps={{
               shrink: true,
             }}
@@ -194,7 +197,11 @@ export default function TambahKerjasama() {
         </Grid>
         <Grid item xs={6}>
           <InputLabel shrink>Status</InputLabel>
-          <Select value={status} onChange={handleChangeStatus} fullWidth>
+          <Select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            fullWidth
+          >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
@@ -204,22 +211,19 @@ export default function TambahKerjasama() {
         </Grid>
       </Grid>
 
-      <Grid container spacing={6} style={{padding: "20px", backgroundColor: "white"}}>
-        <Grid item xs={12} style={{textAlign:"center"}}>
+      <Grid
+        container
+        spacing={6}
+        style={{ padding: "20px", backgroundColor: "white" }}
+      >
+        <Grid item xs={12} style={{ textAlign: "center" }}>
           <Button
             variant="contained"
             size="large"
             color="primary"
             // href="#/app/kerjasama"
             margin="normal"
-            onClick={() => {
-              console.log(partner);
-              console.log(programStudi);
-              console.log(negara);
-              console.log(jenisPartner);
-              console.log(jenisDokumen);
-              console.log(bentukKegiatan);
-            }}
+            onClick={insertKerjasama}
           >
             Simpan
           </Button>

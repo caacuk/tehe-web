@@ -19,23 +19,18 @@ export const getKerjasama = () => {
     });
 };
 
-// export const postProgramStudi = (programStudi) => {
-//   const body = {
-//     name: programStudi.name,
-//     price: programStudi.price,
-//     status: 0,
-//     date: programStudi.date,
-//   };
+export const postKerjasama = (kerjasama) => {
+  const body = kerjasama;
 
-//   return axios
-//     .post("programStudi/", body, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+  return axios
+    .post("kerjasama/", body, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
 
 // export const putProgramStudi = (programStudi) => {
 //   const body = {
