@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Grid,
   Button,
@@ -20,6 +21,8 @@ import { getBentukKegiatan } from "../../functions/BentukKegiatan";
 import { postKerjasama } from "../../functions/Kerjasama";
 
 export default function TambahKerjasama() {
+  const history = useHistory();
+
   const [partner, setPartner] = useState("");
   const [programStudi, setProgramStudi] = useState("");
   const [jenisPartner, setJenisPartner] = useState("");
@@ -64,7 +67,11 @@ export default function TambahKerjasama() {
       tanggal_akhir: tanggalAkhir,
       status: status,
     };
-    await postKerjasama(data);
+    const response = await postKerjasama(data);
+    console.log(response);
+    if (response.errorMessage === null) {
+      history.push(`/app/kerjasama`);
+    }
   };
 
   return (
