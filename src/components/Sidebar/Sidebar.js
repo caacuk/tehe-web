@@ -10,8 +10,8 @@ import {
   LibraryBooks as LibraryIcon,
   HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
-  BusinessCenter,
-  Book, Info, NaturePeople, School,
+  Business,
+  Book, Info, NaturePeople, School, Publish, People
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
@@ -41,30 +41,21 @@ const structure = [
   // },
   { 
     id: 1, 
-    label: "Tentang", 
+    label: "Penelitian", 
     link: "", 
-    icon: <Info />,
-    children: [
-      { label: "Program Studi", link: "/app/programstudi" },
-      { label: "Dosen", link: "/app/dosen" },
-    ], 
+    icon: <Book />,
   },
   { 
     id: 2, 
-    label: "Kemahasiswaan", 
+    label: "Publikasi", 
     link: "", 
-    icon: <School />,
-    children: [
-      { label: "Mahasiswa", link: "/app/ui/maps" },
-      { label: "Prestasi Mahasiswa", link: "/app/ui/maps" },
-      { label: "Kegiatan", link: "/app/ui/maps" },
-    ], 
+    icon: <Publish />,
   },
   { 
     id: 3, 
-    label: "Publikasi Ilmiah", 
-    link: "", 
-    icon: <Book />,
+    label: "Dosen", 
+    link: "/app/dosen", 
+    icon: <People />,
     children: [
       { label: "Jenis Dokumen", link: "/app/ui/maps" },
       { label: "Publikasi", link: "/app/ui/maps" },
@@ -72,11 +63,17 @@ const structure = [
       { label: "Kegiatan", link: "/app/ui/maps" },
     ], 
   },
+  { 
+    id: 2, 
+    label: "Prestasi Mahasiswa", 
+    link: "", 
+    icon: <School />,
+  },
   {
     id: 4,
     label: "Kerjasama",
     link: "/app/kerjasama",
-    icon: <BusinessCenter />,
+    icon: <Business />,
   },
   {
     id: 5,
@@ -84,23 +81,39 @@ const structure = [
     link: "",
     icon: <NaturePeople />,
   },
-  {
-    id: 6,
-    label: "Notifications",
-    link: "/app/notifications",
-    icon: <NotificationsIcon />,
-  },
-  {
-    id: 7,
-    label: "UI Elements",
-    link: "/app/ui",
-    icon: <UIElementsIcon />,
+  { 
+    id: 6, 
+    label: "Data master", 
+    link: "", 
+    icon: <Info />,
     children: [
-      { label: "Icons", link: "/app/ui/icons" },
-      { label: "Charts", link: "/app/ui/charts" },
-      { label: "Maps", link: "/app/ui/maps" },
-    ],
+      { label: "Program Studi", link: "/app/programstudi" },
+      { label: "Mahasiswa", link: "/app/dosen" },
+      { label: "Jenis Partner", link: "/app/dosen" },
+      { label: "Jenis Dokumen", link: "/app/dosen" },
+      { label: "Bentuk Kegiatan", link: "/app/dosen" },
+      { label: "Tingkat", link: "/app/dosen" },
+      { label: "Negara", link: "/app/dosen" },
+      { label: "Kategori", link: "/app/dosen" },
+    ], 
   },
+  // {
+  //   id: 6,
+  //   label: "Notifications",
+  //   link: "/app/notifications",
+  //   icon: <NotificationsIcon />,
+  // },
+  // {
+  //   id: 7,
+  //   label: "UI Elements",
+  //   link: "/app/ui",
+  //   icon: <UIElementsIcon />,
+  //   children: [
+  //     { label: "Icons", link: "/app/ui/icons" },
+  //     { label: "Charts", link: "/app/ui/charts" },
+  //     { label: "Maps", link: "/app/ui/maps" },
+  //   ],
+  // },
   // { id: 5, type: "divider" },
   // { id: 6, type: "title", label: "HELP" },
   // { id: 7, label: "Library", link: "", icon: <LibraryIcon /> },

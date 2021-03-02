@@ -28,6 +28,10 @@ import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import Kerjasama from "../../pages/kerjasama/Kerjasama";
 import TambahKerjasama from "../../pages/kerjasama/TambahKerjasama";
+import ProgramStudi from "../../pages/programstudi/ProgramStudi";
+import TambahProgramStudi from "../../pages/programstudi/TambahProgramStudi";
+import Dosen from "../../pages/dosen/Dosen";
+
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
@@ -55,6 +59,9 @@ function Layout(props) {
             <Route path="/app/tables" component={Tables} />
             <Route path="/app/kerjasama" component={Kerjasama} />
             <Route path="/app/tambahKerjasama" component={TambahKerjasama} />
+            <Route path="/app/programstudi" component={ProgramStudi} />
+            <Route path="/app/tambahProgramStudi" component={TambahProgramStudi} />
+            <Route path="/app/dosen" component={Dosen} />
             <Route path="/app/notifications" component={Notifications} />
             <Route
               exact
