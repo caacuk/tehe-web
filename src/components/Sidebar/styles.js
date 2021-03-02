@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
+import { fade } from "@material-ui/core/styles/colorManipulator";
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 export default makeStyles((theme) => ({
   menuButton: {
@@ -17,6 +18,7 @@ export default makeStyles((theme) => ({
   },
   drawerOpen: {
     width: drawerWidth,
+    backgroundColor: fade("#ffffff", 0.9),
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -28,6 +30,7 @@ export default makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: "hidden",
+    backgroundColor: fade("#ffffff", 0.9),
     width: theme.spacing(7) + 40,
     [theme.breakpoints.down("sm")]: {
       width: drawerWidth,

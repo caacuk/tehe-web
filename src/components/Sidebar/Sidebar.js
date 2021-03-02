@@ -11,6 +11,7 @@ import {
   HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
   BusinessCenter,
+  Book, Info, NaturePeople, School,
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
@@ -38,21 +39,59 @@ const structure = [
   //   link: "/app/typography",
   //   icon: <TypographyIcon />,
   // },
-  { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
+  { 
+    id: 1, 
+    label: "Tentang", 
+    link: "", 
+    icon: <Info />,
+    children: [
+      { label: "Program Studi", link: "/app/programstudi" },
+      { label: "Dosen", link: "/app/dosen" },
+    ], 
+  },
+  { 
+    id: 2, 
+    label: "Kemahasiswaan", 
+    link: "", 
+    icon: <School />,
+    children: [
+      { label: "Mahasiswa", link: "/app/ui/maps" },
+      { label: "Prestasi Mahasiswa", link: "/app/ui/maps" },
+      { label: "Kegiatan", link: "/app/ui/maps" },
+    ], 
+  },
+  { 
+    id: 3, 
+    label: "Publikasi Ilmiah", 
+    link: "", 
+    icon: <Book />,
+    children: [
+      { label: "Jenis Dokumen", link: "/app/ui/maps" },
+      { label: "Publikasi", link: "/app/ui/maps" },
+      { label: "Penelitian", link: "/app/ui/maps" },
+      { label: "Kegiatan", link: "/app/ui/maps" },
+    ], 
+  },
   {
-    id: 3,
+    id: 4,
     label: "Kerjasama",
     link: "/app/kerjasama",
     icon: <BusinessCenter />,
   },
   {
-    id: 4,
+    id: 5,
+    label: "Pengabdian pada Masyarakat",
+    link: "",
+    icon: <NaturePeople />,
+  },
+  {
+    id: 6,
     label: "Notifications",
     link: "/app/notifications",
     icon: <NotificationsIcon />,
   },
   {
-    id: 5,
+    id: 7,
     label: "UI Elements",
     link: "/app/ui",
     icon: <UIElementsIcon />,

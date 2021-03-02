@@ -137,7 +137,7 @@ export default function Header(props) {
           )}
         </IconButton>
         <Typography variant="h6" weight="medium" className={classes.logotype}>
-          React Material Admin
+          Tehe Web
         </Typography>
         <div className={classes.grow} />
         {/* <Button component={Link} href="https://flatlogic.com/templates/react-material-admin-full" variant={"outlined"} color={"secondary"} className={classes.purchaseBtn}>Unlock full version</Button>
@@ -198,7 +198,7 @@ export default function Header(props) {
         </IconButton> */}
         <IconButton
           aria-haspopup="true"
-          color="inherit"
+          color="#ffffff"
           className={classes.headerMenuButton}
           aria-controls="profile-menu"
           onClick={(e) => setProfileMenu(e.currentTarget)}
@@ -291,14 +291,14 @@ export default function Header(props) {
             <Typography variant="h4" weight="medium">
               John Smith
             </Typography>
-            <Typography
+            {/* <Typography
               className={classes.profileMenuLink}
               component="a"
               color="primary"
               href="https://flatlogic.com"
             >
               Flalogic.com
-            </Typography>
+            </Typography> */}
           </div>
           <MenuItem
             className={classNames(
