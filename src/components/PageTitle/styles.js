@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/styles";
+import { fade } from "@material-ui/core/styles/colorManipulator";
 
 export default makeStyles((theme) => ({
   pageTitleContainer: {
@@ -8,7 +9,8 @@ export default makeStyles((theme) => ({
     marginTop: theme.spacing(5),
   },
   typo: {
-    color: theme.palette.text.hint,
+    color: fade("#003300", 0.7),
+    fontFamily: "helvetica",
   },
   button: {
     boxShadow: theme.customShadows.widget,

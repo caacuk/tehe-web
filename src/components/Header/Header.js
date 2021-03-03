@@ -136,7 +136,7 @@ export default function Header(props) {
             />
           )}
         </IconButton>
-        <Typography variant="h6" weight="medium" className={classes.logotype}>
+        <Typography variant="h5" weight="medium" className={classes.logotype}>
           Tehe Web
         </Typography>
         <div className={classes.grow} />
