@@ -7,6 +7,7 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  CircularProgress,
 } from "@material-ui/core";
 
 // components
@@ -22,6 +23,7 @@ import { postKerjasama } from "../../functions/Kerjasama";
 
 export default function TambahKerjasama() {
   const history = useHistory();
+  const [isLoading, setIsLoading] = useState(true);
 
   const [partner, setPartner] = useState("");
   const [programStudi, setProgramStudi] = useState("");
@@ -51,6 +53,7 @@ export default function TambahKerjasama() {
       setDataJenisPartner(dataJenisPartner.data);
       setDataJenisDokumen(dataJenisDokumen.data);
       setDataBentukKegiatan(dataBentukKegiatan.data);
+      setIsLoading(false);
     }
     getData();
   }, []);
@@ -90,152 +93,161 @@ export default function TambahKerjasama() {
           </Button>
         }
       />
-      <Grid container spacing={4} style={{ backgroundColor: "white" }}>
-        <Grid item xs={6}>
-          <InputLabel shrink>Partner</InputLabel>
-          <TextField
-            id="partner"
-            value={partner}
-            onChange={(e) => setPartner(e.target.value)}
-            type="text"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <InputLabel shrink>Program Studi</InputLabel>
-          <Select
-            value={programStudi}
-            onChange={(e) => setProgramStudi(e.target.value)}
-            fullWidth
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {dataProgramStudi.map((x) => (
-              <MenuItem value={x.id}>{x.nama}</MenuItem>
-            ))}
-          </Select>
-        </Grid>
-        <Grid item xs={6}>
-          <InputLabel shrink>Negara</InputLabel>
-          <Select
-            value={negara}
-            onChange={(e) => setNegara(e.target.value)}
-            fullWidth
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {dataNegara.map((x) => (
-              <MenuItem value={x.id}>{x.nicename}</MenuItem>
-            ))}
-          </Select>
-        </Grid>
-        <Grid item xs={6}>
-          <InputLabel shrink>Jenis Partner</InputLabel>
-          <Select
-            value={jenisPartner}
-            onChange={(e) => setJenisPartner(e.target.value)}
-            fullWidth
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {dataJenisPartner.map((x) => (
-              <MenuItem value={x.id}>{x.nama}</MenuItem>
-            ))}
-          </Select>
-        </Grid>
-        <Grid item xs={6}>
-          <InputLabel shrink>Jenis Dokumen</InputLabel>
-          <Select
-            value={jenisDokumen}
-            onChange={(e) => setJenisDokumen(e.target.value)}
-            fullWidth
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {dataJenisDokumen.map((x) => (
-              <MenuItem value={x.id}>{x.nama}</MenuItem>
-            ))}
-          </Select>
-        </Grid>
-        <Grid item xs={6}>
-          <InputLabel shrink>Bentuk Kegiatan</InputLabel>
-          <Select
-            value={bentukKegiatan}
-            onChange={(e) => setBentukKegiatan(e.target.value)}
-            fullWidth
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {dataBentukKegiatan.map((x) => (
-              <MenuItem value={x.id}>{x.nama}</MenuItem>
-            ))}
-          </Select>
-        </Grid>
-        <Grid item xs={3}>
-          <TextField
-            value={tanggalAwal}
-            id="tanggal_awal"
-            label="Tanggal Awal"
-            type="date"
-            onChange={(e) => setTanggalAwal(e.target.value)}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={3}>
-          <TextField
-            value={tanggalAkhir}
-            id="tanggal_akhir"
-            label="Tanggal Akhir"
-            type="date"
-            onChange={(e) => setTanggalAkhir(e.target.value)}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <InputLabel shrink>Status</InputLabel>
-          <Select
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            fullWidth
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={1}>Aktif</MenuItem>
-            <MenuItem value={0}>Non Aktif</MenuItem>
-          </Select>
-        </Grid>
-      </Grid>
 
-      <Grid
-        container
-        spacing={6}
-        style={{ padding: "20px", backgroundColor: "white" }}
-      >
-        <Grid item xs={12} style={{ textAlign: "center" }}>
-          <Button
-            variant="contained"
-            size="large"
-            color="primary"
-            // href="#/app/kerjasama"
-            margin="normal"
-            onClick={insertKerjasama}
+      {isLoading ? (
+        <div style={{ textAlign: "center" }}>
+          <CircularProgress size={50} style={{ marginTop: 50 }} />
+        </div>
+      ) : (
+        <>
+          <Grid container spacing={4} style={{ backgroundColor: "white" }}>
+            <Grid item xs={6}>
+              <InputLabel shrink>Partner</InputLabel>
+              <TextField
+                id="partner"
+                value={partner}
+                onChange={(e) => setPartner(e.target.value)}
+                type="text"
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputLabel shrink>Program Studi</InputLabel>
+              <Select
+                value={programStudi}
+                onChange={(e) => setProgramStudi(e.target.value)}
+                fullWidth
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {dataProgramStudi.map((x) => (
+                  <MenuItem value={x.id}>{x.nama}</MenuItem>
+                ))}
+              </Select>
+            </Grid>
+            <Grid item xs={6}>
+              <InputLabel shrink>Negara</InputLabel>
+              <Select
+                value={negara}
+                onChange={(e) => setNegara(e.target.value)}
+                fullWidth
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {dataNegara.map((x) => (
+                  <MenuItem value={x.id}>{x.nicename}</MenuItem>
+                ))}
+              </Select>
+            </Grid>
+            <Grid item xs={6}>
+              <InputLabel shrink>Jenis Partner</InputLabel>
+              <Select
+                value={jenisPartner}
+                onChange={(e) => setJenisPartner(e.target.value)}
+                fullWidth
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {dataJenisPartner.map((x) => (
+                  <MenuItem value={x.id}>{x.nama}</MenuItem>
+                ))}
+              </Select>
+            </Grid>
+            <Grid item xs={6}>
+              <InputLabel shrink>Jenis Dokumen</InputLabel>
+              <Select
+                value={jenisDokumen}
+                onChange={(e) => setJenisDokumen(e.target.value)}
+                fullWidth
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {dataJenisDokumen.map((x) => (
+                  <MenuItem value={x.id}>{x.nama}</MenuItem>
+                ))}
+              </Select>
+            </Grid>
+            <Grid item xs={6}>
+              <InputLabel shrink>Bentuk Kegiatan</InputLabel>
+              <Select
+                value={bentukKegiatan}
+                onChange={(e) => setBentukKegiatan(e.target.value)}
+                fullWidth
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {dataBentukKegiatan.map((x) => (
+                  <MenuItem value={x.id}>{x.nama}</MenuItem>
+                ))}
+              </Select>
+            </Grid>
+            <Grid item xs={3}>
+              <TextField
+                value={tanggalAwal}
+                id="tanggal_awal"
+                label="Tanggal Awal"
+                type="date"
+                onChange={(e) => setTanggalAwal(e.target.value)}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TextField
+                value={tanggalAkhir}
+                id="tanggal_akhir"
+                label="Tanggal Akhir"
+                type="date"
+                onChange={(e) => setTanggalAkhir(e.target.value)}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputLabel shrink>Status</InputLabel>
+              <Select
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+                fullWidth
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={1}>Aktif</MenuItem>
+                <MenuItem value={0}>Non Aktif</MenuItem>
+              </Select>
+            </Grid>
+          </Grid>
+
+          <Grid
+            container
+            spacing={6}
+            style={{ padding: "20px", backgroundColor: "white" }}
           >
-            Simpan
-          </Button>
-        </Grid>
-      </Grid>
+            <Grid item xs={12} style={{ textAlign: "center" }}>
+              <Button
+                variant="contained"
+                size="large"
+                color="primary"
+                // href="#/app/kerjasama"
+                margin="normal"
+                onClick={insertKerjasama}
+              >
+                Simpan
+              </Button>
+            </Grid>
+          </Grid>
+        </>
+      )}
     </>
   );
 }

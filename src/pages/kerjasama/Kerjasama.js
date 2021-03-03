@@ -133,7 +133,7 @@ const columns = [
                 aria-label="upload picture"
                 onClick={() =>
                   (window.location =
-                    "#/app/updateKerjasama/" + tableMeta.rowData[0])
+                    "#/app/editKerjasama/" + tableMeta.rowData[0])
                 }
                 component="span"
                 size="small"

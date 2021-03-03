@@ -44,23 +44,18 @@ export const postKerjasama = (kerjasama) => {
     });
 };
 
-// export const putProgramStudi = (programStudi) => {
-//   const body = {
-//     name: programStudi.name,
-//     price: programStudi.price,
-//     status: programStudi.status,
-//     date: programStudi.date,
-//   };
+export const putKerjasama = (kerjasama) => {
+  const body = kerjasama;
 
-//   return axios
-//     .put("programStudi/" + programStudi.id, body, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+  return axios
+    .put("kerjasama/" + kerjasama.id, body, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
 
 // export const deleteProgramStudi = (programStudi) => {
 //   return axios
