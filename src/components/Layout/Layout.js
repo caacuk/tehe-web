@@ -59,10 +59,7 @@ function Layout(props) {
             <Route path="/app/tables" component={Tables} />
             <Route path="/app/kerjasama" component={Kerjasama} />
             <Route path="/app/tambahKerjasama" component={TambahKerjasama} />
-            <Route
-              path="/app/editKerjasama/:id"
-              component={EditKerjasama}
-            />
+            <Route path="/app/editKerjasama/:id" component={EditKerjasama} />
             <Route path="/app/programstudi" component={ProgramStudi} />
             <Route
               path="/app/tambahProgramStudi"

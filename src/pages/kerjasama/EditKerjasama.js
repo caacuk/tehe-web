@@ -19,7 +19,7 @@ import { getJenisPartner } from "../../functions/JenisPartner";
 import { getJenisDokumen } from "../../functions/JenisDokumen";
 import { getBentukKegiatan } from "../../functions/BentukKegiatan";
 
-import { postKerjasama } from "../../functions/Kerjasama";
+import { putKerjasama } from "../../functions/Kerjasama";
 import { getKerjasamaById } from "../../functions/Kerjasama";
 
 export default function EditKerjasama(params) {
@@ -70,8 +70,9 @@ export default function EditKerjasama(params) {
     getData();
   }, []);
 
-  const insertKerjasama = async () => {
+  const updateKerjasama = async () => {
     const data = {
+      id: params.match.params.id,
       partner: partner,
       id_program_studi: programStudi,
       id_negara: negara,
@@ -82,7 +83,7 @@ export default function EditKerjasama(params) {
       tanggal_akhir: tanggalAkhir,
       status: status,
     };
-    const response = await postKerjasama(data);
+    const response = await putKerjasama(data);
 
     if (response.errorMessage === null) {
       history.push(`/app/kerjasama`);
@@ -252,7 +253,7 @@ export default function EditKerjasama(params) {
                 color="primary"
                 // href="#/app/kerjasama"
                 margin="normal"
-                // onClick={insertKerjasama}
+                onClick={updateKerjasama}
               >
                 Simpan
               </Button>
