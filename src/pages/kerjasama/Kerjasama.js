@@ -1,5 +1,12 @@
 import { React, useState, useEffect } from "react";
-import { Grid, Button, IconButton, ButtonGroup } from "@material-ui/core";
+import { Redirect } from "react-router-dom";
+import {
+  Grid,
+  Button,
+  IconButton,
+  ButtonGroup,
+  CircularProgress,
+} from "@material-ui/core";
 import { Create, Delete } from "@material-ui/icons";
 import MUIDataTable from "mui-datatables";
 
@@ -124,7 +131,10 @@ const columns = [
               <IconButton
                 color="primary"
                 aria-label="upload picture"
-                onClick={() => console.log(tableMeta.rowData[0])}
+                onClick={() =>
+                  (window.location =
+                    "#/app/updateKerjasama/" + tableMeta.rowData[0])
+                }
                 component="span"
                 size="small"
               >
@@ -154,6 +164,7 @@ const options = {
 
 export default function Kerjasama() {
   const [state, setState] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getData() {
@@ -177,6 +188,7 @@ export default function Kerjasama() {
         result.push(flattenData);
       });
       setState(result);
+      setIsLoading(false);
     }
     getData();
   }, []);
@@ -198,12 +210,18 @@ export default function Kerjasama() {
       />
       <Grid container spacing={4}>
         <Grid item xs={12}>
-          <MUIDataTable
-            title=""
-            data={state}
-            columns={columns}
-            options={options}
-          />
+          {isLoading ? (
+            <div style={{ textAlign: "center" }}>
+              <CircularProgress size={50} style={{ marginTop: 50 }} />
+            </div>
+          ) : (
+            <MUIDataTable
+              title=""
+              data={state}
+              columns={columns}
+              options={options}
+            />
+          )}
         </Grid>
       </Grid>
     </>

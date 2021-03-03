@@ -19,6 +19,18 @@ export const getKerjasama = () => {
     });
 };
 
+export const getKerjasamaById = (id) => {
+  console.log(id);
+  return axios
+    .get("kerjasama/" + id, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
+
 export const postKerjasama = (kerjasama) => {
   const body = kerjasama;
 
