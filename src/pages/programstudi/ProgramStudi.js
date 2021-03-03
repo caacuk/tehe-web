@@ -1,12 +1,28 @@
 import { React, useState, useEffect } from "react";
-import { Grid, Button, IconButton } from "@material-ui/core";
+import {
+  Grid,
+  Button,
+  IconButton,
+  ButtonGroup,
+  CircularProgress,
+} from "@material-ui/core";
 import { Create, Delete } from "@material-ui/icons";
 import MUIDataTable from "mui-datatables";
+import {
+  createMuiTheme,
+  MuiThemeProvider,
+  withStyles
+} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 // components
 import PageTitle from "../../components/PageTitle/PageTitle";
 
-import { getProgramStudi, deleteProgramStudi } from "../../functions/ProgramStudi";
+import {
+  getProgramStudi,
+  deleteProgramStudi,
+} from "../../functions/ProgramStudi";
+
 
 const columns = [
   {
@@ -33,24 +49,33 @@ const columns = [
       customBodyRender: (value, tableMeta, updateValue) => {
         return (
           <>
-            <IconButton
+            <ButtonGroup
+              variant="text"
               color="primary"
-              aria-label="upload picture"
-              onClick={() => window.location.replace('#/app/editprogramstudi/'+ tableMeta.rowData[0])}
-              component="span"
-              size="small"
+              aria-label="text primary button group"
             >
-              <Create />
-            </IconButton>
-            <IconButton
-              color="secondary"
-              aria-label="upload picture"
-              onClick= {() => deleteProgramStudi(tableMeta.rowData[0])}
-              component="span"
-              size="small"
-            >
-              <Delete />
-            </IconButton>
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                onClick={() =>
+                  (window.location =
+                    "#/app/editProgramStudi/" + tableMeta.rowData[0])
+                }
+                component="span"
+                size="small"
+              >
+                <Create />
+              </IconButton>
+              <IconButton
+                color="secondary"
+                aria-label="upload picture"
+                onClick={() => deleteProgramStudi(tableMeta.rowData[0])}
+                component="span"
+                size="small"
+              >
+                <Delete />
+              </IconButton>
+            </ButtonGroup>
           </>
         );
       },
@@ -65,11 +90,13 @@ const options = {
 
 export default function ProgramStudi() {
   const [state, setState] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getData() {
       const data = await getProgramStudi();
       setState(data.data);
+      setIsLoading(false);
     }
     getData();
   }, []);
@@ -91,12 +118,18 @@ export default function ProgramStudi() {
       />
       <Grid container spacing={4}>
         <Grid item xs={12}>
-          <MUIDataTable
-            title="Program Studi"
-            data={state}
-            columns={columns}
-            options={options}
-          />
+          {isLoading ? (
+            <div style={{ textAlign: "center" }}>
+              <CircularProgress size={50} style={{ marginTop: 50 }} />
+            </div>
+          ) : (
+            <MUIDataTable 
+              title=""
+              data={state}
+              columns={columns}
+              options={options}
+            />
+          )}
         </Grid>
       </Grid>
     </>
