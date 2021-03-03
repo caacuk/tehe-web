@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Grid, Button, IconButton } from "@material-ui/core";
+import { Grid, Button, IconButton, ButtonGroup } from "@material-ui/core";
 import { Create, Delete } from "@material-ui/icons";
 import MUIDataTable from "mui-datatables";
 
@@ -116,32 +116,30 @@ const columns = [
       customBodyRender: (value, tableMeta, updateValue) => {
         return (
           <>
-            {/* <Button
-          variant="contained"
-          size="small"
-          color="primary"
-          onClick={() => console.log(tableMeta.rowData[0])}
-        >
-          Edit
-          </Button> */}
-            <IconButton
+            <ButtonGroup
+              variant="text"
               color="primary"
-              aria-label="upload picture"
-              onClick={() => console.log(tableMeta.rowData[0])}
-              component="span"
-              size="small"
+              aria-label="text primary button group"
             >
-              <Create />
-            </IconButton>
-            <IconButton
-              color="secondary"
-              aria-label="upload picture"
-              onClick={() => console.log(tableMeta.rowData[0])}
-              component="span"
-              size="small"
-            >
-              <Delete />
-            </IconButton>
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                onClick={() => console.log(tableMeta.rowData[0])}
+                component="span"
+                size="small"
+              >
+                <Create />
+              </IconButton>
+              <IconButton
+                color="secondary"
+                aria-label="upload picture"
+                onClick={() => console.log(tableMeta.rowData[0])}
+                component="span"
+                size="small"
+              >
+                <Delete />
+              </IconButton>
+            </ButtonGroup>
           </>
         );
       },

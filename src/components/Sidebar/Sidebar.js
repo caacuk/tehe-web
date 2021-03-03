@@ -11,7 +11,12 @@ import {
   HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
   Business,
-  Book, Info, NaturePeople, School, Publish, People
+  Book,
+  Info,
+  NaturePeople,
+  School,
+  Publish,
+  People,
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
@@ -39,34 +44,34 @@ const structure = [
   //   link: "/app/typography",
   //   icon: <TypographyIcon />,
   // },
-  { 
-    id: 1, 
-    label: "Penelitian", 
-    link: "", 
+  {
+    id: 1,
+    label: "Penelitian",
+    link: "",
     icon: <Book />,
   },
-  { 
-    id: 2, 
-    label: "Publikasi", 
-    link: "", 
+  {
+    id: 2,
+    label: "Publikasi",
+    link: "",
     icon: <Publish />,
   },
-  { 
-    id: 3, 
-    label: "Dosen", 
-    link: "/app/dosen", 
+  {
+    id: 3,
+    label: "Dosen",
+    link: "/app/dosen",
     icon: <People />,
     children: [
       { label: "Jenis Dokumen", link: "/app/ui/maps" },
       { label: "Publikasi", link: "/app/ui/maps" },
       { label: "Penelitian", link: "/app/ui/maps" },
       { label: "Kegiatan", link: "/app/ui/maps" },
-    ], 
+    ],
   },
-  { 
-    id: 2, 
-    label: "Prestasi Mahasiswa", 
-    link: "", 
+  {
+    id: 2,
+    label: "Prestasi Mahasiswa",
+    link: "",
     icon: <School />,
   },
   {
@@ -81,10 +86,10 @@ const structure = [
     link: "",
     icon: <NaturePeople />,
   },
-  { 
-    id: 6, 
-    label: "Data master", 
-    link: "", 
+  {
+    id: 6,
+    label: "Data master",
+    link: "",
     icon: <Info />,
     children: [
       { label: "Program Studi", link: "/app/programstudi" },
@@ -95,7 +100,7 @@ const structure = [
       { label: "Tingkat", link: "/app/dosen" },
       { label: "Negara", link: "/app/dosen" },
       { label: "Kategori", link: "/app/dosen" },
-    ], 
+    ],
   },
   // {
   //   id: 6,

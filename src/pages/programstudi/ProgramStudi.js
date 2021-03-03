@@ -3,7 +3,6 @@ import { Grid, Button, IconButton } from "@material-ui/core";
 import { Create, Delete } from "@material-ui/icons";
 import MUIDataTable from "mui-datatables";
 
-
 // components
 import PageTitle from "../../components/PageTitle/PageTitle";
 
@@ -80,7 +79,7 @@ export default function ProgramStudi() {
       <PageTitle
         title="Program Studi"
         button={
-          <Button 
+          <Button
             variant="contained"
             size="medium"
             color="primary"
