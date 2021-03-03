@@ -19,9 +19,9 @@ export const getProgramStudi = () => {
     });
 };
 
-export const getByIdProgramStudi = (id) => {
+export const getProgramStudiById = (id) => {
   return axios
-    .get("programStudi/"+ id, axiosConfig)
+    .get("programStudi/" + id, axiosConfig)
     .then((response) => {
       return response.data;
     })

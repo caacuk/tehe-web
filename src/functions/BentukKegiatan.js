@@ -19,49 +19,54 @@ export const getBentukKegiatan = () => {
     });
 };
 
-// export const postProgramStudi = (programStudi) => {
-//   const body = {
-//     name: programStudi.name,
-//     price: programStudi.price,
-//     status: 0,
-//     date: programStudi.date,
-//   };
+export const getBentukKegiatanById = (id) => {
+  return axios
+    .get("bentukKegiatan/" + id, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
 
-//   return axios
-//     .post("programStudi/", body, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+export const postBentukKegiatan = (BentukKegiatan) => {
+  const body = {
+    nama: BentukKegiatan.nama,
+  };
 
-// export const putProgramStudi = (programStudi) => {
-//   const body = {
-//     name: programStudi.name,
-//     price: programStudi.price,
-//     status: programStudi.status,
-//     date: programStudi.date,
-//   };
+  return axios
+    .post("bentukKegiatan/", body, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
 
-//   return axios
-//     .put("programStudi/" + programStudi.id, body, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+export const putBentukKegiatan = (BentukKegiatan) => {
+  const body = {
+    nama: BentukKegiatan.nama,
+  };
 
-// export const deleteProgramStudi = (programStudi) => {
-//   return axios
-//     .delete("programStudi/" + programStudi.id, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+  return axios
+    .put("bentukKegiatan/" + BentukKegiatan.id, body, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
+
+export const deleteBentukKegiatan = (id) => {
+  return axios
+    .delete("bentukKegiatan/" + id, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};

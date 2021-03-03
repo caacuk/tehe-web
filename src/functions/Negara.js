@@ -19,49 +19,64 @@ export const getNegara = () => {
     });
 };
 
-// export const postProgramStudi = (programStudi) => {
-//   const body = {
-//     name: programStudi.name,
-//     price: programStudi.price,
-//     status: 0,
-//     date: programStudi.date,
-//   };
+export const getNegaraById = (id) => {
+  return axios
+    .get("negara/" + id, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
 
-//   return axios
-//     .post("programStudi/", body, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+export const postNegara = (Negara) => {
+  const body = {
+    iso: Negara.iso,
+    name: Negara.name,
+    nicename: Negara.nicename,
+    iso3: Negara.iso3,
+    numcode: Negara.numcode,
+    phonecode: Negara.phonecode,
+  };
 
-// export const putProgramStudi = (programStudi) => {
-//   const body = {
-//     name: programStudi.name,
-//     price: programStudi.price,
-//     status: programStudi.status,
-//     date: programStudi.date,
-//   };
+  return axios
+    .post("negara/", body, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
 
-//   return axios
-//     .put("programStudi/" + programStudi.id, body, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+export const putNegara = (Negara) => {
+  const body = {
+    iso: Negara.iso,
+    name: Negara.name,
+    nicename: Negara.nicename,
+    iso3: Negara.iso3,
+    numcode: Negara.numcode,
+    phonecode: Negara.phonecode,
+  };
 
-// export const deleteProgramStudi = (programStudi) => {
-//   return axios
-//     .delete("programStudi/" + programStudi.id, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+  return axios
+    .put("negara/" + Negara.id, body, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
+
+export const deleteNegara = (id) => {
+  return axios
+    .delete("negara/" + id, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};

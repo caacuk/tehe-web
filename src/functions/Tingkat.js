@@ -8,9 +8,9 @@ export let axiosConfig = {
   },
 };
 
-export const getJenisPartner = () => {
+export const getTingkat = () => {
   return axios
-    .get("jenisPartner/", axiosConfig)
+    .get("tingkat/", axiosConfig)
     .then((response) => {
       return response.data;
     })
@@ -19,9 +19,9 @@ export const getJenisPartner = () => {
     });
 };
 
-export const getJenisPartnerById = (id) => {
+export const getTingkatById = (id) => {
   return axios
-    .get("jenisPartner/" + id, axiosConfig)
+    .get("tingkat/" + id, axiosConfig)
     .then((response) => {
       return response.data;
     })
@@ -30,13 +30,13 @@ export const getJenisPartnerById = (id) => {
     });
 };
 
-export const postJenisPartner = (jenisPartner) => {
+export const postTingkat = (Tingkat) => {
   const body = {
-    nama: jenisPartner.nama,
+    nama: Tingkat.nama,
   };
 
   return axios
-    .post("jenisPartner/", body, axiosConfig)
+    .post("tingkat/", body, axiosConfig)
     .then((response) => {
       return response.data;
     })
@@ -45,13 +45,13 @@ export const postJenisPartner = (jenisPartner) => {
     });
 };
 
-export const putJenisPartner = (jenisPartner) => {
+export const putTingkat = (Tingkat) => {
   const body = {
-    nama: jenisPartner.nama,
+    nama: Tingkat.nama,
   };
 
   return axios
-    .put("jenisPartner/" + jenisPartner.id, body, axiosConfig)
+    .put("tingkat/" + Tingkat.id, body, axiosConfig)
     .then((response) => {
       return response.data;
     })
@@ -60,9 +60,9 @@ export const putJenisPartner = (jenisPartner) => {
     });
 };
 
-export const deleteJenisPartner = (id) => {
+export const deleteTingkat = (id) => {
   return axios
-    .delete("jenisPartner/" + id, axiosConfig)
+    .delete("tingkat/" + id, axiosConfig)
     .then((response) => {
       return response.data;
     })
