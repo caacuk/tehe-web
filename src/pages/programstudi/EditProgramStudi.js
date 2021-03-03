@@ -12,18 +12,30 @@ import {
 // components
 import PageTitle from "../../components/PageTitle/PageTitle";
 
-import { postProgramStudi } from "../../functions/ProgramStudi";
+import { getByIdProgramStudi, putProgramStudi } from "../../functions/ProgramStudi";
 
-export default function TambahProgramStudi(){
+export default function EditProgramStudi(){
+    // http://localhost:3000/#/app/editprogramstudi/1
+    //alert(window.location.toString().slice(45));
     const history = useHistory();
     const [namaProgramStudi, setNamaProgramStudi] = useState("");
-
-    const insertProgramStudi = async () => {
-        // alert(namaProgramStudi);
+    const [idProgramStudi, setIdProgramStudi] = useState(window.location.toString().slice(45));
+    
+    useEffect(() => {
+        async function getData() {
+          const dataProgramStudi = await getByIdProgramStudi(idProgramStudi);
+          setNamaProgramStudi(dataProgramStudi.data.nama);
+        }
+        getData();
+      }, []);
+    
+    const editProgramStudi = async () => {
+        
         const data = {
+        id: idProgramStudi,
         nama: namaProgramStudi,
         };
-        const response = await postProgramStudi(data);
+        const response = await putProgramStudi(data);
 
         if (response.errorMessage === null) {
         history.push(`/app/programstudi`);
@@ -33,7 +45,7 @@ export default function TambahProgramStudi(){
     return (
         <>
           <PageTitle
-            title="Tambah Program Studi"
+            title="Edit Program Studi"
             button={
               <Button
                 variant="contained"
@@ -70,7 +82,7 @@ export default function TambahProgramStudi(){
                 color="primary"
                 // href="#/app/programstudi"
                 margin="normal"
-                onClick={insertProgramStudi}
+                onClick={editProgramStudi}
               >
                 Simpan
               </Button>

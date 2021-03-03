@@ -19,6 +19,17 @@ export const getProgramStudi = () => {
     });
 };
 
+export const getByIdProgramStudi = (id) => {
+  return axios
+    .get("programStudi/"+ id, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
+
 export const postProgramStudi = (programStudi) => {
   const body = {
     nama: programStudi.nama,
@@ -34,31 +45,28 @@ export const postProgramStudi = (programStudi) => {
     });
 };
 
-// export const putProgramStudi = (programStudi) => {
-//   const body = {
-//     name: programStudi.name,
-//     price: programStudi.price,
-//     status: programStudi.status,
-//     date: programStudi.date,
-//   };
+export const putProgramStudi = (programStudi) => {
+  const body = {
+    nama: programStudi.nama,
+  };
 
-//   return axios
-//     .put("programStudi/" + programStudi.id, body, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+  return axios
+    .put("programStudi/" + programStudi.id, body, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
 
-// export const deleteProgramStudi = (programStudi) => {
-//   return axios
-//     .delete("programStudi/" + programStudi.id, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+export const deleteProgramStudi = (id) => {
+  return axios
+    .delete("programStudi/" + id, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};

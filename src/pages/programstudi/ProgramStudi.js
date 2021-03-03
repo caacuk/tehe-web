@@ -3,11 +3,10 @@ import { Grid, Button, IconButton } from "@material-ui/core";
 import { Create, Delete } from "@material-ui/icons";
 import MUIDataTable from "mui-datatables";
 
-
 // components
 import PageTitle from "../../components/PageTitle/PageTitle";
 
-import { getProgramStudi } from "../../functions/ProgramStudi";
+import { getProgramStudi, deleteProgramStudi } from "../../functions/ProgramStudi";
 
 const columns = [
   {
@@ -37,7 +36,7 @@ const columns = [
             <IconButton
               color="primary"
               aria-label="upload picture"
-              onClick={() => console.log(tableMeta.rowData[0])}
+              onClick={() => window.location.replace('#/app/editprogramstudi/'+ tableMeta.rowData[0])}
               component="span"
               size="small"
             >
@@ -46,7 +45,7 @@ const columns = [
             <IconButton
               color="secondary"
               aria-label="upload picture"
-              onClick={() => console.log(tableMeta.rowData[0])}
+              onClick= {() => deleteProgramStudi(tableMeta.rowData[0])}
               component="span"
               size="small"
             >
