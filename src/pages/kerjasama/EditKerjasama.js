@@ -22,7 +22,7 @@ import { getBentukKegiatan } from "../../functions/BentukKegiatan";
 import { postKerjasama } from "../../functions/Kerjasama";
 import { getKerjasamaById } from "../../functions/Kerjasama";
 
-export default function UpdateKerjasama(params) {
+export default function EditKerjasama(params) {
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -92,7 +92,7 @@ export default function UpdateKerjasama(params) {
   return (
     <>
       <PageTitle
-        title="Tambah Kerjasama"
+        title="Edit Kerjasama"
         button={
           <Button
             variant="contained"
