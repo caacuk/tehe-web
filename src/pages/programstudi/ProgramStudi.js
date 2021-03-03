@@ -79,7 +79,7 @@ export default function ProgramStudi() {
       <PageTitle
         title="Program Studi"
         button={
-          <Button 
+          <Button
             variant="contained"
             size="medium"
             color="primary"
