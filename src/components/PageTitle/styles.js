@@ -10,7 +10,6 @@ export default makeStyles((theme) => ({
   },
   typo: {
     color: fade("#003300", 0.7),
-    fontFamily: "helvetica",
   },
   button: {
     boxShadow: theme.customShadows.widget,
