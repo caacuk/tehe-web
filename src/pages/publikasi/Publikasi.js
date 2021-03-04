@@ -21,8 +21,8 @@ const columns = [
     name: "id",
     label: "ID",
     options: {
-      filter: true,
-      sort: true,
+      filter: false,
+      sort: false,
       display: false,
     },
   },
@@ -30,14 +30,14 @@ const columns = [
     name: "no",
     label: "No",
     options: {
-      filter: true,
+      filter: false,
       sort: true,
-      display: false,
+      display: true,
     },
   },
   {
-    name: "tahun_ajaran",
-    label: "Tahun Ajaran",
+    name: "nama_program_studi",
+    label: "Program Studi",
     options: {
       filter: true,
       sort: true,
@@ -54,6 +54,14 @@ const columns = [
   {
     name: "judul",
     label: "Judul",
+    options: {
+      filter: true,
+      sort: true,
+    },
+  },
+  {
+    name: "nama_tingkat",
+    label: "Tingkat",
     options: {
       filter: true,
       sort: true,
@@ -92,16 +100,8 @@ const columns = [
     },
   },
   {
-    name: "nama_program_studi",
-    label: "Program Studi",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "nama_tingkat",
-    label: "Tingkat",
+    name: "jumlah_penulis",
+    label: "Penulis",
     options: {
       filter: true,
       sort: true,
@@ -164,11 +164,16 @@ export default function Publikasi() {
       const data = await getPublikasi();
       let result = [];
       data.data.map((x, i) => {
+        let jumlah_penulis = 0;
+        if (x.mahasiswa_1 !== null) jumlah_penulis++;
+        if (x.mahasiswa_2 !== null) jumlah_penulis++;
+        if (x.dosen_1 !== null) jumlah_penulis++;
+        if (x.dosen_2 !== null) jumlah_penulis++;
+
         const flattenData = {
           no: i + 1,
           id: x.id,
-          tahun_ajaran: x.tahun_ajaran,
-          semester: x.semester,
+          semester: x.tahun_ajaran + "" + x.semester,
           judul: x.judul,
           nama_jurnal: x.nama_jurnal,
           edisi: x.edisi,
@@ -180,6 +185,7 @@ export default function Publikasi() {
           nama_mahasiswa_2: x.mahasiswa_2?.nama,
           nama_dosen_1: x.dosen_1?.nama,
           nama_dosen_2: x.dosen_2?.nama,
+          jumlah_penulis: jumlah_penulis
         };
         result.push(flattenData);
       });

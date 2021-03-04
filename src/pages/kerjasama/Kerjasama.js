@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import {
   Grid,
   Button,
@@ -20,8 +19,8 @@ const columns = [
     name: "id",
     label: "ID",
     options: {
-      filter: true,
-      sort: true,
+      filter: false,
+      sort: false,
       display: false,
     },
   },
@@ -29,9 +28,9 @@ const columns = [
     name: "no",
     label: "No",
     options: {
-      filter: true,
+      filter: false,
       sort: true,
-      display: false,
+      display: true,
     },
   },
   {
