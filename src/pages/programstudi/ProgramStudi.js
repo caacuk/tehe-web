@@ -8,6 +8,7 @@ import {
   getProgramStudi,
   deleteProgramStudi,
   putProgramStudi,
+  postProgramStudi,
 } from "../../functions/ProgramStudi";
 import {
   Grid,
@@ -16,6 +17,7 @@ import {
   CircularProgress,
   TextField,
 } from "@material-ui/core";
+import CustomModalTambah from "../../components/CustomModalTambah/CustomModalTambah";
 
 const options = {
   filterType: "checkbox",
@@ -25,9 +27,13 @@ const options = {
 export default function ProgramStudi() {
   const history = useHistory();
   const [state, setState] = useState([]);
+  const [namaProgramStudi, setNamaProgramStudi] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [editState, setEditState] = useState({
     id: "",
+    nama: "",
+  });
+  const [tambahState, setTambahState] = useState({
     nama: "",
   });
 
@@ -49,6 +55,20 @@ export default function ProgramStudi() {
     const data = await getProgramStudi();
     setState(data.data);
     setIsLoading(false);
+    setEditState({ nama: '' });
+  };
+  
+  const insertProgramStudi = async () => {
+    setIsLoading(true);
+    const response = await postProgramStudi(tambahState);
+
+    if (response.errorMessage === null) {
+      history.push(`/app/programstudi`);
+    }
+    const data = await getProgramStudi();
+    setState(data.data);
+    setIsLoading(false);
+    setTambahState({ nama: '' });
   };
 
   const columns = [
@@ -81,6 +101,7 @@ export default function ProgramStudi() {
                 color="primary"
                 aria-label="text primary button group"
               >
+                 {/* CUSTOM MODAL EDIT */}
                 <CustomModalEdit
                   handleEdit={() => {
                     editProgramStudi();
@@ -99,6 +120,7 @@ export default function ProgramStudi() {
                     label="Nama Program Studi"
                   />
                 </CustomModalEdit>
+                {/* CUSTOM MODAL DELETE */}
                 <CustomModalDelete
                   handleDelete={async () => {
                     setIsLoading(true);
@@ -121,14 +143,21 @@ export default function ProgramStudi() {
       <PageTitle
         title="Program Studi"
         button={
-          <Button
-            variant="contained"
-            size="medium"
-            color="primary"
-            href="#/app/TambahProgramStudi"
+          // CUSTOM MODAL TAMBAH
+          <CustomModalTambah
+            handleTambah={() => {
+              insertProgramStudi();
+            }}
           >
-            Tambah
-          </Button>
+            <TextField
+              fullWidth
+              value={tambahState.nama}
+              onChange={(e) => {
+                setTambahState((c) => ({ ...c, nama: e.target.value }));
+              }}
+              label="Nama Program Studi"
+            />
+          </CustomModalTambah>
         }
       />
       <Grid container spacing={4}>
