@@ -7,6 +7,7 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  Box,
 } from "@material-ui/core";
 
 // components
@@ -46,33 +47,32 @@ export default function TambahProgramStudi() {
           </Button>
         }
       />
-      <Grid
-        item
-        style={{ padding: "45px", backgroundColor: "white", boxShadow:"1px 3px 8px 1px grey"}}
-      >
-        <Grid item xs={6}>
-          <>
-          <InputLabel shrink>Nama Program Studi</InputLabel>
-          <TextField
-            id="partner"
-            value={namaProgramStudi}
-            onChange={(e) => setNamaProgramStudi(e.target.value)}
-            type="text"
-            fullWidth
-          />
-          </>
-        </Grid>   
-        <Grid item xs={12} style={{marginTop:"40px"}}>
-          <Button
-            variant="contained"
-            size="large"
-            color="primary"
-            margin="normal"
-            onClick={insertProgramStudi}
-          >
-            Simpan
-          </Button>
-        </Grid>
+      <Grid item>
+        <Box boxShadow={3} p={3} bgcolor={"white"}>
+          <Grid item xs={6}>
+            <>
+              <InputLabel shrink>Nama Program Studi</InputLabel>
+              <TextField
+                id="partner"
+                value={namaProgramStudi}
+                onChange={(e) => setNamaProgramStudi(e.target.value)}
+                type="text"
+                fullWidth
+              />
+            </>
+          </Grid>
+          <Grid item xs={12} style={{ marginTop: "40px" }}>
+            <Button
+              variant="contained"
+              size="large"
+              color="primary"
+              margin="normal"
+              onClick={insertProgramStudi}
+            >
+              Simpan
+            </Button>
+          </Grid>
+        </Box>
       </Grid>
     </>
   );

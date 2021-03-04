@@ -1,87 +1,21 @@
-import { React, useState, useEffect } from "react";
-import {
-  Grid,
-  Button,
-  IconButton,
-  ButtonGroup,
-  CircularProgress,
-} from "@material-ui/core";
-import { Create, Delete } from "@material-ui/icons";
+import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
 import MUIDataTable from "mui-datatables";
-import {
-  createMuiTheme,
-  MuiThemeProvider,
-  withStyles
-} from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/core/styles";
-
-// components
 import PageTitle from "../../components/PageTitle/PageTitle";
-
+import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
+import { React, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import {
   getProgramStudi,
   deleteProgramStudi,
+  putProgramStudi,
 } from "../../functions/ProgramStudi";
-
-
-const columns = [
-  {
-    name: "id",
-    label: "ID",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "nama",
-    label: "Nama",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "",
-    options: {
-      filter: true,
-      sort: true,
-      customBodyRender: (value, tableMeta, updateValue) => {
-        return (
-          <>
-            <ButtonGroup
-              variant="text"
-              color="primary"
-              aria-label="text primary button group"
-            >
-              <IconButton
-                color="primary"
-                aria-label="upload picture"
-                onClick={() =>
-                  (window.location =
-                    "#/app/editProgramStudi/" + tableMeta.rowData[0])
-                }
-                component="span"
-                size="small"
-              >
-                <Create />
-              </IconButton>
-              <IconButton
-                color="secondary"
-                aria-label="upload picture"
-                onClick={() => deleteProgramStudi(tableMeta.rowData[0])}
-                component="span"
-                size="small"
-              >
-                <Delete />
-              </IconButton>
-            </ButtonGroup>
-          </>
-        );
-      },
-    },
-  },
-];
+import {
+  Grid,
+  Button,
+  ButtonGroup,
+  CircularProgress,
+  TextField,
+} from "@material-ui/core";
 
 const options = {
   filterType: "checkbox",
@@ -89,8 +23,13 @@ const options = {
 };
 
 export default function ProgramStudi() {
+  const history = useHistory();
   const [state, setState] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [editState, setEditState] = useState({
+    id: "",
+    nama: "",
+  });
 
   useEffect(() => {
     async function getData() {
@@ -100,6 +39,82 @@ export default function ProgramStudi() {
     }
     getData();
   }, []);
+
+  const editProgramStudi = async () => {
+    setIsLoading(true);
+    const response = await putProgramStudi(editState);
+    if (response.errorMessage === null) {
+      history.push(`/app/programstudi`);
+    }
+    const data = await getProgramStudi();
+    setState(data.data);
+    setIsLoading(false);
+  };
+
+  const columns = [
+    {
+      name: "id",
+      label: "ID",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "nama",
+      label: "Nama",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "",
+      options: {
+        filter: true,
+        sort: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <>
+              <ButtonGroup
+                variant="text"
+                color="primary"
+                aria-label="text primary button group"
+              >
+                <CustomModalEdit
+                  handleEdit={() => {
+                    editProgramStudi();
+                  }}
+                  handleInitialData={async () => {
+                    const { rowData } = tableMeta;
+                    setEditState({ nama: rowData[1], id: rowData[0] });
+                  }}
+                >
+                  <TextField
+                    fullWidth
+                    value={editState.nama}
+                    onChange={(e) => {
+                      setEditState((c) => ({ ...c, nama: e.target.value }));
+                    }}
+                    label="Nama Program Studi"
+                  />
+                </CustomModalEdit>
+                <CustomModalDelete
+                  handleDelete={async () => {
+                    setIsLoading(true);
+                    await deleteProgramStudi(tableMeta.rowData[0]);
+                    const data = await getProgramStudi();
+                    setState(data.data);
+                    setIsLoading(false);
+                  }}
+                />
+              </ButtonGroup>
+            </>
+          );
+        },
+      },
+    },
+  ];
 
   return (
     <>
@@ -123,7 +138,7 @@ export default function ProgramStudi() {
               <CircularProgress size={50} style={{ marginTop: 50 }} />
             </div>
           ) : (
-            <MUIDataTable 
+            <MUIDataTable
               title=""
               data={state}
               columns={columns}
