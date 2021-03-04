@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     width: 400,
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    border: "1px solid #c2c2a3",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -65,6 +65,7 @@ export const CustomModalEdit = ({
           }}
           variant="contained"
           color="secondary"
+          style={{backgroundColor:"#206040"}}
         >
           Edit
         </Button>
@@ -84,7 +85,7 @@ export const CustomModalEdit = ({
         component="span"
         size="small"
       >
-        <Edit />
+        <Edit style={{color: "#206040"}} />
       </IconButton>
       <Modal
         open={open}

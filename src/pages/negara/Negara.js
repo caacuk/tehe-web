@@ -1,3 +1,4 @@
+import { Table } from "../../components/Table/Table";
 import { React, useState, useEffect } from "react";
 import {
   Grid,
@@ -228,12 +229,7 @@ export default function Negara() {
               <CircularProgress size={50} style={{ marginTop: 50 }} />
             </div>
           ) : (
-            <MUIDataTable
-              title=""
-              data={state}
-              columns={columns}
-              options={options}
-            />
+            <Table data={state} columns={columns} />
           )}
         </Grid>
       </Grid>

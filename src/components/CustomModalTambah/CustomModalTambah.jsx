@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     width: 400,
     backgroundColor: theme.palette.background.paper,
-    border: "1px solid #000",
+    border: "1px solid #c2c2a3",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -62,7 +62,7 @@ export const CustomModalTambah = ({
             handleClose();
           }}
           variant="contained"
-          color="secondary"
+          color="primary"
         >
           Tambah
         </Button>

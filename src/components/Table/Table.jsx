@@ -8,7 +8,9 @@ const getMuiTheme = () =>
     overrides: {
       MUIDataTableHeadCell: {
         fixedHeader: {
-          backgroundColor: fade("#558000", 0.4),
+          backgroundColor: fade("#006600", 0.3), //#558000
+          fontWeight: "900",
+          textTransform: "uppercase",
         },
       },
     },

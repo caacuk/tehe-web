@@ -1,6 +1,7 @@
 import CustomModalTambah from "../../components/CustomModalTambah/CustomModalTambah";
 import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
 import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
+import { Table } from "../../components/Table/Table";
 import { useHistory } from "react-router-dom";
 import { React, useState, useEffect } from "react";
 import {
@@ -168,12 +169,7 @@ export default function JenisDokumen() {
               <CircularProgress size={50} style={{ marginTop: 50 }} />
             </div>
           ) : (
-            <MUIDataTable
-              title=""
-              data={state}
-              columns={columns}
-              options={options}
-            />
+            <Table data={state} columns={columns} />
           )}
         </Grid>
       </Grid>
