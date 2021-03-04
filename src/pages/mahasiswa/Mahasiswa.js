@@ -1,24 +1,34 @@
-import PageTitle from "../../components/PageTitle/PageTitle";
+import { React, useState, useEffect } from "react";
 import CustomModalTambah from "../../components/CustomModalTambah/CustomModalTambah";
 import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
 import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
 import { Table } from "../../components/Table/Table";
-import { React, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import {
-  getProgramStudi,
-  deleteProgramStudi,
-  putProgramStudi,
-  postProgramStudi,
-} from "../../functions/ProgramStudi";
+
 import {
   Grid,
   ButtonGroup,
   CircularProgress,
   TextField,
 } from "@material-ui/core";
+import MUIDataTable from "mui-datatables";
 
-export default function ProgramStudi() {
+// components
+import PageTitle from "../../components/PageTitle/PageTitle";
+
+import {
+  getMahasiswa,
+  deleteMahasiswa,
+  putMahasiswa,
+  postMahasiswa,
+} from "../../functions/Mahasiswa";
+
+const options = {
+  filterType: "checkbox",
+  selectableRows: false,
+};
+
+export default function Mahasiswa() {
   const history = useHistory();
   const [state, setState] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -32,33 +42,33 @@ export default function ProgramStudi() {
 
   useEffect(() => {
     async function getData() {
-      const data = await getProgramStudi();
+      const data = await getMahasiswa();
       setState(data.data);
       setIsLoading(false);
     }
     getData();
   }, []);
 
-  const editProgramStudi = async () => {
+  const editMahasiswa = async () => {
     setIsLoading(true);
-    const response = await putProgramStudi(editState);
+    const response = await putMahasiswa(editState);
     if (response.errorMessage === null) {
-      history.push(`/app/programstudi`);
+      history.push(`/app/mahasiswa`);
     }
-    const data = await getProgramStudi();
+    const data = await getMahasiswa();
     setState(data.data);
     setIsLoading(false);
     setEditState({ nama: "" });
   };
 
-  const insertProgramStudi = async () => {
+  const insertMahasiswa = async () => {
     setIsLoading(true);
-    const response = await postProgramStudi(tambahState);
+    const response = await postMahasiswa(tambahState);
 
     if (response.errorMessage === null) {
-      history.push(`/app/programstudi`);
+      history.push(`/app/mahasiswa`);
     }
-    const data = await getProgramStudi();
+    const data = await getMahasiswa();
     setState(data.data);
     setIsLoading(false);
     setTambahState({ nama: "" });
@@ -97,7 +107,7 @@ export default function ProgramStudi() {
                 {/* CUSTOM MODAL EDIT */}
                 <CustomModalEdit
                   handleEdit={() => {
-                    editProgramStudi();
+                    editMahasiswa();
                   }}
                   handleInitialData={async () => {
                     const { rowData } = tableMeta;
@@ -110,15 +120,15 @@ export default function ProgramStudi() {
                     onChange={(e) => {
                       setEditState((c) => ({ ...c, nama: e.target.value }));
                     }}
-                    label="Nama Program Studi"
+                    label="Nama Mahasiswa"
                   />
                 </CustomModalEdit>
                 {/* CUSTOM MODAL DELETE */}
                 <CustomModalDelete
                   handleDelete={async () => {
                     setIsLoading(true);
-                    await deleteProgramStudi(tableMeta.rowData[0]);
-                    const data = await getProgramStudi();
+                    await deleteMahasiswa(tableMeta.rowData[0]);
+                    const data = await getMahasiswa();
                     setState(data.data);
                     setIsLoading(false);
                   }}
@@ -134,12 +144,12 @@ export default function ProgramStudi() {
   return (
     <>
       <PageTitle
-        title="Program Studi"
+        title="Mahasiswa"
         button={
           // CUSTOM MODAL TAMBAH
           <CustomModalTambah
             handleTambah={() => {
-              insertProgramStudi();
+              insertMahasiswa();
             }}
           >
             <TextField
@@ -148,7 +158,7 @@ export default function ProgramStudi() {
               onChange={(e) => {
                 setTambahState((c) => ({ ...c, nama: e.target.value }));
               }}
-              label="Nama Program Studi"
+              label="Nama Mahasiswa"
             />
           </CustomModalTambah>
         }

@@ -1,24 +1,33 @@
-import PageTitle from "../../components/PageTitle/PageTitle";
 import CustomModalTambah from "../../components/CustomModalTambah/CustomModalTambah";
 import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
 import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
 import { Table } from "../../components/Table/Table";
-import { React, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import {
-  getProgramStudi,
-  deleteProgramStudi,
-  putProgramStudi,
-  postProgramStudi,
-} from "../../functions/ProgramStudi";
+import { React, useState, useEffect } from "react";
 import {
   Grid,
   ButtonGroup,
   CircularProgress,
   TextField,
 } from "@material-ui/core";
+import MUIDataTable from "mui-datatables";
 
-export default function ProgramStudi() {
+// components
+import PageTitle from "../../components/PageTitle/PageTitle";
+
+import {
+  getJenisPartner,
+  deleteJenisPartner,
+  putJenisPartner,
+  postJenisPartner,
+} from "../../functions/JenisPartner";
+
+const options = {
+  filterType: "checkbox",
+  selectableRows: false,
+};
+
+export default function JenisPartner() {
   const history = useHistory();
   const [state, setState] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -32,33 +41,33 @@ export default function ProgramStudi() {
 
   useEffect(() => {
     async function getData() {
-      const data = await getProgramStudi();
+      const data = await getJenisPartner();
       setState(data.data);
       setIsLoading(false);
     }
     getData();
   }, []);
 
-  const editProgramStudi = async () => {
+  const editJenisPartner = async () => {
     setIsLoading(true);
-    const response = await putProgramStudi(editState);
+    const response = await putJenisPartner(editState);
     if (response.errorMessage === null) {
-      history.push(`/app/programstudi`);
+      history.push(`/app/jenispartner`);
     }
-    const data = await getProgramStudi();
+    const data = await getJenisPartner();
     setState(data.data);
     setIsLoading(false);
     setEditState({ nama: "" });
   };
 
-  const insertProgramStudi = async () => {
+  const insertJenisPartner = async () => {
     setIsLoading(true);
-    const response = await postProgramStudi(tambahState);
+    const response = await postJenisPartner(tambahState);
 
     if (response.errorMessage === null) {
-      history.push(`/app/programstudi`);
+      history.push(`/app/jenispartner`);
     }
-    const data = await getProgramStudi();
+    const data = await getJenisPartner();
     setState(data.data);
     setIsLoading(false);
     setTambahState({ nama: "" });
@@ -97,7 +106,7 @@ export default function ProgramStudi() {
                 {/* CUSTOM MODAL EDIT */}
                 <CustomModalEdit
                   handleEdit={() => {
-                    editProgramStudi();
+                    editJenisPartner();
                   }}
                   handleInitialData={async () => {
                     const { rowData } = tableMeta;
@@ -110,15 +119,15 @@ export default function ProgramStudi() {
                     onChange={(e) => {
                       setEditState((c) => ({ ...c, nama: e.target.value }));
                     }}
-                    label="Nama Program Studi"
+                    label="Nama Jenis Partner"
                   />
                 </CustomModalEdit>
                 {/* CUSTOM MODAL DELETE */}
                 <CustomModalDelete
                   handleDelete={async () => {
                     setIsLoading(true);
-                    await deleteProgramStudi(tableMeta.rowData[0]);
-                    const data = await getProgramStudi();
+                    await deleteJenisPartner(tableMeta.rowData[0]);
+                    const data = await getJenisPartner();
                     setState(data.data);
                     setIsLoading(false);
                   }}
@@ -134,12 +143,12 @@ export default function ProgramStudi() {
   return (
     <>
       <PageTitle
-        title="Program Studi"
+        title="Jenis Partner"
         button={
           // CUSTOM MODAL TAMBAH
           <CustomModalTambah
             handleTambah={() => {
-              insertProgramStudi();
+              insertJenisPartner();
             }}
           >
             <TextField
@@ -148,7 +157,7 @@ export default function ProgramStudi() {
               onChange={(e) => {
                 setTambahState((c) => ({ ...c, nama: e.target.value }));
               }}
-              label="Nama Program Studi"
+              label="Nama Jenis Partner"
             />
           </CustomModalTambah>
         }

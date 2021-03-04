@@ -8,9 +8,9 @@ export let axiosConfig = {
   },
 };
 
-export const getJenisPartner = () => {
+export const getKategori = () => {
   return axios
-    .get("jenisPartner/", axiosConfig)
+    .get("kategori/", axiosConfig)
     .then((response) => {
       return response.data;
     })
@@ -19,9 +19,9 @@ export const getJenisPartner = () => {
     });
 };
 
-export const getJenisPartnerById = (id) => {
+export const getKategoriById = (id) => {
   return axios
-    .get("jenisPartner/" + id, axiosConfig)
+    .get("kategori/" + id, axiosConfig)
     .then((response) => {
       return response.data;
     })
@@ -30,13 +30,13 @@ export const getJenisPartnerById = (id) => {
     });
 };
 
-export const postJenisPartner = (jenisPartner) => {
+export const postKategori = (Kategori) => {
   const body = {
-    nama: jenisPartner.nama,
+    nama: Kategori.nama,
   };
 
   return axios
-    .post("jenisPartner/", body, axiosConfig)
+    .post("kategori/", body, axiosConfig)
     .then((response) => {
       return response.data;
     })
@@ -45,13 +45,13 @@ export const postJenisPartner = (jenisPartner) => {
     });
 };
 
-export const putJenisPartner = (jenisPartner) => {
+export const putKategori = (Kategori) => {
   const body = {
-    nama: jenisPartner.nama,
+    nama: Kategori.nama,
   };
 
   return axios
-    .put("jenisPartner/" + jenisPartner.id, body, axiosConfig)
+    .put("kategori/" + Kategori.id, body, axiosConfig)
     .then((response) => {
       return response.data;
     })
@@ -60,9 +60,9 @@ export const putJenisPartner = (jenisPartner) => {
     });
 };
 
-export const deleteJenisPartner = (id) => {
+export const deleteKategori = (id) => {
   return axios
-    .delete("jenisPartner/" + id, axiosConfig)
+    .delete("kategori/" + id, axiosConfig)
     .then((response) => {
       return response.data;
     })

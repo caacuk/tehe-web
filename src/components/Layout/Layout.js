@@ -31,6 +31,36 @@ import TambahKerjasama from "../../pages/kerjasama/TambahKerjasama";
 import EditKerjasama from "../../pages/kerjasama/EditKerjasama";
 import ProgramStudi from "../../pages/programstudi/ProgramStudi";
 import TambahProgramStudi from "../../pages/programstudi/TambahProgramStudi";
+import EditProgramStudi from "../../pages/programstudi/EditProgramStudi";
+
+import JenisPartner from "../../pages/jenispartner/JenisPartner";
+import TambahJenisPartner from "../../pages/jenispartner/TambahJenisPartner";
+import EditJenisPartner from "../../pages/jenispartner/EditJenisPartner";
+
+import JenisDokumen from "../../pages/jenisdokumen/JenisDokumen";
+import TambahJenisDokumen from "../../pages/jenisdokumen/TambahJenisDokumen";
+import EditJenisDokumen from "../../pages/jenisdokumen/EditJenisDokumen";
+
+import BentukKegiatan from "../../pages/bentukkegiatan/BentukKegiatan";
+import TambahBentukKegiatan from "../../pages/bentukkegiatan/TambahBentukKegiatan";
+import EditBentukKegiatan from "../../pages/bentukkegiatan/EditBentukKegiatan";
+
+import Mahasiswa from "../../pages/mahasiswa/Mahasiswa";
+import TambahMahasiswa from "../../pages/mahasiswa/TambahMahasiswa";
+import EditMahasiswa from "../../pages/mahasiswa/EditMahasiswa";
+
+import Negara from "../../pages/negara/Negara";
+import TambahNegara from "../../pages/negara/TambahNegara";
+import EditNegara from "../../pages/negara/EditNegara";
+
+import Tingkat from "../../pages/tingkat/Tingkat";
+import TambahTingkat from "../../pages/tingkat/TambahTingkat";
+import EditTingkat from "../../pages/tingkat/EditTingkat";
+
+import Kategori from "../../pages/kategori/Kategori";
+import TambahKategori from "../../pages/kategori/TambahKategori";
+import EditKategori from "../../pages/kategori/EditKategori";
+
 import Dosen from "../../pages/dosen/Dosen";
 import Publikasi from "../../pages/publikasi/Publikasi";
 
@@ -58,15 +88,69 @@ function Layout(props) {
             <Route path="/app/dashboard" component={Dashboard} />
             <Route path="/app/typography" component={Typography} />
             <Route path="/app/tables" component={Tables} />
+
             <Route path="/app/kerjasama" component={Kerjasama} />
             <Route path="/app/tambahKerjasama" component={TambahKerjasama} />
             <Route path="/app/editKerjasama/:id" component={EditKerjasama} />
+
+            <Route path="/app/publikasi" component={Publikasi} />
+
             <Route path="/app/programstudi" component={ProgramStudi} />
             <Route
               path="/app/tambahProgramStudi"
               component={TambahProgramStudi}
             />
-            <Route path="/app/publikasi" component={Publikasi} />
+            <Route
+              path="/app/editProgramStudi/:id"
+              component={EditProgramStudi}
+            />
+
+            <Route path="/app/jenispartner" component={JenisPartner} />
+            <Route
+              path="/app/tambahJenisPartner"
+              component={TambahJenisPartner}
+            />
+            <Route
+              path="/app/editJenisPartner/:id"
+              component={EditJenisPartner}
+            />
+
+            <Route path="/app/jenisdokumen" component={JenisDokumen} />
+            <Route
+              path="/app/tambahJenisDokumen"
+              component={TambahJenisDokumen}
+            />
+            <Route
+              path="/app/editJenisDokumen/:id"
+              component={EditJenisDokumen}
+            />
+
+            <Route path="/app/bentukkegiatan" component={BentukKegiatan} />
+            <Route
+              path="/app/tambahBentukKegiatan"
+              component={TambahBentukKegiatan}
+            />
+            <Route
+              path="/app/editBentukKegiatan/:id"
+              component={EditBentukKegiatan}
+            />
+
+            <Route path="/app/mahasiswa" component={Mahasiswa} />
+            <Route path="/app/tambahMahasiswa" component={TambahMahasiswa} />
+            <Route path="/app/editMahasiswa/:id" component={EditMahasiswa} />
+
+            <Route path="/app/negara" component={Negara} />
+            <Route path="/app/tambahNegara" component={TambahNegara} />
+            <Route path="/app/editNegara/:id" component={EditNegara} />
+
+            <Route path="/app/tingkat" component={Tingkat} />
+            <Route path="/app/tambahTingkat" component={TambahTingkat} />
+            <Route path="/app/editTingkat/:id" component={EditTingkat} />
+
+            <Route path="/app/kategori" component={Kategori} />
+            <Route path="/app/tambahKategori" component={TambahKategori} />
+            <Route path="/app/editKategori/:id" component={EditKategori} />
+
             <Route path="/app/dosen" component={Dosen} />
             <Route path="/app/notifications" component={Notifications} />
             <Route

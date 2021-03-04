@@ -8,9 +8,9 @@ export let axiosConfig = {
   },
 };
 
-export const getJenisPartner = () => {
+export const getMahasiswa = () => {
   return axios
-    .get("jenisPartner/", axiosConfig)
+    .get("mahasiswa/", axiosConfig)
     .then((response) => {
       return response.data;
     })
@@ -19,9 +19,9 @@ export const getJenisPartner = () => {
     });
 };
 
-export const getJenisPartnerById = (id) => {
+export const getMahasiswaById = (id) => {
   return axios
-    .get("jenisPartner/" + id, axiosConfig)
+    .get("mahasiswa/" + id, axiosConfig)
     .then((response) => {
       return response.data;
     })
@@ -30,13 +30,13 @@ export const getJenisPartnerById = (id) => {
     });
 };
 
-export const postJenisPartner = (jenisPartner) => {
+export const postMahasiswa = (Mahasiswa) => {
   const body = {
-    nama: jenisPartner.nama,
+    nama: Mahasiswa.nama,
   };
 
   return axios
-    .post("jenisPartner/", body, axiosConfig)
+    .post("mahasiswa/", body, axiosConfig)
     .then((response) => {
       return response.data;
     })
@@ -45,13 +45,13 @@ export const postJenisPartner = (jenisPartner) => {
     });
 };
 
-export const putJenisPartner = (jenisPartner) => {
+export const putMahasiswa = (Mahasiswa) => {
   const body = {
-    nama: jenisPartner.nama,
+    nama: Mahasiswa.nama,
   };
 
   return axios
-    .put("jenisPartner/" + jenisPartner.id, body, axiosConfig)
+    .put("mahasiswa/" + Mahasiswa.id, body, axiosConfig)
     .then((response) => {
       return response.data;
     })
@@ -60,9 +60,9 @@ export const putJenisPartner = (jenisPartner) => {
     });
 };
 
-export const deleteJenisPartner = (id) => {
+export const deleteMahasiswa = (id) => {
   return axios
-    .delete("jenisPartner/" + id, axiosConfig)
+    .delete("mahasiswa/" + id, axiosConfig)
     .then((response) => {
       return response.data;
     })
