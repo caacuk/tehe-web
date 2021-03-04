@@ -185,7 +185,7 @@ export default function Publikasi() {
           nama_mahasiswa_2: x.mahasiswa_2?.nama,
           nama_dosen_1: x.dosen_1?.nama,
           nama_dosen_2: x.dosen_2?.nama,
-          jumlah_penulis: jumlah_penulis
+          jumlah_penulis: jumlah_penulis,
         };
         result.push(flattenData);
       });
