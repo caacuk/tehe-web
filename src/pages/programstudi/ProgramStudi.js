@@ -1,10 +1,10 @@
-import MUIDataTable from "mui-datatables";
 import PageTitle from "../../components/PageTitle/PageTitle";
-import { React, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import CustomModalTambah from "../../components/CustomModalTambah/CustomModalTambah";
 import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
 import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
+import { Table } from "../../components/Table/Table";
+import { React, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import {
   getProgramStudi,
   deleteProgramStudi,
@@ -17,12 +17,6 @@ import {
   CircularProgress,
   TextField,
 } from "@material-ui/core";
-
-
-const options = {
-  filterType: "checkbox",
-  selectableRows: false,
-};
 
 export default function ProgramStudi() {
   const history = useHistory();
@@ -54,9 +48,9 @@ export default function ProgramStudi() {
     const data = await getProgramStudi();
     setState(data.data);
     setIsLoading(false);
-    setEditState({ nama: '' });
+    setEditState({ nama: "" });
   };
-  
+
   const insertProgramStudi = async () => {
     setIsLoading(true);
     const response = await postProgramStudi(tambahState);
@@ -67,7 +61,7 @@ export default function ProgramStudi() {
     const data = await getProgramStudi();
     setState(data.data);
     setIsLoading(false);
-    setTambahState({ nama: '' });
+    setTambahState({ nama: "" });
   };
 
   const columns = [
@@ -166,12 +160,7 @@ export default function ProgramStudi() {
               <CircularProgress size={50} style={{ marginTop: 50 }} />
             </div>
           ) : (
-            <MUIDataTable
-              title=""
-              data={state}
-              columns={columns}
-              options={options}
-            />
+            <Table data={state} columns={columns} />
           )}
         </Grid>
       </Grid>
