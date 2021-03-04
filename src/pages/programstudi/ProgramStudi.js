@@ -1,9 +1,10 @@
-import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
 import MUIDataTable from "mui-datatables";
 import PageTitle from "../../components/PageTitle/PageTitle";
-import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
 import { React, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import CustomModalTambah from "../../components/CustomModalTambah/CustomModalTambah";
+import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
+import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
 import {
   getProgramStudi,
   deleteProgramStudi,
@@ -12,12 +13,11 @@ import {
 } from "../../functions/ProgramStudi";
 import {
   Grid,
-  Button,
   ButtonGroup,
   CircularProgress,
   TextField,
 } from "@material-ui/core";
-import CustomModalTambah from "../../components/CustomModalTambah/CustomModalTambah";
+
 
 const options = {
   filterType: "checkbox",
@@ -27,7 +27,6 @@ const options = {
 export default function ProgramStudi() {
   const history = useHistory();
   const [state, setState] = useState([]);
-  const [namaProgramStudi, setNamaProgramStudi] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [editState, setEditState] = useState({
     id: "",
@@ -101,7 +100,7 @@ export default function ProgramStudi() {
                 color="primary"
                 aria-label="text primary button group"
               >
-                 {/* CUSTOM MODAL EDIT */}
+                {/* CUSTOM MODAL EDIT */}
                 <CustomModalEdit
                   handleEdit={() => {
                     editProgramStudi();

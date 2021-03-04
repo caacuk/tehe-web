@@ -1,12 +1,14 @@
+import CustomModalTambah from "../../components/CustomModalTambah/CustomModalTambah";
+import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
+import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
+import { useHistory } from "react-router-dom";
 import { React, useState, useEffect } from "react";
 import {
   Grid,
-  Button,
-  IconButton,
   ButtonGroup,
   CircularProgress,
+  TextField,
 } from "@material-ui/core";
-import { Create, Delete } from "@material-ui/icons";
 import MUIDataTable from "mui-datatables";
 
 // components
@@ -15,66 +17,9 @@ import PageTitle from "../../components/PageTitle/PageTitle";
 import {
   getJenisPartner,
   deleteJenisPartner,
+  putJenisPartner,
+  postJenisPartner,
 } from "../../functions/JenisPartner";
-
-const columns = [
-  {
-    name: "id",
-    label: "ID",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "nama",
-    label: "Nama",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "",
-    options: {
-      filter: true,
-      sort: true,
-      customBodyRender: (value, tableMeta, updateValue) => {
-        return (
-          <>
-            <ButtonGroup
-              variant="text"
-              color="primary"
-              aria-label="text primary button group"
-            >
-              <IconButton
-                color="primary"
-                aria-label="upload picture"
-                onClick={() =>
-                  (window.location =
-                    "#/app/editJenisPartner/" + tableMeta.rowData[0])
-                }
-                component="span"
-                size="small"
-              >
-                <Create />
-              </IconButton>
-              <IconButton
-                color="secondary"
-                aria-label="upload picture"
-                onClick={() => deleteJenisPartner(tableMeta.rowData[0])}
-                component="span"
-                size="small"
-              >
-                <Delete />
-              </IconButton>
-            </ButtonGroup>
-          </>
-        );
-      },
-    },
-  },
-];
 
 const options = {
   filterType: "checkbox",
@@ -82,8 +27,16 @@ const options = {
 };
 
 export default function JenisPartner() {
+  const history = useHistory();
   const [state, setState] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [editState, setEditState] = useState({
+    id: "",
+    nama: "",
+  });
+  const [tambahState, setTambahState] = useState({
+    nama: "",
+  });
 
   useEffect(() => {
     async function getData() {
@@ -94,19 +47,118 @@ export default function JenisPartner() {
     getData();
   }, []);
 
+  const editJenisPartner = async () => {
+    setIsLoading(true);
+    const response = await putJenisPartner(editState);
+    if (response.errorMessage === null) {
+      history.push(`/app/jenispartner`);
+    }
+    const data = await getJenisPartner();
+    setState(data.data);
+    setIsLoading(false);
+    setEditState({ nama: '' });
+  };
+  
+  const insertJenisPartner = async () => {
+    setIsLoading(true);
+    const response = await postJenisPartner(tambahState);
+
+    if (response.errorMessage === null) {
+      history.push(`/app/jenispartner`);
+    }
+    const data = await getJenisPartner();
+    setState(data.data);
+    setIsLoading(false);
+    setTambahState({ nama: '' });
+  };
+
+  const columns = [
+    {
+      name: "id",
+      label: "ID",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "nama",
+      label: "Nama",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "",
+      options: {
+        filter: true,
+        sort: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <>
+              <ButtonGroup
+                variant="text"
+                color="primary"
+                aria-label="text primary button group"
+              >
+                {/* CUSTOM MODAL EDIT */}
+                <CustomModalEdit
+                  handleEdit={() => {
+                    editJenisPartner();
+                  }}
+                  handleInitialData={async () => {
+                    const { rowData } = tableMeta;
+                    setEditState({ nama: rowData[1], id: rowData[0] });
+                  }}
+                >
+                  <TextField
+                    fullWidth
+                    value={editState.nama}
+                    onChange={(e) => {
+                      setEditState((c) => ({ ...c, nama: e.target.value }));
+                    }}
+                    label="Nama Jenis Partner"
+                  />
+                </CustomModalEdit>
+                {/* CUSTOM MODAL DELETE */}
+                <CustomModalDelete
+                  handleDelete={async () => {
+                    setIsLoading(true);
+                    await deleteJenisPartner(tableMeta.rowData[0]);
+                    const data = await getJenisPartner();
+                    setState(data.data);
+                    setIsLoading(false);
+                  }}
+                />
+              </ButtonGroup>
+            </>
+          );
+        },
+      },
+    },
+  ];
+
   return (
     <>
       <PageTitle
         title="Jenis Partner"
         button={
-          <Button
-            variant="contained"
-            size="medium"
-            color="primary"
-            href="#/app/TambahJenisPartner"
+          // CUSTOM MODAL TAMBAH
+          <CustomModalTambah
+            handleTambah={() => {
+              insertJenisPartner();
+            }}
           >
-            Tambah
-          </Button>
+            <TextField
+              fullWidth
+              value={tambahState.nama}
+              onChange={(e) => {
+                setTambahState((c) => ({ ...c, nama: e.target.value }));
+              }}
+              label="Nama Jenis Partner"
+            />
+          </CustomModalTambah>
         }
       />
       <Grid container spacing={4}>

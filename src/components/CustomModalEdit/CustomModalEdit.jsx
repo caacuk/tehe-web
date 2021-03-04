@@ -56,7 +56,7 @@ export const CustomModalEdit = ({
         justifyContent="space-between"
       >
         <Button onClick={handleClose} variant="contained" color="default">
-          Cancel
+          Batal
         </Button>
         <Button
           onClick={() => {
@@ -66,7 +66,7 @@ export const CustomModalEdit = ({
           variant="contained"
           color="secondary"
         >
-          Yes
+          Edit
         </Button>
       </Box>
     </div>

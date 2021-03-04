@@ -40,7 +40,7 @@ export const CustomModalDelete = ({ handleDelete }) => {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2>Are you sure?</h2>
+      <h2>Apa anda yakin?</h2>
       <Divider />
       <Box
         mt={2}
@@ -49,7 +49,7 @@ export const CustomModalDelete = ({ handleDelete }) => {
         justifyContent="space-between"
       >
         <Button onClick={handleClose} variant="contained" color="default">
-          Cancel
+          Tidak
         </Button>
         <Button
           onClick={() => {
@@ -59,7 +59,7 @@ export const CustomModalDelete = ({ handleDelete }) => {
           variant="contained"
           color="secondary"
         >
-          Yes
+          Ya
         </Button>
       </Box>
     </div>
