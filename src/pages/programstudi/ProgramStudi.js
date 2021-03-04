@@ -33,11 +33,29 @@ export default function ProgramStudi() {
   useEffect(() => {
     async function getData() {
       const data = await getProgramStudi();
-      setState(data.data);
+      let result = [];
+
+      data.data.map((x, i) => {
+        x = {...x, no: i + 1}; 
+        result.push(x)
+      });
+      setState(result);
       setIsLoading(false);
     }
     getData();
   }, []);
+
+  const getDataProgramStudi = async () => {
+    const data = await getProgramStudi();
+    let result = [];
+
+    data.data.map((x, i) => {
+      x = {...x, no: i + 1}; 
+      result.push(x)
+    });
+
+    setState(result);
+  };
 
   const editProgramStudi = async () => {
     setIsLoading(true);
@@ -45,8 +63,7 @@ export default function ProgramStudi() {
     if (response.errorMessage === null) {
       history.push(`/app/programstudi`);
     }
-    const data = await getProgramStudi();
-    setState(data.data);
+    getDataProgramStudi();
     setIsLoading(false);
     setEditState({ nama: "" });
   };
@@ -58,8 +75,7 @@ export default function ProgramStudi() {
     if (response.errorMessage === null) {
       history.push(`/app/programstudi`);
     }
-    const data = await getProgramStudi();
-    setState(data.data);
+    getDataProgramStudi();
     setIsLoading(false);
     setTambahState({ nama: "" });
   };
@@ -69,8 +85,18 @@ export default function ProgramStudi() {
       name: "id",
       label: "ID",
       options: {
-        filter: true,
+        filter: false,
+        sort: false,
+        display: false
+      },
+    },
+    {
+      name: "no",
+      label: "No",
+      options: {
+        filter: false,
         sort: true,
+        display: true
       },
     },
     {
@@ -101,7 +127,7 @@ export default function ProgramStudi() {
                   }}
                   handleInitialData={async () => {
                     const { rowData } = tableMeta;
-                    setEditState({ nama: rowData[1], id: rowData[0] });
+                    setEditState({ nama: rowData[2], id: rowData[0] });
                   }}
                 >
                   <TextField
@@ -111,6 +137,8 @@ export default function ProgramStudi() {
                       setEditState((c) => ({ ...c, nama: e.target.value }));
                     }}
                     label="Nama Program Studi"
+                    variant="outlined"
+                    style={{marginBottom:"13px"}}
                   />
                 </CustomModalEdit>
                 {/* CUSTOM MODAL DELETE */}
@@ -149,6 +177,7 @@ export default function ProgramStudi() {
                 setTambahState((c) => ({ ...c, nama: e.target.value }));
               }}
               label="Nama Program Studi"
+              variant="outlined"
             />
           </CustomModalTambah>
         }

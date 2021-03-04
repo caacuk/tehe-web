@@ -11,7 +11,6 @@ import {
   CircularProgress,
   TextField,
 } from "@material-ui/core";
-import MUIDataTable from "mui-datatables";
 
 // components
 import PageTitle from "../../components/PageTitle/PageTitle";
@@ -23,11 +22,6 @@ import {
   postMahasiswa,
 } from "../../functions/Mahasiswa";
 
-const options = {
-  filterType: "checkbox",
-  selectableRows: false,
-};
-
 export default function Mahasiswa() {
   const history = useHistory();
   const [state, setState] = useState([]);
@@ -37,17 +31,36 @@ export default function Mahasiswa() {
     nama: "",
   });
   const [tambahState, setTambahState] = useState({
+    nim: "",
     nama: "",
   });
 
   useEffect(() => {
     async function getData() {
       const data = await getMahasiswa();
-      setState(data.data);
+      let result = [];
+
+      data.data.map((x, i) => {
+        x = {...x, no: i + 1}; 
+        result.push(x)
+      });
+      setState(result);
       setIsLoading(false);
     }
     getData();
   }, []);
+
+  const getDataMahasiswa = async () => {
+    const data = await getMahasiswa();
+    let result = [];
+
+    data.data.map((x, i) => {
+      x = {...x, no: i + 1}; 
+      result.push(x)
+    });
+
+    setState(result);
+  };
 
   const editMahasiswa = async () => {
     setIsLoading(true);
@@ -55,29 +68,45 @@ export default function Mahasiswa() {
     if (response.errorMessage === null) {
       history.push(`/app/mahasiswa`);
     }
-    const data = await getMahasiswa();
-    setState(data.data);
+    getDataMahasiswa();
     setIsLoading(false);
-    setEditState({ nama: "" });
+    setEditState({ nama: "", nim: "" });
   };
 
   const insertMahasiswa = async () => {
     setIsLoading(true);
     const response = await postMahasiswa(tambahState);
-
+    console.log(tambahState);
     if (response.errorMessage === null) {
       history.push(`/app/mahasiswa`);
     }
-    const data = await getMahasiswa();
-    setState(data.data);
+    getDataMahasiswa();
     setIsLoading(false);
-    setTambahState({ nama: "" });
+    setTambahState({ nama: "", nim: "" });
   };
 
   const columns = [
     {
       name: "id",
       label: "ID",
+      options: {
+        filter: false,
+        sort: false,
+        display: false
+      },
+    },
+    {
+      name: "no",
+      label: "No",
+      options: {
+        filter: false,
+        sort: true,
+        display: true
+      },
+    },
+    {
+      name: "nim",
+      label: "NIM",
       options: {
         filter: true,
         sort: true,
@@ -110,10 +139,23 @@ export default function Mahasiswa() {
                     editMahasiswa();
                   }}
                   handleInitialData={async () => {
+                    console.log(tableMeta);
                     const { rowData } = tableMeta;
-                    setEditState({ nama: rowData[1], id: rowData[0] });
+                    setEditState({ nama: rowData[3], nim: rowData[2], id: rowData[0] });
                   }}
                 >
+                  <TextField style={{marginBottom: "13px"}}
+                    fullWidth
+                    value={editState.nim}
+                    // onChange={(e) => {
+                    //   setEditState((c) => ({ ...c, nim: e.target.value }));
+                    // }}
+                    label="Nim Mahasiswa"
+                    InputProps={{
+                      readOnly: true,
+                    }}
+                    variant="outlined"
+                  />
                   <TextField
                     fullWidth
                     value={editState.nama}
@@ -121,7 +163,8 @@ export default function Mahasiswa() {
                       setEditState((c) => ({ ...c, nama: e.target.value }));
                     }}
                     label="Nama Mahasiswa"
-                  />
+                    variant="outlined"
+                    />
                 </CustomModalEdit>
                 {/* CUSTOM MODAL DELETE */}
                 <CustomModalDelete
@@ -152,6 +195,15 @@ export default function Mahasiswa() {
               insertMahasiswa();
             }}
           >
+            <TextField style={{marginBottom:"13px"}}
+              fullWidth
+              value={tambahState.nim}
+              onChange={(e) => {
+                setTambahState((c) => ({ ...c, nim: e.target.value }));
+              }}
+              label="Nim Mahasiswa"
+              variant="outlined"
+            />
             <TextField
               fullWidth
               value={tambahState.nama}
@@ -159,6 +211,7 @@ export default function Mahasiswa() {
                 setTambahState((c) => ({ ...c, nama: e.target.value }));
               }}
               label="Nama Mahasiswa"
+              variant="outlined"
             />
           </CustomModalTambah>
         }

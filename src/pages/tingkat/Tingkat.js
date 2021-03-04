@@ -10,7 +10,6 @@ import {
   CircularProgress,
   TextField,
 } from "@material-ui/core";
-import MUIDataTable from "mui-datatables";
 
 // components
 import PageTitle from "../../components/PageTitle/PageTitle";
@@ -21,11 +20,6 @@ import {
   putTingkat,
   postTingkat,
 } from "../../functions/Tingkat";
-
-const options = {
-  filterType: "checkbox",
-  selectableRows: false,
-};
 
 export default function Tingkat() {
   const history = useHistory();
@@ -147,6 +141,7 @@ export default function Tingkat() {
                       setEditState((c) => ({ ...c, nama: e.target.value }));
                     }}
                     label="Nama Tingkat"
+                    variant="outlined"
                   />
                 </CustomModalEdit>
                 {/* CUSTOM MODAL DELETE */}
@@ -184,6 +179,7 @@ export default function Tingkat() {
                 setTambahState((c) => ({ ...c, nama: e.target.value }));
               }}
               label="Nama Tingkat"
+              variant="outlined"
             />
           </CustomModalTambah>
         }

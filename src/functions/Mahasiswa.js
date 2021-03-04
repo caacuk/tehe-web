@@ -32,6 +32,7 @@ export const getMahasiswaById = (id) => {
 
 export const postMahasiswa = (Mahasiswa) => {
   const body = {
+    nim: Mahasiswa.nim,
     nama: Mahasiswa.nama,
   };
 
@@ -47,6 +48,7 @@ export const postMahasiswa = (Mahasiswa) => {
 
 export const putMahasiswa = (Mahasiswa) => {
   const body = {
+    nim: Mahasiswa.nim,
     nama: Mahasiswa.nama,
   };
 

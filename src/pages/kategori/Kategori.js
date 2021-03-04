@@ -10,7 +10,6 @@ import {
   CircularProgress,
   TextField,
 } from "@material-ui/core";
-import MUIDataTable from "mui-datatables";
 
 // components
 import PageTitle from "../../components/PageTitle/PageTitle";
@@ -21,11 +20,6 @@ import {
   putKategori,
   postKategori,
 } from "../../functions/Kategori";
-
-const options = {
-  filterType: "checkbox",
-  selectableRows: false,
-};
 
 export default function Kategori() {
   const history = useHistory();
@@ -42,11 +36,29 @@ export default function Kategori() {
   useEffect(() => {
     async function getData() {
       const data = await getKategori();
-      setState(data.data);
+      let result = [];
+
+      data.data.map((x, i) => {
+        x = {...x, no: i + 1}; 
+        result.push(x)
+      });
+      setState(result);
       setIsLoading(false);
     }
     getData();
   }, []);
+
+  const getDataKategori = async () => {
+    const data = await getKategori();
+    let result = [];
+
+    data.data.map((x, i) => {
+      x = {...x, no: i + 1}; 
+      result.push(x)
+    });
+
+    setState(result);
+  };
 
   const editKategori = async () => {
     setIsLoading(true);
@@ -54,8 +66,7 @@ export default function Kategori() {
     if (response.errorMessage === null) {
       history.push(`/app/kategori`);
     }
-    const data = await getKategori();
-    setState(data.data);
+    getDataKategori();
     setIsLoading(false);
     setEditState({ nama: "" });
   };
@@ -67,8 +78,7 @@ export default function Kategori() {
     if (response.errorMessage === null) {
       history.push(`/app/kategori`);
     }
-    const data = await getKategori();
-    setState(data.data);
+    getDataKategori();
     setIsLoading(false);
     setTambahState({ nama: "" });
   };
@@ -78,8 +88,18 @@ export default function Kategori() {
       name: "id",
       label: "ID",
       options: {
-        filter: true,
+        filter: false,
+        sort: false,
+        display: false
+      },
+    },
+    {
+      name: "no",
+      label: "No",
+      options: {
+        filter: false,
         sort: true,
+        display: true
       },
     },
     {
@@ -110,7 +130,7 @@ export default function Kategori() {
                   }}
                   handleInitialData={async () => {
                     const { rowData } = tableMeta;
-                    setEditState({ nama: rowData[1], id: rowData[0] });
+                    setEditState({ nama: rowData[2], id: rowData[0] });
                   }}
                 >
                   <TextField
@@ -120,6 +140,7 @@ export default function Kategori() {
                       setEditState((c) => ({ ...c, nama: e.target.value }));
                     }}
                     label="Nama Kategori"
+                    variant="outlined"
                   />
                 </CustomModalEdit>
                 {/* CUSTOM MODAL DELETE */}
@@ -158,6 +179,7 @@ export default function Kategori() {
                 setTambahState((c) => ({ ...c, nama: e.target.value }));
               }}
               label="Nama Kategori"
+              variant="outlined"
             />
           </CustomModalTambah>
         }
