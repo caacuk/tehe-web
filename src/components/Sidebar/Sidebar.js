@@ -53,7 +53,7 @@ const structure = [
   {
     id: 2,
     label: "Publikasi",
-    link: "",
+    link: "/app/publikasi",
     icon: <Publish />,
   },
   {
