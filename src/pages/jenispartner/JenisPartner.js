@@ -9,6 +9,7 @@ import {
   ButtonGroup,
   CircularProgress,
   TextField,
+  IconButton,
 } from "@material-ui/core";
 
 // components
@@ -39,8 +40,8 @@ export default function JenisPartner() {
       let result = [];
 
       data.data.map((x, i) => {
-        x = {...x, no: i + 1}; 
-        result.push(x)
+        x = { ...x, no: i + 1 };
+        result.push(x);
       });
       setState(result);
       setIsLoading(false);
@@ -53,8 +54,8 @@ export default function JenisPartner() {
     let result = [];
 
     data.data.map((x, i) => {
-      x = {...x, no: i + 1}; 
-      result.push(x)
+      x = { ...x, no: i + 1 };
+      result.push(x);
     });
 
     setState(result);
@@ -90,7 +91,7 @@ export default function JenisPartner() {
       options: {
         filter: false,
         sort: false,
-        display: false
+        display: false,
       },
     },
     {
@@ -99,7 +100,7 @@ export default function JenisPartner() {
       options: {
         filter: false,
         sort: true,
-        display: true
+        display: true,
       },
     },
     {
@@ -123,36 +124,40 @@ export default function JenisPartner() {
                 color="primary"
                 aria-label="text primary button group"
               >
-                {/* CUSTOM MODAL EDIT */}
-                <CustomModalEdit
-                  handleEdit={() => {
-                    editJenisPartner();
-                  }}
-                  handleInitialData={async () => {
-                    const { rowData } = tableMeta;
-                    setEditState({ nama: rowData[2], id: rowData[0] });
-                  }}
-                >
-                  <TextField
-                    fullWidth
-                    value={editState.nama}
-                    onChange={(e) => {
-                      setEditState((c) => ({ ...c, nama: e.target.value }));
+                <IconButton size="small">
+                  {/* CUSTOM MODAL EDIT */}
+                  <CustomModalEdit
+                    handleEdit={() => {
+                      editJenisPartner();
                     }}
-                    label="Nama Jenis Partner"
-                    variant="outlined"
+                    handleInitialData={async () => {
+                      const { rowData } = tableMeta;
+                      setEditState({ nama: rowData[2], id: rowData[0] });
+                    }}
+                  >
+                    <TextField
+                      fullWidth
+                      value={editState.nama}
+                      onChange={(e) => {
+                        setEditState((c) => ({ ...c, nama: e.target.value }));
+                      }}
+                      label="Nama Jenis Partner"
+                      variant="outlined"
+                    />
+                  </CustomModalEdit>
+                </IconButton>
+                <IconButton size="small">
+                  {/* CUSTOM MODAL DELETE */}
+                  <CustomModalDelete
+                    handleDelete={async () => {
+                      setIsLoading(true);
+                      await deleteJenisPartner(tableMeta.rowData[0]);
+                      const data = await getJenisPartner();
+                      setState(data.data);
+                      setIsLoading(false);
+                    }}
                   />
-                </CustomModalEdit>
-                {/* CUSTOM MODAL DELETE */}
-                <CustomModalDelete
-                  handleDelete={async () => {
-                    setIsLoading(true);
-                    await deleteJenisPartner(tableMeta.rowData[0]);
-                    const data = await getJenisPartner();
-                    setState(data.data);
-                    setIsLoading(false);
-                  }}
-                />
+                </IconButton>
               </ButtonGroup>
             </>
           );

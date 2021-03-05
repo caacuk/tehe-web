@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 
 import {
   Grid,
+  IconButton,
   ButtonGroup,
   CircularProgress,
   TextField,
@@ -41,8 +42,8 @@ export default function Mahasiswa() {
       let result = [];
 
       data.data.map((x, i) => {
-        x = {...x, no: i + 1}; 
-        result.push(x)
+        x = { ...x, no: i + 1 };
+        result.push(x);
       });
       setState(result);
       setIsLoading(false);
@@ -55,8 +56,8 @@ export default function Mahasiswa() {
     let result = [];
 
     data.data.map((x, i) => {
-      x = {...x, no: i + 1}; 
-      result.push(x)
+      x = { ...x, no: i + 1 };
+      result.push(x);
     });
 
     setState(result);
@@ -92,7 +93,7 @@ export default function Mahasiswa() {
       options: {
         filter: false,
         sort: false,
-        display: false
+        display: false,
       },
     },
     {
@@ -101,7 +102,7 @@ export default function Mahasiswa() {
       options: {
         filter: false,
         sort: true,
-        display: true
+        display: true,
       },
     },
     {
@@ -133,49 +134,57 @@ export default function Mahasiswa() {
                 color="primary"
                 aria-label="text primary button group"
               >
-                {/* CUSTOM MODAL EDIT */}
-                <CustomModalEdit
-                  handleEdit={() => {
-                    editMahasiswa();
-                  }}
-                  handleInitialData={async () => {
-                    console.log(tableMeta);
-                    const { rowData } = tableMeta;
-                    setEditState({ nama: rowData[3], nim: rowData[2], id: rowData[0] });
-                  }}
-                >
-                  <TextField style={{marginBottom: "13px"}}
-                    fullWidth
-                    value={editState.nim}
-                    // onChange={(e) => {
-                    //   setEditState((c) => ({ ...c, nim: e.target.value }));
-                    // }}
-                    label="Nim Mahasiswa"
-                    InputProps={{
-                      readOnly: true,
+                <IconButton size="small">
+                  {/* CUSTOM MODAL EDIT */}
+                  <CustomModalEdit
+                    handleEdit={() => {
+                      editMahasiswa();
                     }}
-                    variant="outlined"
-                  />
-                  <TextField
-                    fullWidth
-                    value={editState.nama}
-                    onChange={(e) => {
-                      setEditState((c) => ({ ...c, nama: e.target.value }));
+                    handleInitialData={async () => {
+                      const { rowData } = tableMeta;
+                      setEditState({
+                        id: rowData[0],
+                        nim: rowData[2],
+                        nama: rowData[3],
+                      });
                     }}
-                    label="Nama Mahasiswa"
-                    variant="outlined"
+                  >
+                    <TextField
+                      style={{ marginBottom: "13px" }}
+                      fullWidth
+                      value={editState.nim}
+                      // onChange={(e) => {
+                      //   setEditState((c) => ({ ...c, nim: e.target.value }));
+                      // }}
+                      label="Nim Mahasiswa"
+                      InputProps={{
+                        readOnly: true,
+                      }}
+                      variant="outlined"
                     />
-                </CustomModalEdit>
-                {/* CUSTOM MODAL DELETE */}
-                <CustomModalDelete
-                  handleDelete={async () => {
-                    setIsLoading(true);
-                    await deleteMahasiswa(tableMeta.rowData[0]);
-                    const data = await getMahasiswa();
-                    setState(data.data);
-                    setIsLoading(false);
-                  }}
-                />
+                    <TextField
+                      fullWidth
+                      value={editState.nama}
+                      onChange={(e) => {
+                        setEditState((c) => ({ ...c, nama: e.target.value }));
+                      }}
+                      label="Nama Mahasiswa"
+                      variant="outlined"
+                    />
+                  </CustomModalEdit>
+                </IconButton>
+                <IconButton size="small">
+                  {/* CUSTOM MODAL DELETE */}
+                  <CustomModalDelete
+                    handleDelete={async () => {
+                      setIsLoading(true);
+                      await deleteMahasiswa(tableMeta.rowData[0]);
+                      const data = await getMahasiswa();
+                      setState(data.data);
+                      setIsLoading(false);
+                    }}
+                  />
+                </IconButton>
               </ButtonGroup>
             </>
           );
@@ -187,7 +196,7 @@ export default function Mahasiswa() {
   return (
     <>
       <PageTitle
-        title="Mahasiswa"
+        title="Data Mahasiswa"
         button={
           // CUSTOM MODAL TAMBAH
           <CustomModalTambah
@@ -195,7 +204,8 @@ export default function Mahasiswa() {
               insertMahasiswa();
             }}
           >
-            <TextField style={{marginBottom:"13px"}}
+            <TextField
+              style={{ marginBottom: "13px" }}
               fullWidth
               value={tambahState.nim}
               onChange={(e) => {

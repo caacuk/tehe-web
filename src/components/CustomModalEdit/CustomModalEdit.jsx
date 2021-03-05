@@ -76,13 +76,10 @@ export const CustomModalEdit = ({
   return (
     <div>
       <IconButton
-        color="primary"
-        aria-label="upload picture"
         onClick={() => {
           handleInitialData();
           handleOpen();
         }}
-        component="span"
         size="small"
       >
         <Edit style={{ color: "#206040" }} />

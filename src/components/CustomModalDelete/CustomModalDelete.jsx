@@ -68,13 +68,7 @@ export const CustomModalDelete = ({ handleDelete }) => {
 
   return (
     <div>
-      <IconButton
-        color="secondary"
-        aria-label="upload picture"
-        onClick={handleOpen}
-        component="span"
-        size="small"
-      >
+      <IconButton color="secondary" onClick={handleOpen} size="small">
         <Delete style={{ color: "#e63900" }} />
       </IconButton>
       <Modal
