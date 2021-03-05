@@ -31,18 +31,18 @@ export const getPublikasi = () => {
 //     });
 // };
 
-// export const postKerjasama = (kerjasama) => {
-//   const body = kerjasama;
+export const postPublikasi = (publikasi) => {
+  const body = publikasi;
 
-//   return axios
-//     .post("kerjasama/", body, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+  return axios
+    .post("publikasi/", body, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
 
 // export const putKerjasama = (kerjasama) => {
 //   const body = kerjasama;
