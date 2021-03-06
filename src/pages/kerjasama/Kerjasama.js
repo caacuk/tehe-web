@@ -83,7 +83,7 @@ export default function Kerjasama() {
           tanggal_awal: x.tanggal_awal,
           tanggal_akhir: x.tanggal_akhir,
           partner: x.partner,
-          status: x.status == 1 ? "Aktif": "Non-Aktif",
+          status: x.status == 1 ? "Aktif" : "Non-Aktif",
           dokumen: x.dokumen,
           nama_program_studi: x.program_studi.nama,
           nama_jenis_partner: x.jenis_partner.nama,
@@ -153,7 +153,8 @@ export default function Kerjasama() {
       id_bentuk_kegiatan: "",
       tanggal_awal: "",
       tanggal_akhir: "",
-      status: "", });
+      status: "",
+    });
   };
 
   const insertKerjasama = async () => {
@@ -175,7 +176,8 @@ export default function Kerjasama() {
       id_bentuk_kegiatan: "",
       tanggal_awal: "",
       tanggal_akhir: "",
-      status: "", });
+      status: "",
+    });
   };
 
   const columns = [
@@ -620,7 +622,10 @@ export default function Kerjasama() {
                   fullWidth
                   value={tambahState.id_negara}
                   onChange={(e) => {
-                    setTambahState((c) => ({ ...c, id_negara: e.target.value }));
+                    setTambahState((c) => ({
+                      ...c,
+                      id_negara: e.target.value,
+                    }));
                   }}
                   variant="outlined"
                 >

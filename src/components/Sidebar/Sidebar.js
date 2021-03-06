@@ -48,7 +48,7 @@ const structure = [
   {
     id: 1,
     label: "Penelitian",
-    link: "",
+    link: "/app/penelitian",
     icon: <Book />,
   },
   {
@@ -63,10 +63,10 @@ const structure = [
     link: "/app/dosen",
     icon: <Storage />,
     children: [
-      { label: "Sertifikasi", link: "/app/ui/maps" },
-      { label: "Studi Lanjut", link: "/app/ui/maps" },
-      { label: "NIDK", link: "/app/ui/maps" },
-      { label: "HAKI", link: "/app/ui/maps" },
+      { label: "Sertifikasi", link: "/app/" },
+      { label: "Studi Lanjut", link: "/app/" },
+      { label: "NIDK", link: "/app/" },
+      { label: "HAKI", link: "/app/" },
     ],
   },
   {

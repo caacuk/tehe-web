@@ -39,7 +39,7 @@ export default function TambahPublikasi() {
 
   const [penulis2, setPenulis2] = useState("");
   const [inputPenulis2, setInputPenulis2] = useState("");
-  
+
   const [penulis3, setPenulis3] = useState("");
   const [inputPenulis3, setInputPenulis3] = useState("");
 
