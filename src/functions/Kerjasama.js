@@ -57,13 +57,13 @@ export const putKerjasama = (kerjasama) => {
     });
 };
 
-// export const deleteProgramStudi = (programStudi) => {
-//   return axios
-//     .delete("programStudi/" + programStudi.id, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+export const deleteKerjasama = (kerjasama) => {
+  return axios
+    .delete("kerjasama/" + kerjasama.id, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
