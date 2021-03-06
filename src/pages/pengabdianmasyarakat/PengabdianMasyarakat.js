@@ -14,6 +14,7 @@ import {
   MenuItem,
   InputLabel,
 } from "@material-ui/core";
+import { Autocomplete } from "@material-ui/lab";
 
 // components
 import PageTitle from "../../components/PageTitle/PageTitle";
@@ -24,12 +25,14 @@ import {
   deletePengabdianMasyarakat,
   postPengabdianMasyarakat,
 } from "../../functions/PengabdianMasyarakat";
+import { getDosen } from "../../functions/Dosen";
 
 export default function PengabdianMasyarakat() {
   const history = useHistory();
   const [state, setState] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [dataProgramStudi, setDataProgramStudi] = useState([]);
+  const [dataDosen, setDataDosen] = useState([]);
   const [editState, setEditState] = useState({
     id: "",
     id_program_studi: "",
@@ -54,44 +57,57 @@ export default function PengabdianMasyarakat() {
 
   useEffect(() => {
     async function getData() {
-      const dataProgramStudi = await getProgramStudi();
-      setDataProgramStudi(dataProgramStudi.data);
+      try {
+        const dataProgramStudi = await getProgramStudi();
+        const dataDosen = await getDosen();
+        setDataProgramStudi(dataProgramStudi.data);
+        setDataDosen(dataDosen.data);
 
-      const data = await getPengabdianMasyarakat();
-      let result = [];
-      data.data.map((x, i) => {
-        let jumlah_penulis = 0;
-        if (x.dosen_1 !== null) jumlah_penulis++;
-        if (x.dosen_2 !== null) jumlah_penulis++;
-        if (x.dosen_3 !== null) jumlah_penulis++;
+        const data = await getPengabdianMasyarakat();
+        let result = [];
+        data.data.map((x, i) => {
+          let jumlah_penulis = 0;
+          if (x.dosen_1 !== null) jumlah_penulis++;
+          if (x.dosen_2 !== null) jumlah_penulis++;
+          if (x.dosen_3 !== null) jumlah_penulis++;
 
-        const flattenData = {
-          no: i + 1,
-          id: x.id,
-          id_program_studi: x.program_studi.id,
-          nama_program_studi: x.program_studi.nama,
-          tahun_ajaran: x.tahun_ajaran,
-          semester: x.semester,
-          hibah_dikti: x.hibah_dikti,
-          judul: x.judul,
-          id_dosen_1: x.dosen_1?.id,
-          id_dosen_2: x.dosen_2?.id,
-          id_dosen_3: x.dosen_2?.id,
-          nama_dosen_1: x.dosen_1?.nama,
-          nama_dosen_2: x.dosen_2?.nama,
-          nama_dosen_3: x.dosen_2?.nama,
-          jumlah_penulis: jumlah_penulis,
-          tahun_ajaran_semester: x.tahun_ajaran + "" + x.semester,
-        };
-        result.push(flattenData);
-      });
-      setState(result);
-      setIsLoading(false);
+          const flattenData = {
+            no: i + 1,
+            id: x.id,
+            id_program_studi: x.program_studi.id,
+            nama_program_studi: x.program_studi.nama,
+            tahun_ajaran: x.tahun_ajaran,
+            semester: x.semester,
+            hibah_dikti: x.hibah_dikti,
+            judul: x.judul,
+            id_dosen_1: x.dosen_1?.id,
+            id_dosen_2: x.dosen_2?.id,
+            id_dosen_3: x.dosen_2?.id,
+            nama_dosen_1: x.dosen_1?.nama,
+            nama_dosen_2: x.dosen_2?.nama,
+            nama_dosen_3: x.dosen_2?.nama,
+            nidn_dosen_1: x.dosen_1?.nidn,
+            nidn_dosen_2: x.dosen_2?.nidn,
+            nidn_dosen_3: x.dosen_2?.nidn,
+            dosen_1: x.dosen_1,
+            dosen_2: x.dosen_2,
+            dosen_3: x.dosen_3,
+            jumlah_penulis: jumlah_penulis,
+            tahun_ajaran_semester: x.tahun_ajaran + "" + x.semester,
+          };
+          result.push(flattenData);
+        });
+        setState(result);
+        setIsLoading(false);
+      } catch (e) {
+        console.log(e);
+      }
     }
     getData();
   }, []);
 
   const getDataPengabdianMasyarakat = async () => {
+    setIsLoading(true);
     const data = await getPengabdianMasyarakat();
     let result = [];
 
@@ -116,10 +132,17 @@ export default function PengabdianMasyarakat() {
         nama_dosen_1: x.dosen_1?.nama,
         nama_dosen_2: x.dosen_2?.nama,
         nama_dosen_3: x.dosen_2?.nama,
+        nidn_dosen_1: x.dosen_1?.nidn,
+        nidn_dosen_2: x.dosen_2?.nidn,
+        nidn_dosen_3: x.dosen_2?.nidn,
+        dosen_1: x.dosen_1,
+        dosen_2: x.dosen_2,
+        dosen_3: x.dosen_3,
         jumlah_penulis: jumlah_penulis,
         tahun_ajaran_semester: x.tahun_ajaran + "" + x.semester,
       };
       result.push(flattenData);
+      setIsLoading(false);
     });
 
     setState(result);
@@ -133,7 +156,6 @@ export default function PengabdianMasyarakat() {
       history.push(`/app/pengabdianMasyarakat`);
     }
     getDataPengabdianMasyarakat();
-    setIsLoading(false);
     setEditState({
       id: "",
       id_program_studi: "",
@@ -283,6 +305,60 @@ export default function PengabdianMasyarakat() {
       },
     },
     {
+      name: "dosen_1",
+      label: "dosen_1",
+      options: {
+        filter: true,
+        sort: true,
+        display: false,
+      },
+    },
+    {
+      name: "dosen_2",
+      label: "dosen_2",
+      options: {
+        filter: true,
+        sort: true,
+        display: false,
+      },
+    },
+    {
+      name: "dosen_3",
+      label: "dosen_3",
+      options: {
+        filter: true,
+        sort: true,
+        display: false,
+      },
+    },
+    {
+      name: "nama_dosen_1",
+      label: "nama_dosen_1",
+      options: {
+        filter: true,
+        sort: true,
+        display: false,
+      },
+    },
+    {
+      name: "nama_dosen_2",
+      label: "nama_dosen_2",
+      options: {
+        filter: true,
+        sort: true,
+        display: false,
+      },
+    },
+    {
+      name: "nama_dosen_3",
+      label: "nama_dosen_3",
+      options: {
+        filter: true,
+        sort: true,
+        display: false,
+      },
+    },
+    {
       name: "",
       options: {
         filter: false,
@@ -314,6 +390,12 @@ export default function PengabdianMasyarakat() {
                         id_dosen_1: rowData[10],
                         id_dosen_2: rowData[11],
                         id_dosen_3: rowData[12],
+                        dosen_1: rowData[13],
+                        dosen_2: rowData[14],
+                        dosen_3: rowData[15],
+                        nama_dosen_1: rowData[16],
+                        nama_dosen_2: rowData[17],
+                        nama_dosen_3: rowData[18],
                       });
                     }}
                   >
@@ -409,6 +491,149 @@ export default function PengabdianMasyarakat() {
                           <MenuItem value={1}>Ganjil</MenuItem>
                           <MenuItem value={2}>Genap</MenuItem>
                         </Select>
+                      </Grid>
+                    </Grid>
+                    <Grid container spacing={4}>
+                      <Grid item xs={12}>
+                        <InputLabel>Penulis 1</InputLabel>
+                        <Autocomplete
+                          value={editState.dosen_1}
+                          onChange={(event, newValue) => {
+                            console.log("newValue");
+                            console.log(newValue);
+                            setEditState((c) => ({
+                              ...c,
+                              id_dosen_1: newValue?.id ? newValue.id : null,
+                            }));
+                            setEditState((c) => ({ ...c, dosen_1: newValue }));
+                            setEditState((c) => ({
+                              ...c,
+                              nama_dosen_1: newValue?.nama
+                                ? newValue.nama
+                                : editState.nama_dosen_1,
+                            }));
+                          }}
+                          inputValue={editState.nama_dosen_1}
+                          onInputChange={(event, newInputValue, reason) => {
+                            console.log("newInputValue");
+                            console.log(newInputValue);
+                            console.log(reason);
+                            if (reason == "input") {
+                              setEditState((c) => ({
+                                ...c,
+                                nama_dosen_1: newInputValue,
+                              }));
+                            } else {
+                              setEditState((c) => ({
+                                ...c,
+                                nama_dosen_1: "",
+                              }));
+                            }
+                          }}
+                          options={dataDosen}
+                          getOptionLabel={(option) => option.nama}
+                          renderInput={(params) => (
+                            <TextField {...params} variant="standard" />
+                          )}
+                          freeSolo
+                          fullWidth
+                        />
+                      </Grid>
+                    </Grid>
+                    <Grid container spacing={4}>
+                      <Grid item xs={12}>
+                        <InputLabel>Penulis 2</InputLabel>
+                        <Autocomplete
+                          value={editState.dosen_2}
+                          onChange={(event, newValue) => {
+                            console.log("newValue");
+                            console.log(newValue);
+                            setEditState((c) => ({
+                              ...c,
+                              id_dosen_2: newValue?.id ? newValue.id : null,
+                            }));
+                            setEditState((c) => ({ ...c, dosen_2: newValue }));
+                            setEditState((c) => ({
+                              ...c,
+                              nama_dosen_2: newValue?.nama
+                                ? newValue.nama
+                                : editState.nama_dosen_2,
+                            }));
+                          }}
+                          inputValue={editState.nama_dosen_2}
+                          onInputChange={(event, newInputValue, reason) => {
+                            console.log("newInputValue");
+                            console.log(newInputValue);
+                            console.log(reason);
+
+                            if (reason == "input") {
+                              setEditState((c) => ({
+                                ...c,
+                                nama_dosen_2: newInputValue,
+                              }));
+                            } else {
+                              setEditState((c) => ({
+                                ...c,
+                                nama_dosen_2: "",
+                              }));
+                            }
+                          }}
+                          options={dataDosen}
+                          getOptionLabel={(option) => option.nama}
+                          renderInput={(params) => (
+                            <TextField {...params} variant="standard" />
+                          )}
+                          freeSolo
+                          fullWidth
+                        />
+                      </Grid>
+                    </Grid>
+                    <Grid container spacing={4}>
+                      <Grid item xs={12}>
+                        <InputLabel>Penulis 3</InputLabel>
+                        <Autocomplete
+                          value={editState.dosen_3}
+                          onChange={(event, newValue) => {
+                            console.log("newValue");
+                            console.log(newValue);
+                            setEditState((c) => ({
+                              ...c,
+                              id_dosen_3: newValue?.id ? newValue.id : null,
+                            }));
+                            setEditState((c) => ({ ...c, dosen_3: newValue }));
+                            setEditState((c) => ({
+                              ...c,
+                              nama_dosen_3: newValue?.nama
+                                ? newValue.nama
+                                : editState.nama_dosen_3,
+                            }));
+                          }}
+                          inputValue={editState.nama_dosen_3}
+                          onInputChange={(event, newInputValue, reason) => {
+                            console.log("newInputValue");
+                            console.log(newInputValue);
+                            console.log(reason);
+
+                            if (reason == "input") {
+                              setEditState((c) => ({
+                                ...c,
+                                nama_dosen_3: newInputValue,
+                              }));
+                            } else {
+                              setEditState((c) => ({
+                                ...c,
+                                nama_dosen_3: "",
+                              }));
+                            }
+                          }}
+                          options={dataDosen}
+                          getOptionLabel={(option) => option.nama}
+                          renderInput={(params) => (
+                            <TextField {...params} variant="standard" />
+                          )}
+                          freeSolo
+                          fullWidth
+                        />
                       </Grid>
                     </Grid>
                   </CustomModalEdit>

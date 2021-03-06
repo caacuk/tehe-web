@@ -22,7 +22,7 @@ const options = {
   responsive: "stacked",
   filter: true,
   download: true,
-  print: true
+  print: true,
 };
 
 export const Table = ({ data, columns }) => {
