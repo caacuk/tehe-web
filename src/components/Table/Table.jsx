@@ -17,8 +17,12 @@ const getMuiTheme = () =>
   });
 
 const options = {
-  filterType: "checkbox",
   selectableRows: false,
+  filterType: "dropdown",
+  responsive: "stacked",
+  filter: true,
+  download: true,
+  print: true
 };
 
 export const Table = ({ data, columns }) => {
