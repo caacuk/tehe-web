@@ -19,13 +19,13 @@ import {
 import PageTitle from "../../components/PageTitle/PageTitle";
 import { getProgramStudi } from "../../functions/ProgramStudi";
 import {
-  getPenelitian,
-  putPenelitian,
-  deletePenelitian,
-  postPenelitian,
-} from "../../functions/Penelitian";
+  getPengabdianMasyarakat,
+  putPengabdianMasyarakat,
+  deletePengabdianMasyarakat,
+  postPengabdianMasyarakat,
+} from "../../functions/PengabdianMasyarakat";
 
-export default function Penelitian() {
+export default function PengabdianMasyarakat() {
   const history = useHistory();
   const [state, setState] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -57,7 +57,7 @@ export default function Penelitian() {
       const dataProgramStudi = await getProgramStudi();
       setDataProgramStudi(dataProgramStudi.data);
 
-      const data = await getPenelitian();
+      const data = await getPengabdianMasyarakat();
       let result = [];
       data.data.map((x, i) => {
         let jumlah_penulis = 0;
@@ -91,8 +91,8 @@ export default function Penelitian() {
     getData();
   }, []);
 
-  const getDataPenelitian = async () => {
-    const data = await getPenelitian();
+  const getDataPengabdianMasyarakat = async () => {
+    const data = await getPengabdianMasyarakat();
     let result = [];
 
     data.data.map((x, i) => {
@@ -125,14 +125,14 @@ export default function Penelitian() {
     setState(result);
   };
 
-  const editPenelitian = async () => {
+  const editPengabdianMasyarakat = async () => {
     setIsLoading(true);
-    const response = await putPenelitian(editState);
+    const response = await putPengabdianMasyarakat(editState);
 
     if (response.errorMessage === null) {
-      history.push(`/app/penelitian`);
+      history.push(`/app/pengabdianMasyarakat`);
     }
-    getDataPenelitian();
+    getDataPengabdianMasyarakat();
     setIsLoading(false);
     setEditState({
       id: "",
@@ -147,14 +147,14 @@ export default function Penelitian() {
     });
   };
 
-  const insertPenelitian = async () => {
+  const insertPengabdianMasyarakat = async () => {
     setIsLoading(true);
-    const response = await postPenelitian(tambahState);
+    const response = await postPengabdianMasyarakat(tambahState);
 
     if (response.errorMessage === null) {
-      history.push(`/app/penelitian`);
+      history.push(`/app/pengabdianMasyarakat`);
     }
-    getDataPenelitian();
+    getDataPengabdianMasyarakat();
     setIsLoading(false);
     setEditState({
       id: "",
@@ -299,7 +299,7 @@ export default function Penelitian() {
                 <IconButton size="small">
                   <CustomModalEdit
                     handleEdit={() => {
-                      editPenelitian();
+                      editPengabdianMasyarakat();
                     }}
                     handleInitialData={async () => {
                       const { rowData } = tableMeta;
@@ -418,8 +418,8 @@ export default function Penelitian() {
                   <CustomModalDelete
                     handleDelete={async () => {
                       setIsLoading(true);
-                      await deletePenelitian(tableMeta.rowData[0]);
-                      getDataPenelitian();
+                      await deletePengabdianMasyarakat(tableMeta.rowData[0]);
+                      getDataPengabdianMasyarakat();
                       setIsLoading(false);
                     }}
                   />
@@ -435,12 +435,12 @@ export default function Penelitian() {
   return (
     <>
       <PageTitle
-        title="Penelitian"
+        title="Pengabdian Masyarakat"
         button={
           // CUSTOM MODAL TAMBAH
           <CustomModalTambah
             handleTambah={() => {
-              insertPenelitian();
+              insertPengabdianMasyarakat();
             }}
           ></CustomModalTambah>
         }

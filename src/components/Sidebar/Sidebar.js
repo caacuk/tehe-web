@@ -90,7 +90,7 @@ const structure = [
   {
     id: 7,
     label: "Pengabdian Masyarakat",
-    link: "",
+    link: "/app/pengabdianMasyarakat",
     icon: <NaturePeople />,
   },
   {
