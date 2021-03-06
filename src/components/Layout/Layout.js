@@ -40,6 +40,7 @@ import Tingkat from "../../pages/tingkat/Tingkat";
 import Kategori from "../../pages/kategori/Kategori";
 import Dosen from "../../pages/dosen/Dosen";
 import Publikasi from "../../pages/publikasi/Publikasi";
+import TambahPublikasi from "../../pages/publikasi/TambahPublikasi";
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
@@ -71,6 +72,7 @@ function Layout(props) {
             <Route path="/app/editKerjasama/:id" component={EditKerjasama} />
 
             <Route path="/app/publikasi" component={Publikasi} />
+            <Route path="/app/tambahPublikasi" component={TambahPublikasi} />
 
             <Route path="/app/programstudi" component={ProgramStudi} />
             <Route path="/app/jenispartner" component={JenisPartner} />

@@ -7,13 +7,12 @@ import {
   ButtonGroup,
   CircularProgress,
 } from "@material-ui/core";
-import { Create, Delete } from "@material-ui/icons";
+import { Create, Delete, Visibility } from "@material-ui/icons";
 import MUIDataTable from "mui-datatables";
 
 // components
 import PageTitle from "../../components/PageTitle/PageTitle";
 
-import { getKerjasama } from "../../functions/Kerjasama";
 import { getPublikasi } from "../../functions/Publikasi";
 
 const columns = [
@@ -124,9 +123,18 @@ const columns = [
               <IconButton
                 color="primary"
                 aria-label="upload picture"
+                onClick={() => console.log(tableMeta.rowData[0])}
+                component="span"
+                size="small"
+              >
+                <Visibility />
+              </IconButton>
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
                 onClick={() =>
                   (window.location =
-                    "#/app/editKerjasama/" + tableMeta.rowData[0])
+                    "#/app/editPublikasi/" + tableMeta.rowData[0])
                 }
                 component="span"
                 size="small"
@@ -165,10 +173,9 @@ export default function Publikasi() {
       let result = [];
       data.data.map((x, i) => {
         let jumlah_penulis = 0;
-        if (x.mahasiswa_1 !== null) jumlah_penulis++;
-        if (x.mahasiswa_2 !== null) jumlah_penulis++;
         if (x.dosen_1 !== null) jumlah_penulis++;
         if (x.dosen_2 !== null) jumlah_penulis++;
+        if (x.dosen_3 !== null) jumlah_penulis++;
 
         const flattenData = {
           no: i + 1,
@@ -181,10 +188,9 @@ export default function Publikasi() {
           url: x.url,
           nama_program_studi: x.program_studi.nama,
           nama_tingkat: x.tingkat.nama,
-          nama_mahasiswa_1: x.mahasiswa_1?.nama,
-          nama_mahasiswa_2: x.mahasiswa_2?.nama,
           nama_dosen_1: x.dosen_1?.nama,
           nama_dosen_2: x.dosen_2?.nama,
+          nama_dosen_3: x.dosen_2?.nama,
           jumlah_penulis: jumlah_penulis,
         };
         result.push(flattenData);

@@ -54,7 +54,7 @@ const structure = [
   {
     id: 2,
     label: "Publikasi",
-    link: "",
+    link: "/app/publikasi",
     icon: <Publish />,
   },
   {
@@ -89,7 +89,7 @@ const structure = [
   },
   {
     id: 7,
-    label: "Pengabdian pada Masyarakat",
+    label: "Pengabdian Masyarakat",
     link: "",
     icon: <NaturePeople />,
   },
