@@ -11,6 +11,7 @@ const getMuiTheme = () =>
           backgroundColor: fade("#006600", 0.2), //#558000
           fontWeight: "900",
           textTransform: "uppercase",
+          // width:"2px",
         },
       },
     },

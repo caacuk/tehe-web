@@ -1,29 +1,24 @@
 import { Table } from "../../components/Table/Table";
 import { React, useState, useEffect } from "react";
-import {
-  Grid,
-  CircularProgress,
-} from "@material-ui/core";
+import { Grid, CircularProgress } from "@material-ui/core";
 
 // components
 import PageTitle from "../../components/PageTitle/PageTitle";
 
-import {
-  getNegara,
-} from "../../functions/Negara";
+import { getNegara } from "../../functions/Negara";
 
 export default function Negara() {
   const [state, setState] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   useEffect(() => {
     async function getData() {
       const data = await getNegara();
       let result = [];
 
       data.data.map((x, i) => {
-        x = {...x, no: i + 1}; 
-        result.push(x)
+        x = { ...x, no: i + 1 };
+        result.push(x);
       });
       setState(result);
       setIsLoading(false);
@@ -38,7 +33,7 @@ export default function Negara() {
       options: {
         filter: false,
         sort: false,
-        display: false
+        display: false,
       },
     },
     {
@@ -47,7 +42,7 @@ export default function Negara() {
       options: {
         filter: false,
         sort: true,
-        display: true
+        display: true,
       },
     },
     {

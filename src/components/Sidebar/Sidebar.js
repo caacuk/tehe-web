@@ -106,7 +106,7 @@ const structure = [
       { label: "Tingkat", link: "/app/tingkat" },
       { label: "Negara", link: "/app/negara" },
       { label: "Kategori", link: "/app/kategori" },
-    ], 
+    ],
   },
   // {
   //   id: 6,
