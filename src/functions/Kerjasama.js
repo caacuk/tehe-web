@@ -57,9 +57,9 @@ export const putKerjasama = (kerjasama) => {
     });
 };
 
-export const deleteKerjasama = (kerjasama) => {
+export const deleteKerjasama = (id) => {
   return axios
-    .delete("kerjasama/" + kerjasama.id, axiosConfig)
+    .delete("kerjasama/" + id, axiosConfig)
     .then((response) => {
       return response.data;
     })

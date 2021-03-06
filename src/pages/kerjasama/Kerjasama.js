@@ -104,20 +104,78 @@ export default function Kerjasama() {
     getData();
   }, []);
 
+  const getDataKerjasama = async () => {
+    const data = await getKerjasama();
+    let result = [];
+
+    data.data.map((x, i) => {
+      const flattenData = {
+        no: i + 1,
+        id: x.id,
+        tanggal_awal: x.tanggal_awal,
+        tanggal_akhir: x.tanggal_akhir,
+        partner: x.partner,
+        status: x.status,
+        dokumen: x.dokumen,
+        nama_program_studi: x.program_studi.nama,
+        nama_jenis_partner: x.jenis_partner.nama,
+        nama_jenis_dokumen: x.jenis_dokumen.nama,
+        nama_bentuk_kegiatan: x.bentuk_kegiatan.nama,
+        nama_negara: x.negara.name,
+        id_program_studi: x.program_studi.id,
+        id_jenis_partner: x.jenis_partner.id,
+        id_jenis_dokumen: x.jenis_dokumen.id,
+        id_bentuk_kegiatan: x.bentuk_kegiatan.id,
+        id_negara: x.negara.id,
+      };
+      result.push(flattenData);
+    });
+
+    setState(result);
+  };
+
   const editKerjasama = async () => {
+    setIsLoading(true);
     const response = await putKerjasama(editState);
 
     if (response.errorMessage === null) {
       history.push(`/app/kerjasama`);
     }
+    getDataKerjasama();
+    setIsLoading(false);
+    setEditState({
+      id: "",
+      partner: "",
+      id_program_studi: "",
+      id_negara: "",
+      id_jenis_partner: "",
+      id_jenis_dokumen: "",
+      id_bentuk_kegiatan: "",
+      tanggal_awal: "",
+      tanggal_akhir: "",
+      status: "", });
   };
 
   const insertKerjasama = async () => {
+    setIsLoading(true);
     const response = await postKerjasama(tambahState);
 
     if (response.errorMessage === null) {
       history.push(`/app/kerjasama`);
     }
+    getDataKerjasama();
+    setIsLoading(false);
+    setEditState({
+      id: "",
+      partner: "",
+      id_program_studi: "",
+      id_negara: "",
+      id_jenis_partner: "",
+      id_jenis_dokumen: "",
+      id_bentuk_kegiatan: "",
+      tanggal_awal: "",
+      tanggal_akhir: "",
+      status: "", });
   };
 
   const columns = [
@@ -494,8 +552,7 @@ export default function Kerjasama() {
                     handleDelete={async () => {
                       setIsLoading(true);
                       await deleteKerjasama(tableMeta.rowData[0]);
-                      const data = await getKerjasama();
-                      setState(data.data);
+                      getDataKerjasama();
                       setIsLoading(false);
                     }}
                   />
@@ -525,9 +582,9 @@ export default function Kerjasama() {
                 <TextField
                   style={{ marginRight: "6px" }}
                   fullWidth
-                  value={editState.partner}
+                  value={tambahState.partner}
                   onChange={(e) => {
-                    setEditState((c) => ({ ...c, partner: e.target.value }));
+                    setTambahState((c) => ({ ...c, partner: e.target.value }));
                   }}
                   variant="outlined"
                 />
@@ -537,9 +594,9 @@ export default function Kerjasama() {
                 <Select
                   style={{ marginRight: "6px" }}
                   fullWidth
-                  value={editState.id_program_studi}
+                  value={tambahState.id_program_studi}
                   onChange={(e) => {
-                    setEditState((c) => ({
+                    setTambahState((c) => ({
                       ...c,
                       id_program_studi: e.target.value,
                     }));
@@ -561,9 +618,9 @@ export default function Kerjasama() {
                 <Select
                   style={{ marginRight: "6px" }}
                   fullWidth
-                  value={editState.id_negara}
+                  value={tambahState.id_negara}
                   onChange={(e) => {
-                    setEditState((c) => ({ ...c, id_negara: e.target.value }));
+                    setTambahState((c) => ({ ...c, id_negara: e.target.value }));
                   }}
                   variant="outlined"
                 >
@@ -580,9 +637,9 @@ export default function Kerjasama() {
                 <Select
                   style={{ marginRight: "6px" }}
                   fullWidth
-                  value={editState.id_jenis_partner}
+                  value={tambahState.id_jenis_partner}
                   onChange={(e) => {
-                    setEditState((c) => ({
+                    setTambahState((c) => ({
                       ...c,
                       id_jenis_partner: e.target.value,
                     }));
@@ -604,9 +661,9 @@ export default function Kerjasama() {
                 <Select
                   style={{ marginRight: "6px" }}
                   fullWidth
-                  value={editState.id_jenis_dokumen}
+                  value={tambahState.id_jenis_dokumen}
                   onChange={(e) => {
-                    setEditState((c) => ({
+                    setTambahState((c) => ({
                       ...c,
                       id_jenis_dokumen: e.target.value,
                     }));
@@ -626,9 +683,9 @@ export default function Kerjasama() {
                 <Select
                   style={{ marginRight: "6px" }}
                   fullWidth
-                  value={editState.id_bentuk_kegiatan}
+                  value={tambahState.id_bentuk_kegiatan}
                   onChange={(e) => {
-                    setEditState((c) => ({
+                    setTambahState((c) => ({
                       ...c,
                       id_bentuk_kegiatan: e.target.value,
                     }));
@@ -650,9 +707,9 @@ export default function Kerjasama() {
                 <TextField
                   fullWidth
                   type="date"
-                  value={editState.tanggal_awal}
+                  value={tambahState.tanggal_awal}
                   onChange={(e) => {
-                    setEditState((c) => ({
+                    setTambahState((c) => ({
                       ...c,
                       tanggal_awal: e.target.value,
                     }));
@@ -665,9 +722,9 @@ export default function Kerjasama() {
                 <TextField
                   fullWidth
                   type="date"
-                  value={editState.tanggal_akhir}
+                  value={tambahState.tanggal_akhir}
                   onChange={(e) => {
-                    setEditState((c) => ({
+                    setTambahState((c) => ({
                       ...c,
                       tanggal_akhir: e.target.value,
                     }));
@@ -681,9 +738,9 @@ export default function Kerjasama() {
                 <InputLabel shrink>Status</InputLabel>
                 <Select
                   style={{ marginBottom: "13px" }}
-                  value={editState.status}
+                  value={tambahState.status}
                   onChange={(e) => {
-                    setEditState((c) => ({ ...c, status: e.target.value }));
+                    setTambahState((c) => ({ ...c, status: e.target.value }));
                   }}
                   fullWidth
                   variant="outlined"
