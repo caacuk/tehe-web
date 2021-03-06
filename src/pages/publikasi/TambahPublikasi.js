@@ -15,7 +15,7 @@ import { Autocomplete } from "@material-ui/lab";
 import PageTitle from "../../components/PageTitle/PageTitle";
 
 import { getProgramStudi } from "../../functions/ProgramStudi";
-import { getMahasiswa } from "../../functions/Mahasiswa";
+import { getDosen } from "../../functions/Dosen";
 import { getTingkat } from "../../functions/Tingkat";
 
 import { postPublikasi } from "../../functions/Publikasi";
@@ -39,18 +39,21 @@ export default function TambahPublikasi() {
 
   const [penulis2, setPenulis2] = useState("");
   const [inputPenulis2, setInputPenulis2] = useState("");
+  
+  const [penulis3, setPenulis3] = useState("");
+  const [inputPenulis3, setInputPenulis3] = useState("");
 
   const [dataProgramStudi, setDataProgramStudi] = useState([]);
   const [dataTingkat, setDataTingkat] = useState([]);
-  const [dataMahasiswa, setDataMahasiswa] = useState([]);
+  const [dataDosen, setDataDosen] = useState([]);
 
   useEffect(() => {
     async function getData() {
       const dataProgramStudi = await getProgramStudi();
-      const dataMahasiswa = await getMahasiswa();
+      const dataDosen = await getDosen();
       const dataTingkat = await getTingkat();
       setDataProgramStudi(dataProgramStudi.data);
-      setDataMahasiswa(dataMahasiswa.data);
+      setDataDosen(dataDosen.data);
       setDataTingkat(dataTingkat.data);
       setIsLoading(false);
     }
@@ -69,8 +72,9 @@ export default function TambahPublikasi() {
       edisi: edisi,
       volume: volume,
       url: url,
-      id_mahasiswa_1: penulis1?.id ? penulis1?.id : null,
-      id_mahasiswa_2: penulis2?.id ? penulis2?.id : null,
+      id_dosen_1: penulis1?.id ? penulis1?.id : null,
+      id_dosen_2: penulis2?.id ? penulis2?.id : null,
+      id_dosen_3: penulis3?.id ? penulis3?.id : null,
     };
     console.log(data);
     const response = await postPublikasi(data);
@@ -221,7 +225,7 @@ export default function TambahPublikasi() {
                 onInputChange={(event, newInputValue) => {
                   setInputPenulis1(newInputValue);
                 }}
-                options={dataMahasiswa}
+                options={dataDosen}
                 getOptionLabel={(option) => option.nama}
                 renderInput={(params) => (
                   <TextField {...params} variant="standard" />
@@ -241,7 +245,27 @@ export default function TambahPublikasi() {
                 onInputChange={(event, newInputValue) => {
                   setInputPenulis2(newInputValue);
                 }}
-                options={dataMahasiswa}
+                options={dataDosen}
+                getOptionLabel={(option) => option.nama}
+                renderInput={(params) => (
+                  <TextField {...params} variant="standard" />
+                )}
+                freeSolo
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <InputLabel>Penulis 3</InputLabel>
+              <Autocomplete
+                value={penulis3}
+                onChange={(event, newValue) => {
+                  setPenulis3(newValue);
+                }}
+                inputValue={inputPenulis3}
+                onInputChange={(event, newInputValue) => {
+                  setInputPenulis3(newInputValue);
+                }}
+                options={dataDosen}
                 getOptionLabel={(option) => option.nama}
                 renderInput={(params) => (
                   <TextField {...params} variant="standard" />
