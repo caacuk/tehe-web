@@ -10,10 +10,11 @@ export default makeStyles((theme) => ({
     position: "absolute",
     top: 0,
     left: 0,
+    backgroundColor: "#ecf9f2",
   },
   logotypeContainer: {
     backgroundColor: theme.palette.primary.main,
-    width: "60%",
+    width: "55%",
     height: "100%",
     display: "flex",
     flexDirection: "column",
@@ -33,7 +34,7 @@ export default makeStyles((theme) => ({
   logotypeText: {
     color: "white",
     fontWeight: 500,
-    fontSize: 84,
+    fontSize: 70,
     [theme.breakpoints.down("md")]: {
       fontSize: 48,
     },
@@ -58,11 +59,14 @@ export default makeStyles((theme) => ({
   },
   greeting: {
     fontWeight: 500,
+    fontSize: 60,
     textAlign: "center",
     marginTop: theme.spacing(4),
+    color: theme.palette.primary.main,
   },
   subGreeting: {
     fontWeight: 500,
+    fontSize: 25,
     textAlign: "center",
     marginTop: theme.spacing(2),
   },

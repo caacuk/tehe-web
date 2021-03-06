@@ -8,6 +8,7 @@ import {
   Tab,
   TextField,
   Fade,
+  Box,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
@@ -39,8 +40,8 @@ function Login(props) {
   return (
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
-        <img src={logo} alt="logo" className={classes.logotypeImage} />
-        <Typography className={classes.logotypeText}>Material Admin</Typography>
+        {/* <img src={logo} alt="logo" className={classes.logotypeImage} /> */}
+        <Typography className={classes.logotypeText}>Halo!</Typography>
       </div>
       <div className={classes.formContainer}>
         <div className={classes.form}>
@@ -51,23 +52,25 @@ function Login(props) {
             textColor="primary"
             centered
           >
-            <Tab label="Login" classes={{ root: classes.tab }} />
-            <Tab label="New User" classes={{ root: classes.tab }} />
+            {/* <Tab label="Login" classes={{ root: classes.tab }} /> */}
+            {/* <Tab label="New User" classes={{ root: classes.tab }} /> */}
           </Tabs>
           {activeTabId === 0 && (
             <React.Fragment>
               <Typography variant="h1" className={classes.greeting}>
-                Good Morning, User
+                Tehe Web
               </Typography>
-              <Button size="large" className={classes.googleButton}>
+              <Typography variant="h3" className={classes.subGreeting}>
+                Login
+              </Typography>
+              {/* <Button size="large" className={classes.googleButton}>
                 <img src={google} alt="google" className={classes.googleIcon} />
                 &nbsp;Sign in with Google
-              </Button>
-              <div className={classes.formDividerContainer}>
+              </Button> */}
+              {/* <div className={classes.formDividerContainer}>
                 <div className={classes.formDivider} />
-                <Typography className={classes.formDividerWord}>or</Typography>
                 <div className={classes.formDivider} />
-              </div>
+              </div> */}
               <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
                   Something is wrong with your login or password :(
@@ -128,17 +131,17 @@ function Login(props) {
                     Login
                   </Button>
                 )}
-                <Button
+                {/* <Button
                   color="primary"
                   size="large"
                   className={classes.forgetButton}
                 >
                   Forget Password
-                </Button>
+                </Button> */}
               </div>
             </React.Fragment>
           )}
-          {activeTabId === 1 && (
+          {/* {activeTabId === 1 && (
             <React.Fragment>
               <Typography variant="h1" className={classes.greeting}>
                 Welcome!
@@ -242,9 +245,9 @@ function Login(props) {
                 &nbsp;Sign in with Google
               </Button>
             </React.Fragment>
-          )}
+          )} */}
         </div>
-        <Typography color="primary" className={classes.copyright}>
+        {/* <Typography color="primary" className={classes.copyright}>
           © 2014-{new Date().getFullYear()}{" "}
           <a
             style={{ textDecoration: "none", color: "inherit" }}
@@ -255,7 +258,7 @@ function Login(props) {
             Flatlogic
           </a>
           , LLC. All rights reserved.
-        </Typography>
+        </Typography> */}
       </div>
     </Grid>
   );
