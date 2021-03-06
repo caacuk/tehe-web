@@ -83,7 +83,7 @@ export default function Kerjasama() {
           tanggal_awal: x.tanggal_awal,
           tanggal_akhir: x.tanggal_akhir,
           partner: x.partner,
-          status: x.status,
+          status: x.status == 1 ? "Aktif": "Non-Aktif",
           dokumen: x.dokumen,
           nama_program_studi: x.program_studi.nama,
           nama_jenis_partner: x.jenis_partner.nama,
