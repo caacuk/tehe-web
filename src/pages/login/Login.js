@@ -41,7 +41,7 @@ function Login(props) {
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
         {/* <img src={logo} alt="logo" className={classes.logotypeImage} /> */}
-        <Typography className={classes.logotypeText}>Halo!</Typography>
+        <Typography className={classes.logotypeText}>Manajemen Data</Typography>
       </div>
       <div className={classes.formContainer}>
         <div className={classes.form}>
@@ -57,9 +57,9 @@ function Login(props) {
           </Tabs>
           {activeTabId === 0 && (
             <React.Fragment>
-              <Typography variant="h1" className={classes.greeting}>
+              {/* <Typography variant="h1" className={classes.greeting}>
                 Tehe Web
-              </Typography>
+              </Typography> */}
               <Typography variant="h3" className={classes.subGreeting}>
                 Login
               </Typography>

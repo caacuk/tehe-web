@@ -137,7 +137,7 @@ export default function Header(props) {
           )}
         </IconButton>
         <Typography variant="h5" weight="medium" className={classes.logotype}>
-          Tehe Web
+          Manajemen Data
         </Typography>
         <div className={classes.grow} />
         {/* <Button component={Link} href="https://flatlogic.com/templates/react-material-admin-full" variant={"outlined"} color={"secondary"} className={classes.purchaseBtn}>Unlock full version</Button>
