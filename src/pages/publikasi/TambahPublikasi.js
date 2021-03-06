@@ -63,7 +63,7 @@ export default function TambahPublikasi() {
       id_program_studi: programStudi,
       tahun_ajaran: tahunAjaran,
       semester: semester,
-      hibahDikti: hibahDikti,
+      hibah_dikti: hibahDikti,
       id_tingkat: tingkat,
       nama_jurnal: jurnal,
       edisi: edisi,
