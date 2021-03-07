@@ -153,7 +153,8 @@ export default function Kerjasama() {
       id_bentuk_kegiatan: "",
       tanggal_awal: "",
       tanggal_akhir: "",
-      status: "", });
+      status: "",
+    });
   };
 
   const insertKerjasama = async () => {
@@ -175,7 +176,8 @@ export default function Kerjasama() {
       id_bentuk_kegiatan: "",
       tanggal_awal: "",
       tanggal_akhir: "",
-      status: "", });
+      status: "",
+    });
   };
 
   const columns = [
@@ -620,7 +622,10 @@ export default function Kerjasama() {
                   fullWidth
                   value={tambahState.id_negara}
                   onChange={(e) => {
-                    setTambahState((c) => ({ ...c, id_negara: e.target.value }));
+                    setTambahState((c) => ({
+                      ...c,
+                      id_negara: e.target.value,
+                    }));
                   }}
                   variant="outlined"
                 >
