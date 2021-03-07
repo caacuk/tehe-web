@@ -372,6 +372,7 @@ export default function PengabdianMasyarakat() {
                 color="primary"
                 aria-label="text primary button group"
               >
+                {/* BUTTON VIEW */}
                 <IconButton size="small">
                   <CustomModalEdit
                     handleEdit={() => {
@@ -629,6 +630,265 @@ export default function PengabdianMasyarakat() {
                     </Grid>
                   </CustomModalEdit>
                 </IconButton>
+                {/* BUTTON EDIT */}
+                <IconButton size="small">
+                  <CustomModalEdit
+                    handleEdit={() => {
+                      editPengabdianMasyarakat();
+                    }}
+                    handleInitialData={async () => {
+                      const { rowData } = tableMeta;
+                      console.log(rowData);
+                      setEditState({
+                        id: rowData[0],
+                        id_program_studi: rowData[2],
+                        tahun_ajaran: rowData[3],
+                        semester: rowData[4],
+                        hibah_dikti: rowData[7],
+                        judul: rowData[8],
+                        id_dosen_1: rowData[10],
+                        id_dosen_2: rowData[11],
+                        id_dosen_3: rowData[12],
+                        dosen_1: rowData[13],
+                        dosen_2: rowData[14],
+                        dosen_3: rowData[15],
+                        nama_dosen_1: rowData[16],
+                        nama_dosen_2: rowData[17],
+                        nama_dosen_3: rowData[18],
+                      });
+                    }}
+                  >
+                    <Grid container spacing={4}>
+                      <Grid item xs={12}>
+                        <InputLabel shrink>Judul</InputLabel>
+                        <TextField
+                          style={{ marginRight: "6px" }}
+                          fullWidth
+                          value={editState.judul}
+                          onChange={(e) => {
+                            setEditState((c) => ({
+                              ...c,
+                              judul: e.target.value,
+                            }));
+                          }}
+                          variant="outlined"
+                        />
+                      </Grid>
+                    </Grid>
+                    <Grid container spacing={4}>
+                      <Grid item xs={6}>
+                        <InputLabel shrink>Program Studi</InputLabel>
+                        <Select
+                          style={{ marginRight: "6px" }}
+                          fullWidth
+                          value={editState.id_program_studi}
+                          onChange={(e) => {
+                            setEditState((c) => ({
+                              ...c,
+                              id_program_studi: e.target.value,
+                            }));
+                          }}
+                          variant="outlined"
+                        >
+                          <MenuItem value="">
+                            <em>None</em>
+                          </MenuItem>
+                          {dataProgramStudi.map((x) => (
+                            <MenuItem value={x.id}>{x.nama}</MenuItem>
+                          ))}
+                        </Select>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <InputLabel shrink>Hibah Dikti</InputLabel>
+                        <Select
+                          style={{ marginRight: "6px" }}
+                          fullWidth
+                          value={editState.hibah_dikti}
+                          onChange={(e) => {
+                            setEditState((c) => ({
+                              ...c,
+                              hibah_dikti: e.target.value,
+                            }));
+                          }}
+                          variant="outlined"
+                        >
+                          <MenuItem value={"Ya"}>Ya</MenuItem>
+                          <MenuItem value={"Tidak"}>Tidak</MenuItem>
+                        </Select>
+                      </Grid>
+                    </Grid>
+                    <Grid container spacing={4}>
+                      <Grid item xs={6}>
+                        <InputLabel shrink>Tahun Ajaran</InputLabel>
+                        <TextField
+                          style={{ marginRight: "6px" }}
+                          fullWidth
+                          value={editState.tahun_ajaran}
+                          onChange={(e) => {
+                            setEditState((c) => ({
+                              ...c,
+                              tahun_ajaran: e.target.value,
+                            }));
+                          }}
+                          variant="outlined"
+                        />
+                      </Grid>
+                      <Grid item xs={6}>
+                        <InputLabel shrink>Semester</InputLabel>
+                        <Select
+                          style={{ marginRight: "6px" }}
+                          fullWidth
+                          value={editState.semester}
+                          onChange={(e) => {
+                            setEditState((c) => ({
+                              ...c,
+                              semester: e.target.value,
+                            }));
+                          }}
+                          variant="outlined"
+                        >
+                          <MenuItem value={1}>Ganjil</MenuItem>
+                          <MenuItem value={2}>Genap</MenuItem>
+                        </Select>
+                      </Grid>
+                    </Grid>
+                    <Grid container spacing={4}>
+                      <Grid item xs={12}>
+                        <InputLabel>Penulis 1</InputLabel>
+                        <Autocomplete
+                          value={editState.dosen_1}
+                          onChange={(event, newValue) => {
+                            console.log("newValue");
+                            console.log(newValue);
+                            setEditState((c) => ({
+                              ...c,
+                              nama_dosen_1: newValue?.nama
+                                ? newValue.nama
+                                : editState.nama_dosen_1,
+                              dosen_1: newValue,
+                              id_dosen_1: newValue?.id ? newValue.id : null,
+                            }));
+                          }}
+                          inputValue={editState.nama_dosen_1}
+                          onInputChange={(event, newInputValue, reason) => {
+                            console.log("newInputValue");
+                            console.log(newInputValue);
+                            console.log(reason);
+                            if (reason == "input") {
+                              setEditState((c) => ({
+                                ...c,
+                                nama_dosen_1: newInputValue,
+                              }));
+                            } else {
+                              setEditState((c) => ({
+                                ...c,
+                                nama_dosen_1: "",
+                              }));
+                            }
+                          }}
+                          options={dataDosen}
+                          getOptionLabel={(option) => option.nama}
+                          renderInput={(params) => (
+                            <TextField {...params} variant="standard" />
+                          )}
+                          freeSolo
+                          fullWidth
+                        />
+                      </Grid>
+                    </Grid>
+                    <Grid container spacing={4}>
+                      <Grid item xs={12}>
+                        <InputLabel>Penulis 2</InputLabel>
+                        <Autocomplete
+                          value={editState.dosen_2}
+                          onChange={(event, newValue) => {
+                            console.log("newValue");
+                            console.log(newValue);
+                            setEditState((c) => ({
+                              ...c,
+                              nama_dosen_2: newValue?.nama
+                                ? newValue.nama
+                                : editState.nama_dosen_2,
+                              dosen_2: newValue,
+                              id_dosen_2: newValue?.id ? newValue.id : null,
+                            }));
+                          }}
+                          inputValue={editState.nama_dosen_2}
+                          onInputChange={(event, newInputValue, reason) => {
+                            console.log("newInputValue");
+                            console.log(newInputValue);
+                            console.log(reason);
+
+                            if (reason == "input") {
+                              setEditState((c) => ({
+                                ...c,
+                                nama_dosen_2: newInputValue,
+                              }));
+                            } else {
+                              setEditState((c) => ({
+                                ...c,
+                                nama_dosen_2: "",
+                              }));
+                            }
+                          }}
+                          options={dataDosen}
+                          getOptionLabel={(option) => option.nama}
+                          renderInput={(params) => (
+                            <TextField {...params} variant="standard" />
+                          )}
+                          freeSolo
+                          fullWidth
+                        />
+                      </Grid>
+                    </Grid>
+                    <Grid container spacing={4}>
+                      <Grid item xs={12}>
+                        <InputLabel>Penulis 3</InputLabel>
+                        <Autocomplete
+                          value={editState.dosen_3}
+                          onChange={(event, newValue) => {
+                            console.log("newValue");
+                            console.log(newValue);
+                            setEditState((c) => ({
+                              ...c,
+                              nama_dosen_3: newValue?.nama
+                                ? newValue.nama
+                                : editState.nama_dosen_3,
+                              dosen_3: newValue,
+                              id_dosen_3: newValue?.id ? newValue.id : null,
+                            }));
+                          }}
+                          inputValue={editState.nama_dosen_3}
+                          onInputChange={(event, newInputValue, reason) => {
+                            console.log("newInputValue");
+                            console.log(newInputValue);
+                            console.log(reason);
+
+                            if (reason == "input") {
+                              setEditState((c) => ({
+                                ...c,
+                                nama_dosen_3: newInputValue,
+                              }));
+                            } else {
+                              setEditState((c) => ({
+                                ...c,
+                                nama_dosen_3: "",
+                              }));
+                            }
+                          }}
+                          options={dataDosen}
+                          getOptionLabel={(option) => option.nama}
+                          renderInput={(params) => (
+                            <TextField {...params} variant="standard" />
+                          )}
+                          freeSolo
+                          fullWidth
+                        />
+                      </Grid>
+                    </Grid>
+                  </CustomModalEdit>
+                </IconButton>
+                {/* BUTTON DELETE */}
                 <IconButton size="small">
                   {/* CUSTOM MODAL DELETE */}
                   <CustomModalDelete
