@@ -14,6 +14,7 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  Typography,
 } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 
@@ -58,51 +59,11 @@ export default function PengabdianMasyarakat() {
 
   useEffect(() => {
     async function getData() {
-      try {
-        const dataProgramStudi = await getProgramStudi();
-        const dataDosen = await getDosen();
-        setDataProgramStudi(dataProgramStudi.data);
-        setDataDosen(dataDosen.data);
-
-        const data = await getPengabdianMasyarakat();
-        let result = [];
-        data.data.map((x, i) => {
-          let jumlah_penulis = 0;
-          if (x.dosen_1 !== null) jumlah_penulis++;
-          if (x.dosen_2 !== null) jumlah_penulis++;
-          if (x.dosen_3 !== null) jumlah_penulis++;
-
-          const flattenData = {
-            no: i + 1,
-            id: x.id,
-            id_program_studi: x.program_studi.id,
-            nama_program_studi: x.program_studi.nama,
-            tahun_ajaran: x.tahun_ajaran,
-            semester: x.semester,
-            hibah_dikti: x.hibah_dikti,
-            judul: x.judul,
-            id_dosen_1: x.dosen_1?.id,
-            id_dosen_2: x.dosen_2?.id,
-            id_dosen_3: x.dosen_2?.id,
-            nama_dosen_1: x.dosen_1?.nama,
-            nama_dosen_2: x.dosen_2?.nama,
-            nama_dosen_3: x.dosen_3?.nama,
-            nidn_dosen_1: x.dosen_1?.nidn,
-            nidn_dosen_2: x.dosen_2?.nidn,
-            nidn_dosen_3: x.dosen_3?.nidn,
-            dosen_1: x.dosen_1,
-            dosen_2: x.dosen_2,
-            dosen_3: x.dosen_3,
-            jumlah_penulis: jumlah_penulis,
-            tahun_ajaran_semester: x.tahun_ajaran + "" + x.semester,
-          };
-          result.push(flattenData);
-        });
-        setState(result);
-        setIsLoading(false);
-      } catch (e) {
-        console.log(e);
-      }
+      const dataDosen = await getDosen();
+      const dataProgramStudi = await getProgramStudi();
+      setDataDosen(dataDosen.data);
+      setDataProgramStudi(dataProgramStudi.data);
+      getDataPengabdianMasyarakat();
     }
     getData();
   }, []);
@@ -143,9 +104,8 @@ export default function PengabdianMasyarakat() {
         tahun_ajaran_semester: x.tahun_ajaran + "" + x.semester,
       };
       result.push(flattenData);
-      setIsLoading(false);
     });
-
+    setIsLoading(false);
     setState(result);
   };
 
@@ -164,9 +124,9 @@ export default function PengabdianMasyarakat() {
       semester: "",
       hibah_dikti: "",
       judul: "",
-      id_dosen_1: "",
-      id_dosen_2: "",
-      id_dosen_3: "",
+      id_dosen_1: null,
+      id_dosen_2: null,
+      id_dosen_3: null,
     });
   };
 
@@ -467,13 +427,35 @@ export default function PengabdianMasyarakat() {
                         </Select>
                       </Grid>
                     </Grid>
+                    <Typography
+                      style={{ marginTop: 20, marginBottom: 20 }}
+                      variant="h6"
+                    >
+                      Data Penulis
+                    </Typography>
                     <Grid container spacing={4}>
-                      <Grid item xs={12}>
-                        <InputLabel shrink>Penulis 1</InputLabel>
+                      <Grid item xs={1}>
+                        <Typography style={{ marginTop: 5, marginBottom: 5 }}>
+                          1
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={3}>
+                        <InputLabel shrink>NIDN</InputLabel>
                         <TextField
                           style={{ marginRight: "6px" }}
                           fullWidth
-                          value={editState.nama_dosen_1}
+                          value={editState.dosen_1?.nidn}
+                          InputProps={{
+                            readOnly: true,
+                          }}
+                        />
+                      </Grid>
+                      <Grid item xs={8}>
+                        <InputLabel shrink>Nama</InputLabel>
+                        <TextField
+                          style={{ marginRight: "6px" }}
+                          fullWidth
+                          value={editState.dosen_1?.nama}
                           InputProps={{
                             readOnly: true,
                           }}
@@ -481,12 +463,28 @@ export default function PengabdianMasyarakat() {
                       </Grid>
                     </Grid>
                     <Grid container spacing={4}>
-                      <Grid item xs={12}>
-                        <InputLabel shrink>Penulis 2</InputLabel>
+                      <Grid item xs={1}>
+                        <Typography style={{ marginTop: 5, marginBottom: 5 }}>
+                          2
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={3}>
+                        <InputLabel shrink>NIDN</InputLabel>
                         <TextField
                           style={{ marginRight: "6px" }}
                           fullWidth
-                          value={editState.nama_dosen_2}
+                          value={editState.dosen_2?.nidn}
+                          InputProps={{
+                            readOnly: true,
+                          }}
+                        />
+                      </Grid>
+                      <Grid item xs={8}>
+                        <InputLabel shrink>Nama</InputLabel>
+                        <TextField
+                          style={{ marginRight: "6px" }}
+                          fullWidth
+                          value={editState.dosen_2?.nama}
                           InputProps={{
                             readOnly: true,
                           }}
@@ -494,12 +492,28 @@ export default function PengabdianMasyarakat() {
                       </Grid>
                     </Grid>
                     <Grid container spacing={4}>
-                      <Grid item xs={12}>
-                        <InputLabel shrink>Penulis 3</InputLabel>
+                      <Grid item xs={1}>
+                        <Typography style={{ marginTop: 5, marginBottom: 5 }}>
+                          3
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={3}>
+                        <InputLabel shrink>NIDN</InputLabel>
                         <TextField
                           style={{ marginRight: "6px" }}
                           fullWidth
-                          value={editState.nama_dosen_3}
+                          value={editState.dosen_3?.nidn}
+                          InputProps={{
+                            readOnly: true,
+                          }}
+                        />
+                      </Grid>
+                      <Grid item xs={8}>
+                        <InputLabel shrink>Nama</InputLabel>
+                        <TextField
+                          style={{ marginRight: "6px" }}
+                          fullWidth
+                          value={editState.dosen_3?.nama}
                           InputProps={{
                             readOnly: true,
                           }}

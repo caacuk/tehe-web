@@ -51,7 +51,7 @@ export const CustomModalDetail = ({ handleInitialData, children }) => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Button
+        {/* <Button
           onClick={() => {
             handleClose();
           }}
@@ -60,7 +60,7 @@ export const CustomModalDetail = ({ handleInitialData, children }) => {
           style={{ backgroundColor: "#e63900" }}
         >
           Keluar
-        </Button>
+        </Button> */}
       </Box>
     </div>
   );
