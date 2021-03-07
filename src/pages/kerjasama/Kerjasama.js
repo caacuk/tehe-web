@@ -76,7 +76,7 @@ export default function Kerjasama() {
 
       const data = await getKerjasama();
       let result = [];
-      data.data.map((x, i) => {
+      data.data.forEach((x, i) => {
         const flattenData = {
           no: i + 1,
           id: x.id,
@@ -108,7 +108,7 @@ export default function Kerjasama() {
     const data = await getKerjasama();
     let result = [];
 
-    data.data.map((x, i) => {
+    data.data.forEach((x, i) => {
       const flattenData = {
         no: i + 1,
         id: x.id,

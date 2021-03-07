@@ -1,0 +1,299 @@
+import CustomModalTambah from "../../components/CustomModalTambah/CustomModalTambah";
+import { useState, useEffect, useRef } from "react";
+import { getDosen } from "../../functions/Dosen";
+import { getTingkat } from "../../functions/Tingkat";
+import { getProgramStudi } from "../../functions/ProgramStudi";
+import { Autocomplete } from "@material-ui/lab";
+import {
+  Grid,
+  TextField,
+  Select,
+  MenuItem,
+  InputLabel,
+} from "@material-ui/core";
+
+export const AddPublikasi = ({
+  insertPublikasi,
+  setTambahState,
+  tambahState,
+}) => {
+  const [dosen, setDosen] = useState([]);
+  const [dataTingkat, setDataTingkat] = useState([]);
+  const [dataProgramStudi, setDataProgramStudi] = useState([]);
+
+  const [firstWriter, setFirstWriter] = useState({
+    id: null,
+    nidn: 0,
+    nama: "",
+  });
+
+  const [secondWriter, setSecondWriter] = useState({
+    id: null,
+    nidn: 0,
+    nama: "",
+  });
+
+  const [thirdWriter, setThirdWriter] = useState({
+    id: null,
+    nidn: 0,
+    nama: "",
+  });
+
+  const fetchDosen = useRef(async () => {
+    const { data } = await getDosen();
+    setDosen(data);
+  });
+
+  const fetchTingkat = useRef(async () => {
+    const { data } = await getTingkat();
+    setDataTingkat(data);
+  });
+
+  const fetchProgramStudi = useRef(async () => {
+    const { data } = await getProgramStudi();
+    setDataProgramStudi(data);
+  });
+
+  const fetchAll = useRef(() => {
+    fetchDosen.current();
+    fetchTingkat.current();
+    fetchProgramStudi.current();
+  });
+
+  useEffect(() => {
+    fetchAll.current();
+  }, []);
+
+  useEffect(() => {
+    if (firstWriter === null) {
+      setTambahState((c) => ({ ...c, id_dosen_1: null }));
+      return;
+    }
+    setTambahState((c) => ({ ...c, id_dosen_1: firstWriter.id }));
+  }, [firstWriter, setTambahState]);
+
+  useEffect(() => {
+    if (secondWriter === null) {
+      setTambahState((c) => ({ ...c, id_dosen_2: null }));
+      return;
+    }
+    setTambahState((c) => ({ ...c, id_dosen_2: secondWriter.id }));
+  }, [secondWriter, setTambahState]);
+
+  useEffect(() => {
+    if (thirdWriter === null) {
+      setTambahState((c) => ({ ...c, id_dosen_3: null }));
+      return;
+    }
+    setTambahState((c) => ({ ...c, id_dosen_3: thirdWriter.id }));
+  }, [thirdWriter, setTambahState]);
+
+  return (
+    <CustomModalTambah
+      handleTambah={() => {
+        insertPublikasi();
+      }}
+    >
+      <Grid container spacing={4}>
+        <Grid item xs={12}>
+          <TextField
+            style={{ marginBottom: "3px" }}
+            fullWidth
+            label="Judul"
+            onChange={(e) => {
+              setTambahState((c) => ({ ...c, judul: e.target.value }));
+            }}
+            value={tambahState.judul}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={4}>
+        <Grid item xs={6}>
+          <TextField
+            style={{ marginRight: "4px" }}
+            fullWidth
+            label="Jurnal"
+            value={tambahState.nama_jurnal}
+            onChange={(e) => {
+              setTambahState((c) => ({
+                ...c,
+                nama_jurnal: e.target.value,
+              }));
+            }}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <InputLabel>Hibah Dikti</InputLabel>
+          <Select
+            value={tambahState.hibah_dikti}
+            onChange={(e) => {
+              setTambahState((c) => ({
+                ...c,
+                hibah_dikti: e.target.value,
+              }));
+            }}
+            fullWidth
+            style={{ marginBottom: "3px" }}
+          >
+            <MenuItem value={1}>Ya</MenuItem>
+            <MenuItem value={0}>Tidak</MenuItem>
+          </Select>
+        </Grid>
+      </Grid>
+      <Grid container spacing={4}>
+        <Grid item xs={3}>
+          <TextField
+            fullWidth
+            label="Edisi"
+            onChange={(e) => {
+              setTambahState((c) => ({ ...c, edisi: e.target.value }));
+            }}
+            value={tambahState.edisi}
+          />
+        </Grid>
+        <Grid item xs={3}>
+          <TextField
+            fullWidth
+            label="Volume"
+            onChange={(e) => {
+              setTambahState((c) => ({ ...c, volume: e.target.value }));
+            }}
+            value={tambahState.volume}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <InputLabel>Tingkat</InputLabel>
+          <Select
+            value={tambahState.id_tingkat}
+            onChange={(e) => {
+              setTambahState((c) => ({
+                ...c,
+                id_tingkat: e.target.value,
+              }));
+            }}
+            style={{ marginBottom: "3px" }}
+            fullWidth
+          >
+            {dataTingkat.map((x) => (
+              <MenuItem value={x.id} key={x.id}>
+                {x.nama}
+              </MenuItem>
+            ))}
+          </Select>
+        </Grid>
+      </Grid>
+      <Grid container spacing={4}>
+        <Grid item xs={3}>
+          <TextField
+            fullWidth
+            label="Tahun Ajaran"
+            value={tambahState.tahun_ajaran}
+            onChange={(e) => {
+              setTambahState((c) => ({
+                ...c,
+                tahun_ajaran: e.target.value,
+              }));
+            }}
+            style={{ marginBottom: "3px" }}
+          />
+        </Grid>
+        <Grid item xs={3}>
+          <InputLabel>Semester</InputLabel>
+          <Select
+            value={tambahState.semester}
+            onChange={(e) => {
+              setTambahState((c) => ({
+                ...c,
+                semester: e.target.value,
+              }));
+            }}
+            fullWidth
+          >
+            <MenuItem value={1}>Ganjil</MenuItem>
+            <MenuItem value={2}>Genap</MenuItem>
+          </Select>
+        </Grid>
+        <Grid item xs={6}>
+          <InputLabel>Program Studi</InputLabel>
+          <Select
+            value={tambahState.id_program_studi}
+            onChange={(e) => {
+              setTambahState((c) => ({
+                ...c,
+                id_program_studi: e.target.value,
+              }));
+            }}
+            fullWidth
+            style={{ marginBottom: "3px" }}
+          >
+            {dataProgramStudi.map((x) => (
+              <MenuItem value={x.id} key={x.id}>
+                {x.nama}
+              </MenuItem>
+            ))}
+          </Select>
+        </Grid>
+      </Grid>
+      <Grid container spacing={4}>
+        <Grid item xs={4}>
+          <Autocomplete
+            value={firstWriter}
+            onChange={(event, newValue) => {
+              setFirstWriter(newValue);
+            }}
+            getOptionLabel={(option) => option.nama}
+            id="add-penulis-1"
+            options={dosen}
+            fullWidth
+            renderInput={(params) => (
+              <TextField {...params} label="Nama Penulis 1" />
+            )}
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <Autocomplete
+            value={secondWriter}
+            onChange={(event, newValue) => {
+              setSecondWriter(newValue);
+            }}
+            getOptionLabel={(option) => option.nama}
+            id="add-penulis-2"
+            options={dosen}
+            fullWidth
+            renderInput={(params) => (
+              <TextField {...params} label="Nama Penulis 2" />
+            )}
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <Autocomplete
+            value={thirdWriter}
+            onChange={(event, newValue) => {
+              setThirdWriter(newValue);
+            }}
+            getOptionLabel={(option) => option.nama}
+            id="add-penulis-3"
+            options={dosen}
+            fullWidth
+            renderInput={(params) => (
+              <TextField {...params} label="Nama Penulis 3" />
+            )}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={4}>
+        <Grid item xs={12}>
+          <TextField
+            style={{ marginBottom: "13px" }}
+            fullWidth
+            label="URL"
+            onChange={(e) => {
+              setTambahState((c) => ({ ...c, url: e.target.value }));
+            }}
+            value={tambahState.url}
+          />
+        </Grid>
+      </Grid>
+    </CustomModalTambah>
+  );
+};

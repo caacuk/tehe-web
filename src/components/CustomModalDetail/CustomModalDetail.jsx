@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Modal, IconButton, Button, Box, Divider } from "@material-ui/core";
-import { Edit, Visibility } from "@material-ui/icons";
+import { Visibility } from "@material-ui/icons";
 
 const getModalStyle = () => {
   const top = 50;
