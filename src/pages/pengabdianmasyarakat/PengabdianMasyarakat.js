@@ -50,9 +50,9 @@ export default function PengabdianMasyarakat() {
     semester: "",
     hibah_dikti: "",
     judul: "",
-    id_dosen_1: "",
-    id_dosen_2: "",
-    id_dosen_3: "",
+    id_dosen_1: null,
+    id_dosen_2: null,
+    id_dosen_3: null,
   });
 
   useEffect(() => {
@@ -85,10 +85,10 @@ export default function PengabdianMasyarakat() {
             id_dosen_3: x.dosen_2?.id,
             nama_dosen_1: x.dosen_1?.nama,
             nama_dosen_2: x.dosen_2?.nama,
-            nama_dosen_3: x.dosen_2?.nama,
+            nama_dosen_3: x.dosen_3?.nama,
             nidn_dosen_1: x.dosen_1?.nidn,
             nidn_dosen_2: x.dosen_2?.nidn,
-            nidn_dosen_3: x.dosen_2?.nidn,
+            nidn_dosen_3: x.dosen_3?.nidn,
             dosen_1: x.dosen_1,
             dosen_2: x.dosen_2,
             dosen_3: x.dosen_3,
@@ -131,10 +131,10 @@ export default function PengabdianMasyarakat() {
         id_dosen_3: x.dosen_2?.id,
         nama_dosen_1: x.dosen_1?.nama,
         nama_dosen_2: x.dosen_2?.nama,
-        nama_dosen_3: x.dosen_2?.nama,
+        nama_dosen_3: x.dosen_3?.nama,
         nidn_dosen_1: x.dosen_1?.nidn,
         nidn_dosen_2: x.dosen_2?.nidn,
-        nidn_dosen_3: x.dosen_2?.nidn,
+        nidn_dosen_3: x.dosen_3?.nidn,
         dosen_1: x.dosen_1,
         dosen_2: x.dosen_2,
         dosen_3: x.dosen_3,
@@ -171,6 +171,7 @@ export default function PengabdianMasyarakat() {
 
   const insertPengabdianMasyarakat = async () => {
     setIsLoading(true);
+    console.log(tambahState);
     const response = await postPengabdianMasyarakat(tambahState);
 
     if (response.errorMessage === null) {
@@ -178,16 +179,15 @@ export default function PengabdianMasyarakat() {
     }
     getDataPengabdianMasyarakat();
     setIsLoading(false);
-    setEditState({
-      id: "",
+    setTambahState({
       id_program_studi: "",
       tahun_ajaran: "",
       semester: "",
       hibah_dikti: "",
       judul: "",
-      id_dosen_1: "",
-      id_dosen_2: "",
-      id_dosen_3: "",
+      id_dosen_1: null,
+      id_dosen_2: null,
+      id_dosen_3: null,
     });
   };
 
@@ -503,14 +503,11 @@ export default function PengabdianMasyarakat() {
                             console.log(newValue);
                             setEditState((c) => ({
                               ...c,
-                              id_dosen_1: newValue?.id ? newValue.id : null,
-                            }));
-                            setEditState((c) => ({ ...c, dosen_1: newValue }));
-                            setEditState((c) => ({
-                              ...c,
                               nama_dosen_1: newValue?.nama
                                 ? newValue.nama
                                 : editState.nama_dosen_1,
+                              dosen_1: newValue,
+                              id_dosen_1: newValue?.id ? newValue.id : null,
                             }));
                           }}
                           inputValue={editState.nama_dosen_1}
@@ -550,14 +547,11 @@ export default function PengabdianMasyarakat() {
                             console.log(newValue);
                             setEditState((c) => ({
                               ...c,
-                              id_dosen_2: newValue?.id ? newValue.id : null,
-                            }));
-                            setEditState((c) => ({ ...c, dosen_2: newValue }));
-                            setEditState((c) => ({
-                              ...c,
                               nama_dosen_2: newValue?.nama
                                 ? newValue.nama
                                 : editState.nama_dosen_2,
+                              dosen_2: newValue,
+                              id_dosen_2: newValue?.id ? newValue.id : null,
                             }));
                           }}
                           inputValue={editState.nama_dosen_2}
@@ -598,14 +592,11 @@ export default function PengabdianMasyarakat() {
                             console.log(newValue);
                             setEditState((c) => ({
                               ...c,
-                              id_dosen_3: newValue?.id ? newValue.id : null,
-                            }));
-                            setEditState((c) => ({ ...c, dosen_3: newValue }));
-                            setEditState((c) => ({
-                              ...c,
                               nama_dosen_3: newValue?.nama
                                 ? newValue.nama
                                 : editState.nama_dosen_3,
+                              dosen_3: newValue,
+                              id_dosen_3: newValue?.id ? newValue.id : null,
                             }));
                           }}
                           inputValue={editState.nama_dosen_3}
@@ -667,7 +658,186 @@ export default function PengabdianMasyarakat() {
             handleTambah={() => {
               insertPengabdianMasyarakat();
             }}
-          ></CustomModalTambah>
+          >
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <InputLabel shrink>Judul</InputLabel>
+                <TextField
+                  style={{ marginRight: "6px" }}
+                  fullWidth
+                  value={tambahState.judul}
+                  onChange={(e) => {
+                    setTambahState((c) => ({
+                      ...c,
+                      judul: e.target.value,
+                    }));
+                  }}
+                  variant="outlined"
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={6}>
+                <InputLabel shrink>Program Studi</InputLabel>
+                <Select
+                  style={{ marginRight: "6px" }}
+                  fullWidth
+                  value={tambahState.id_program_studi}
+                  onChange={(e) => {
+                    setTambahState((c) => ({
+                      ...c,
+                      id_program_studi: e.target.value,
+                    }));
+                  }}
+                  variant="outlined"
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  {dataProgramStudi.map((x) => (
+                    <MenuItem value={x.id}>{x.nama}</MenuItem>
+                  ))}
+                </Select>
+              </Grid>
+              <Grid item xs={6}>
+                <InputLabel shrink>Hibah Dikti</InputLabel>
+                <Select
+                  style={{ marginRight: "6px" }}
+                  fullWidth
+                  value={tambahState.hibah_dikti}
+                  onChange={(e) => {
+                    setTambahState((c) => ({
+                      ...c,
+                      hibah_dikti: e.target.value,
+                    }));
+                  }}
+                  variant="outlined"
+                >
+                  <MenuItem value={"Ya"}>Ya</MenuItem>
+                  <MenuItem value={"Tidak"}>Tidak</MenuItem>
+                </Select>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={6}>
+                <InputLabel shrink>Tahun Ajaran</InputLabel>
+                <TextField
+                  style={{ marginRight: "6px" }}
+                  fullWidth
+                  value={tambahState.tahun_ajaran}
+                  onChange={(e) => {
+                    setTambahState((c) => ({
+                      ...c,
+                      tahun_ajaran: e.target.value,
+                    }));
+                  }}
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <InputLabel shrink>Semester</InputLabel>
+                <Select
+                  style={{ marginRight: "6px" }}
+                  fullWidth
+                  value={tambahState.semester}
+                  onChange={(e) => {
+                    setTambahState((c) => ({
+                      ...c,
+                      semester: e.target.value,
+                    }));
+                  }}
+                  variant="outlined"
+                >
+                  <MenuItem value={1}>Ganjil</MenuItem>
+                  <MenuItem value={2}>Genap</MenuItem>
+                </Select>
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <InputLabel>Penulis 1</InputLabel>
+                <Autocomplete
+                  value={tambahState.dosen_1}
+                  onChange={(event, newValue) => {
+                    setTambahState((c) => ({
+                      ...c,
+                      id_dosen_1: newValue?.id ? newValue.id : null,
+                    }));
+                  }}
+                  inputValue={tambahState.nama_dosen_1}
+                  onInputChange={(event, newInputValue, reason) => {
+                    setTambahState((c) => ({
+                      ...c,
+                      nama_dosen_1: newInputValue,
+                    }));
+                  }}
+                  options={dataDosen}
+                  getOptionLabel={(option) => option.nama}
+                  renderInput={(params) => (
+                    <TextField {...params} variant="standard" />
+                  )}
+                  freeSolo
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <InputLabel>Penulis 2</InputLabel>
+                <Autocomplete
+                  value={tambahState.dosen_2}
+                  onChange={(event, newValue) => {
+                    setTambahState((c) => ({
+                      ...c,
+                      id_dosen_2: newValue?.id ? newValue.id : null,
+                    }));
+                  }}
+                  inputValue={tambahState.nama_dosen_2}
+                  onInputChange={(event, newInputValue, reason) => {
+                    setTambahState((c) => ({
+                      ...c,
+                      nama_dosen_2: newInputValue,
+                    }));
+                  }}
+                  options={dataDosen}
+                  getOptionLabel={(option) => option.nama}
+                  renderInput={(params) => (
+                    <TextField {...params} variant="standard" />
+                  )}
+                  freeSolo
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <InputLabel>Penulis 3</InputLabel>
+                <Autocomplete
+                  value={tambahState.dosen_3}
+                  onChange={(event, newValue) => {
+                    setTambahState((c) => ({
+                      ...c,
+                      id_dosen_3: newValue?.id ? newValue.id : null,
+                    }));
+                  }}
+                  inputValue={tambahState.nama_dosen_3}
+                  onInputChange={(event, newInputValue, reason) => {
+                    setTambahState((c) => ({
+                      ...c,
+                      nama_dosen_3: newInputValue,
+                    }));
+                  }}
+                  options={dataDosen}
+                  getOptionLabel={(option) => option.nama}
+                  renderInput={(params) => (
+                    <TextField {...params} variant="standard" />
+                  )}
+                  freeSolo
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
+          </CustomModalTambah>
         }
       />
       <Grid container spacing={4}>
