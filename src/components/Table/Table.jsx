@@ -24,6 +24,7 @@ const options = {
   filter: true,
   download: true,
   print: true,
+  viewColumns: false
 };
 
 export const Table = ({ data, columns }) => {
