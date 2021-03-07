@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/tehe-web/static/js/main.fb5eed3a.chunk.js",
-    "main.js.map": "/tehe-web/static/js/main.fb5eed3a.chunk.js.map",
+    "main.js": "/tehe-web/static/js/main.2e4e7bbd.chunk.js",
+    "main.js.map": "/tehe-web/static/js/main.2e4e7bbd.chunk.js.map",
     "runtime-main.js": "/tehe-web/static/js/runtime-main.23136730.js",
     "runtime-main.js.map": "/tehe-web/static/js/runtime-main.23136730.js.map",
     "static/css/2.4c5763e8.chunk.css": "/tehe-web/static/css/2.4c5763e8.chunk.css",
-    "static/js/2.b060f62d.chunk.js": "/tehe-web/static/js/2.b060f62d.chunk.js",
-    "static/js/2.b060f62d.chunk.js.map": "/tehe-web/static/js/2.b060f62d.chunk.js.map",
+    "static/js/2.2430d02c.chunk.js": "/tehe-web/static/js/2.2430d02c.chunk.js",
+    "static/js/2.2430d02c.chunk.js.map": "/tehe-web/static/js/2.2430d02c.chunk.js.map",
     "index.html": "/tehe-web/index.html",
     "static/css/2.4c5763e8.chunk.css.map": "/tehe-web/static/css/2.4c5763e8.chunk.css.map",
-    "static/js/2.b060f62d.chunk.js.LICENSE.txt": "/tehe-web/static/js/2.b060f62d.chunk.js.LICENSE.txt",
+    "static/js/2.2430d02c.chunk.js.LICENSE.txt": "/tehe-web/static/js/2.2430d02c.chunk.js.LICENSE.txt",
     "static/media/font-awesome.min.css": "/tehe-web/static/media/fontawesome-webfont.f691f37e.woff",
     "static/media/google.bbce75f8.svg": "/tehe-web/static/media/google.bbce75f8.svg",
     "static/media/logo.d0e27845.svg": "/tehe-web/static/media/logo.d0e27845.svg",
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.23136730.js",
     "static/css/2.4c5763e8.chunk.css",
-    "static/js/2.b060f62d.chunk.js",
-    "static/js/main.fb5eed3a.chunk.js"
+    "static/js/2.2430d02c.chunk.js",
+    "static/js/main.2e4e7bbd.chunk.js"
   ]
 }
