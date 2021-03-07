@@ -67,7 +67,7 @@ export default function Dosen() {
     setIsLoading(true);
     const response = await putDosen(editState);
     if (response.errorMessage === null) {
-      history.push(`/app/Dosen`);
+      history.push(`/app/dosen`);
     }
     getDataDosen();
     setIsLoading(false);
@@ -76,10 +76,11 @@ export default function Dosen() {
 
   const insertDosen = async () => {
     setIsLoading(true);
+    console.log(tambahState);
     const response = await postDosen(tambahState);
     console.log(tambahState);
     if (response.errorMessage === null) {
-      history.push(`/app/Dosen`);
+      history.push(`/app/dosen`);
     }
     getDataDosen();
     setIsLoading(false);

@@ -32,7 +32,7 @@ export const getDosenById = (id) => {
 
 export const postDosen = (dosen) => {
   const body = {
-    nim: dosen.nim,
+    nidn: dosen.nidn,
     nama: dosen.nama,
   };
 
@@ -48,7 +48,7 @@ export const postDosen = (dosen) => {
 
 export const putDosen = (dosen) => {
   const body = {
-    nim: dosen.nim,
+    nidn: dosen.nidn,
     nama: dosen.nama,
   };
 

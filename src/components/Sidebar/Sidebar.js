@@ -79,7 +79,7 @@ const structure = [
   {
     id: 5,
     label: "Prestasi Mahasiswa",
-    link: "",
+    link: "/app/prestasiMahasiswa",
     icon: <School />,
   },
   {
