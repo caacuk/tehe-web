@@ -1,177 +1,77 @@
-import { React, useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
-import {
-  Grid,
-  Button,
-  IconButton,
-  ButtonGroup,
-  CircularProgress,
-} from "@material-ui/core";
-import { Create, Delete, Visibility } from "@material-ui/icons";
-import MUIDataTable from "mui-datatables";
-
-// components
 import PageTitle from "../../components/PageTitle/PageTitle";
-
-import { getPublikasi } from "../../functions/Publikasi";
-
-const columns = [
-  {
-    name: "id",
-    label: "ID",
-    options: {
-      filter: false,
-      sort: false,
-      display: false,
-    },
-  },
-  {
-    name: "no",
-    label: "No",
-    options: {
-      filter: false,
-      sort: true,
-      display: true,
-    },
-  },
-  {
-    name: "nama_program_studi",
-    label: "Program Studi",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "semester",
-    label: "Semester",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "judul",
-    label: "Judul",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "nama_tingkat",
-    label: "Tingkat",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "nama_jurnal",
-    label: "Jurnal",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "edisi",
-    label: "Edisi",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "volume",
-    label: "Volume",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "url",
-    label: "URL",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "jumlah_penulis",
-    label: "Penulis",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "",
-    options: {
-      filter: false,
-      sort: false,
-      empty: true,
-      customBodyRender: (value, tableMeta, updateValue) => {
-        return (
-          <>
-            <ButtonGroup
-              variant="text"
-              color="primary"
-              aria-label="text primary button group"
-            >
-              <IconButton
-                color="primary"
-                aria-label="upload picture"
-                onClick={() => console.log(tableMeta.rowData[0])}
-                component="span"
-                size="small"
-              >
-                <Visibility />
-              </IconButton>
-              <IconButton
-                color="primary"
-                aria-label="upload picture"
-                onClick={() =>
-                  (window.location =
-                    "#/app/editPublikasi/" + tableMeta.rowData[0])
-                }
-                component="span"
-                size="small"
-              >
-                <Create />
-              </IconButton>
-              <IconButton
-                color="secondary"
-                aria-label="upload picture"
-                onClick={() => console.log(tableMeta.rowData[0])}
-                component="span"
-                size="small"
-              >
-                <Delete />
-              </IconButton>
-            </ButtonGroup>
-          </>
-        );
-      },
-    },
-  },
-];
-
-const options = {
-  filterType: "checkbox",
-  selectableRows: false,
-};
+import { React, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { PublikasiTableContainer } from "./PublikasiTableContainer";
+import { Grid, CircularProgress } from "@material-ui/core";
+import { AddPublikasi } from "./AddPublikasi";
+import {
+  getPublikasi,
+  postPublikasi,
+  putPublikasi,
+  deletePublikasi,
+} from "../../functions/Publikasi";
 
 export default function Publikasi() {
-  const [state, setState] = useState([]);
+  const history = useHistory();
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [detailState, setDetailState] = useState({
+    semester: "",
+    judul: "",
+    nama_jurnal: "",
+    edisi: "",
+    volume: "",
+    url: "",
+    nama_program_studi: "",
+    nama_tingkat: "",
+    nama_dosen_1: "",
+    nama_dosen_2: "",
+    nama_dosen_3: "",
+    jumlah_penulis: "",
+    no_semester: "",
+    hibah_dikti: "",
+  });
+
+  const [editState, setEditState] = useState({
+    id: "",
+    judul: "",
+    nama_jurnal: "",
+    edisi: "",
+    volume: "",
+    url: "",
+    id_program_studi: "",
+    id_tingkat: "",
+    id_dosen_1: null,
+    id_dosen_2: null,
+    id_dosen_3: null,
+    jumlah_penulis: "",
+    tahun_ajaran: "",
+    no_semester: "",
+    hibah_dikti: "",
+  });
+
+  const [tambahState, setTambahState] = useState({
+    semester: "",
+    judul: "",
+    nama_jurnal: "",
+    edisi: "",
+    volume: "",
+    url: "",
+    id_program_studi: "",
+    id_tingkat: "",
+    id_dosen_1: null,
+    id_dosen_2: null,
+    id_dosen_3: null,
+    jumlah_penulis: "",
+    tahun_ajaran: "",
+    hibah_dikti: "",
+  });
 
   useEffect(() => {
     async function getData() {
       const data = await getPublikasi();
       let result = [];
-      data.data.map((x, i) => {
+      data.data.forEach((x, i) => {
         let jumlah_penulis = 0;
         if (x.dosen_1 !== null) jumlah_penulis++;
         if (x.dosen_2 !== null) jumlah_penulis++;
@@ -186,34 +86,130 @@ export default function Publikasi() {
           edisi: x.edisi,
           volume: x.volume,
           url: x.url,
+          hibah_dikti: x.hibah_dikti,
           nama_program_studi: x.program_studi.nama,
           nama_tingkat: x.tingkat.nama,
           nama_dosen_1: x.dosen_1?.nama,
           nama_dosen_2: x.dosen_2?.nama,
           nama_dosen_3: x.dosen_2?.nama,
+          id_program_studi: x.program_studi.id,
+          id_tingkat: x.tingkat.id,
+          id_dosen_1: x.dosen_1?.id,
+          id_dosen_2: x.dosen_2?.id,
+          id_dosen_3: x.dosen_2?.id,
           jumlah_penulis: jumlah_penulis,
+          tahun_ajaran: x.tahun_ajaran,
+          no_semester: x.semester,
         };
         result.push(flattenData);
       });
-      setState(result);
+      setData(result);
       setIsLoading(false);
     }
     getData();
   }, []);
+
+  const getDataPublikasi = async () => {
+    const data = await getPublikasi();
+    let result = [];
+    data.data.forEach((x, i) => {
+      let jumlah_penulis = 0;
+      if (x.dosen_1 !== null) jumlah_penulis++;
+      if (x.dosen_2 !== null) jumlah_penulis++;
+      if (x.dosen_3 !== null) jumlah_penulis++;
+
+      const flattenData = {
+        no: i + 1,
+        id: x.id,
+        semester: x.tahun_ajaran + "" + x.semester,
+        judul: x.judul,
+        nama_jurnal: x.nama_jurnal,
+        edisi: x.edisi,
+        volume: x.volume,
+        url: x.url,
+        hibah_dikti: x.hibah_dikti,
+        nama_program_studi: x.program_studi.nama,
+        nama_tingkat: x.tingkat.nama,
+        nama_dosen_1: x.dosen_1?.nama,
+        nama_dosen_2: x.dosen_2?.nama,
+        nama_dosen_3: x.dosen_2?.nama,
+        id_program_studi: x.program_studi.id,
+        id_tingkat: x.tingkat.id,
+        id_dosen_1: x.dosen_1?.id,
+        id_dosen_2: x.dosen_2?.id,
+        id_dosen_3: x.dosen_2?.id,
+        jumlah_penulis: jumlah_penulis,
+        tahun_ajaran: x.tahun_ajaran,
+        no_semester: x.semester,
+      };
+      result.push(flattenData);
+    });
+    setData(result);
+    setIsLoading(false);
+  };
+
+  const editPublikasi = async () => {
+    setIsLoading(true);
+    const response = await putPublikasi(editState);
+    if (response.errorMessage === null) {
+      history.push(`/app/publikasi`);
+    }
+    getDataPublikasi();
+    setIsLoading(false);
+    setEditState({
+      id: "",
+      judul: "",
+      nama_jurnal: "",
+      edisi: "",
+      volume: "",
+      url: "",
+      id_program_studi: "",
+      id_tingkat: "",
+      id_dosen_1: null,
+      id_dosen_2: null,
+      id_dosen_3: null,
+      jumlah_penulis: "",
+      tahun_ajaran: "",
+      no_semester: "",
+      hibah_dikti: "",
+    });
+  };
+  const insertPublikasi = async () => {
+    setIsLoading(true);
+    const response = await postPublikasi(tambahState);
+    if (response.errorMessage === null) {
+      history.push(`/app/publikasi`);
+    }
+    getDataPublikasi();
+    setIsLoading(false);
+    setTambahState({
+      semester: "",
+      judul: "",
+      nama_jurnal: "",
+      edisi: "",
+      volume: "",
+      url: "",
+      id_program_studi: "",
+      id_tingkat: "",
+      id_dosen_1: null,
+      id_dosen_2: null,
+      id_dosen_3: null,
+      jumlah_penulis: "",
+      tahun_ajaran: "",
+      hibah_dikti: "",
+    });
+  };
 
   return (
     <>
       <PageTitle
         title="Publikasi"
         button={
-          <Button
-            variant="contained"
-            size="medium"
-            color="primary"
-            href="#/app/tambahPublikasi"
-          >
-            Tambah
-          </Button>
+          <AddPublikasi
+            insertPublikasi={insertPublikasi}
+            setTambahState={setTambahState}
+            tambahState={tambahState}
+          />
         }
       />
       <Grid container spacing={4}>
@@ -223,11 +219,16 @@ export default function Publikasi() {
               <CircularProgress size={50} style={{ marginTop: 50 }} />
             </div>
           ) : (
-            <MUIDataTable
-              title=""
-              data={state}
-              columns={columns}
-              options={options}
+            <PublikasiTableContainer
+              setDetailState={setDetailState}
+              detailState={detailState}
+              setIsLoading={setIsLoading}
+              deletePublikasi={deletePublikasi}
+              getDataPublikasi={getDataPublikasi}
+              data={data}
+              editPublikasi={editPublikasi}
+              setEditState={setEditState}
+              editState={editState}
             />
           )}
         </Grid>

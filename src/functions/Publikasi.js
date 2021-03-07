@@ -19,10 +19,10 @@ export const getPublikasi = () => {
     });
 };
 
-// export const getKerjasamaById = (id) => {
+// export const getPublikasiById = (id) => {
 //   console.log(id);
 //   return axios
-//     .get("kerjasama/" + id, axiosConfig)
+//     .get("Publikasi/" + id, axiosConfig)
 //     .then((response) => {
 //       return response.data;
 //     })
@@ -44,26 +44,26 @@ export const postPublikasi = (publikasi) => {
     });
 };
 
-// export const putKerjasama = (kerjasama) => {
-//   const body = kerjasama;
+export const putPublikasi = (Publikasi) => {
+  const body = Publikasi;
 
-//   return axios
-//     .put("kerjasama/" + kerjasama.id, body, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+  return axios
+    .put("publikasi/" + Publikasi.id, body, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
 
-// export const deleteProgramStudi = (programStudi) => {
-//   return axios
-//     .delete("programStudi/" + programStudi.id, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+export const deletePublikasi = (id) => {
+  return axios
+    .delete("publikasi/" + id, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
