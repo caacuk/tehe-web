@@ -63,10 +63,11 @@ const structure = [
     link: "/app/dosen",
     icon: <Storage />,
     children: [
-      { label: "Sertifikasi", link: "/app/" },
-      { label: "Studi Lanjut", link: "/app/" },
-      { label: "NIDK", link: "/app/" },
-      { label: "HAKI", link: "/app/" },
+      { label: "Dosen", link: "/app/dosen" },
+      { label: "Sertifikasi", link: "/app/sertifikasi" },
+      { label: "Studi Lanjut", link: "/app/studiLanjut" },
+      { label: "NIDK", link: "/app/nidk" },
+      { label: "HAKI", link: "/app/haki" },
     ],
   },
   {

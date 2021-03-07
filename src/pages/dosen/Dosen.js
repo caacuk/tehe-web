@@ -1,97 +1,240 @@
 import { React, useState, useEffect } from "react";
-import { Grid, Button, IconButton } from "@material-ui/core";
-import { Create, Delete } from "@material-ui/icons";
-import MUIDataTable from "mui-datatables";
+import CustomModalTambah from "../../components/CustomModalTambah/CustomModalTambah";
+import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
+import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
+import { Table } from "../../components/Table/Table";
+import { useHistory } from "react-router-dom";
+
+import {
+  Grid,
+  IconButton,
+  ButtonGroup,
+  CircularProgress,
+  TextField,
+} from "@material-ui/core";
 
 // components
-import PageTitle from "../../components/PageTitle";
+import PageTitle from "../../components/PageTitle/PageTitle";
 
-import { getDosen } from "../../functions/Dosen";
+import {
+  getDosen,
+  deleteDosen,
+  putDosen,
+  postDosen,
+} from "../../functions/Dosen";
 
-const columns = [
-  {
-    name: "id",
-    label: "ID",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "nama",
-    label: "Nama",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
-    name: "",
-    options: {
-      filter: true,
-      sort: true,
-      customBodyRender: (value, tableMeta, updateValue) => {
-        return (
-          <>
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              onClick={() => console.log(tableMeta.rowData[0])}
-              component="span"
-              size="small"
-            >
-              <Create />
-            </IconButton>
-            <IconButton
-              color="secondary"
-              aria-label="upload picture"
-              onClick={() => console.log(tableMeta.rowData[0])}
-              component="span"
-              size="small"
-            >
-              <Delete />
-            </IconButton>
-          </>
-        );
-      },
-    },
-  },
-];
-
-const options = {
-  filterType: "checkbox",
-  selectableRows: false,
-};
-
-export default function Tables() {
+export default function Dosen() {
+  const history = useHistory();
   const [state, setState] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [editState, setEditState] = useState({
+    id: "",
+    nama: "",
+  });
+  const [tambahState, setTambahState] = useState({
+    nidn: "",
+    nama: "",
+  });
 
   useEffect(() => {
     async function getData() {
       const data = await getDosen();
-      setState(data.data);
+      let result = [];
+
+      data.data.map((x, i) => {
+        x = { ...x, no: i + 1 };
+        result.push(x);
+      });
+      setState(result);
+      setIsLoading(false);
     }
     getData();
   }, []);
 
+  const getDataDosen = async () => {
+    const data = await getDosen();
+    let result = [];
+
+    data.data.map((x, i) => {
+      x = { ...x, no: i + 1 };
+      result.push(x);
+    });
+
+    setState(result);
+  };
+
+  const editDosen = async () => {
+    setIsLoading(true);
+    const response = await putDosen(editState);
+    if (response.errorMessage === null) {
+      history.push(`/app/Dosen`);
+    }
+    getDataDosen();
+    setIsLoading(false);
+    setEditState({ nama: "", nidn: "" });
+  };
+
+  const insertDosen = async () => {
+    setIsLoading(true);
+    const response = await postDosen(tambahState);
+    console.log(tambahState);
+    if (response.errorMessage === null) {
+      history.push(`/app/Dosen`);
+    }
+    getDataDosen();
+    setIsLoading(false);
+    setTambahState({ nama: "", nidn: "" });
+  };
+
+  const columns = [
+    {
+      name: "id",
+      label: "ID",
+      options: {
+        filter: false,
+        sort: false,
+        display: false,
+      },
+    },
+    {
+      name: "no",
+      label: "No",
+      options: {
+        filter: false,
+        sort: true,
+        display: true,
+      },
+    },
+    {
+      name: "nidn",
+      label: "nidn",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "nama",
+      label: "Nama",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "",
+      options: {
+        filter: true,
+        sort: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <>
+              <ButtonGroup
+                variant="text"
+                color="primary"
+                aria-label="text primary button group"
+              >
+                <IconButton size="small">
+                  {/* CUSTOM MODAL EDIT */}
+                  <CustomModalEdit
+                    handleEdit={() => {
+                      editDosen();
+                    }}
+                    handleInitialData={async () => {
+                      const { rowData } = tableMeta;
+                      setEditState({
+                        id: rowData[0],
+                        nidn: rowData[2],
+                        nama: rowData[3],
+                      });
+                    }}
+                  >
+                    <TextField
+                      style={{ marginBottom: "13px" }}
+                      fullWidth
+                      value={editState.nidn}
+                      // onChange={(e) => {
+                      //   setEditState((c) => ({ ...c, nidn: e.target.value }));
+                      // }}
+                      label="NIDN Dosen"
+                      InputProps={{
+                        readOnly: true,
+                      }}
+                      variant="outlined"
+                    />
+                    <TextField
+                      fullWidth
+                      value={editState.nama}
+                      onChange={(e) => {
+                        setEditState((c) => ({ ...c, nama: e.target.value }));
+                      }}
+                      label="Nama Dosen"
+                      variant="outlined"
+                    />
+                  </CustomModalEdit>
+                </IconButton>
+                <IconButton size="small">
+                  {/* CUSTOM MODAL DELETE */}
+                  <CustomModalDelete
+                    handleDelete={async () => {
+                      setIsLoading(true);
+                      await deleteDosen(tableMeta.rowData[0]);
+                      const data = await getDosen();
+                      setState(data.data);
+                      setIsLoading(false);
+                    }}
+                  />
+                </IconButton>
+              </ButtonGroup>
+            </>
+          );
+        },
+      },
+    },
+  ];
+
   return (
     <>
       <PageTitle
-        title="Dosen"
+        title="Data Dosen"
         button={
-          <Button variant="contained" size="medium" color="primary">
-            Tambah
-          </Button>
+          // CUSTOM MODAL TAMBAH
+          <CustomModalTambah
+            handleTambah={() => {
+              insertDosen();
+            }}
+          >
+            <TextField
+              style={{ marginBottom: "13px" }}
+              fullWidth
+              value={tambahState.nidn}
+              onChange={(e) => {
+                setTambahState((c) => ({ ...c, nidn: e.target.value }));
+              }}
+              label="NIDN Dosen"
+              variant="outlined"
+            />
+            <TextField
+              fullWidth
+              value={tambahState.nama}
+              onChange={(e) => {
+                setTambahState((c) => ({ ...c, nama: e.target.value }));
+              }}
+              label="Nama Dosen"
+              variant="outlined"
+            />
+          </CustomModalTambah>
         }
       />
       <Grid container spacing={4}>
         <Grid item xs={12}>
-          <MUIDataTable
-            title="Dosen"
-            data={state}
-            columns={columns}
-            options={options}
-          />
+          {isLoading ? (
+            <div style={{ textAlign: "center" }}>
+              <CircularProgress size={50} style={{ marginTop: 50 }} />
+            </div>
+          ) : (
+            <Table data={state} columns={columns} />
+          )}
         </Grid>
       </Grid>
     </>
