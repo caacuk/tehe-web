@@ -1,5 +1,6 @@
 import CustomModalDetail from "../../components/CustomModalDetail/CustomModalDetail";
-import { Grid, TextField } from "@material-ui/core";
+import { Grid, TextField, Select, MenuItem } from "@material-ui/core";
+import Typography from '@material-ui/core/Typography';
 
 export const DetailPublikasi = ({ setDetailState, detailState, tableMeta }) => {
   return (
@@ -28,164 +29,181 @@ export const DetailPublikasi = ({ setDetailState, detailState, tableMeta }) => {
     >
       <Grid container spacing={4}>
         <Grid item xs={12}>
+        <Typography variant="caption">Judul</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             style={{ marginRight: "4px" }}
             fullWidth
-            label="Judul"
             InputProps={{
               readOnly: true,
             }}
-            variant="outlined"
             value={detailState.judul}
           />
         </Grid>
       </Grid>
       <Grid container spacing={4}>
         <Grid item xs={5}>
+        <Typography variant="caption">Jurnal</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             style={{ marginRight: "4px" }}
             fullWidth
-            label="Jurnal"
             InputProps={{
               readOnly: true,
             }}
-            variant="outlined"
             value={detailState.nama_jurnal}
           />
         </Grid>
         <Grid item xs={3}>
+          <Typography variant="caption">Edisi</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             style={{ marginRight: "4px" }}
             fullWidth
-            label="Edisi"
             InputProps={{
               readOnly: true,
             }}
-            variant="outlined"
             value={detailState.edisi}
           />
         </Grid>
         <Grid item xs={4}>
+          <Typography variant="caption">Volume</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             style={{ marginRight: "4px" }}
             fullWidth
-            label="Volume"
             InputProps={{
               readOnly: true,
             }}
-            variant="outlined"
             value={detailState.volume}
           />
         </Grid>
       </Grid>
       <Grid container spacing={4}>
         <Grid item xs={5}>
+          <Typography variant="caption">Program Studi</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             style={{ marginRight: "4px" }}
             fullWidth
-            label="Program Studi"
             InputProps={{
               readOnly: true,
             }}
-            variant="outlined"
             value={detailState.nama_program_studi}
           />
         </Grid>
         <Grid item xs={3}>
+          <Typography variant="caption">Tahun Ajaran</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             fullWidth
-            label="Tahun Ajaran"
             InputProps={{
               readOnly: true,
             }}
-            variant="outlined"
             value={detailState.tahun_ajaran}
           />
         </Grid>
         <Grid item xs={4}>
-          <TextField
-            fullWidth
-            label="Semester"
+          <Typography variant="caption">Semester</Typography>
+          <Select
+            variant="outlined"
+            margin="dense"
+            value={detailState.no_semester}
             InputProps={{
               readOnly: true,
             }}
-            variant="outlined"
-            value={detailState.no_semester}
-          />
+            fullWidth
+            style={{ marginBottom: "3px" }}
+          >
+            <MenuItem value={1}>Ganjil</MenuItem>
+            <MenuItem value={2}>Genap</MenuItem>
+          </Select>
         </Grid>
       </Grid>
       <Grid container spacing={4}>
         <Grid item xs={4}>
+          <Typography variant="caption">Nama Penulis 1</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             style={{ marginRight: "4px" }}
             fullWidth
-            label="Nama Dosen 1"
             InputProps={{
               readOnly: true,
             }}
-            variant="outlined"
             value={detailState.nama_dosen_1}
           />
         </Grid>
         <Grid item xs={4}>
+          <Typography variant="caption">Nama Penulis 2</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             style={{ marginRight: "4px" }}
             fullWidth
-            label="Nama Dosen 2"
             InputProps={{
               readOnly: true,
             }}
-            variant="outlined"
             value={detailState.nama_dosen_2}
           />
         </Grid>
         <Grid item xs={4}>
+          <Typography variant="caption">Nama Penulis 3</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             style={{ marginRight: "4px" }}
             fullWidth
-            label="Nama Dosen 3"
             InputProps={{
               readOnly: true,
             }}
-            variant="outlined"
             value={detailState.nama_dosen_3}
           />
         </Grid>
       </Grid>
       <Grid container spacing={4}>
         <Grid item xs={4}>
+          <Typography variant="caption">URL</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             style={{ marginBottom: "13px" }}
             fullWidth
-            label="URL"
             InputProps={{
               readOnly: true,
             }}
-            variant="outlined"
             value={detailState.url}
           />
         </Grid>
         <Grid item xs={4}>
+          <Typography variant="caption">Hibah Dikti</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             style={{ marginBottom: "13px" }}
             fullWidth
-            label="Hibah Dikti"
             InputProps={{
               readOnly: true,
             }}
-            variant="outlined"
             value={detailState.hibah_dikti}
           />
         </Grid>
         <Grid item xs={4}>
+          <Typography variant="caption">Tingkat</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             style={{ marginRight: "4px" }}
             fullWidth
-            label="Tingkat"
             InputProps={{
               readOnly: true,
             }}
-            variant="outlined"
             value={detailState.nama_tingkat}
           />
         </Grid>

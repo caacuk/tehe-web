@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { getDosen } from "../../functions/Dosen";
 import { getTingkat } from "../../functions/Tingkat";
 import { getProgramStudi } from "../../functions/ProgramStudi";
+import Typography from '@material-ui/core/Typography';
 import {
   Grid,
   TextField,
@@ -138,12 +139,14 @@ export const EditPublikasi = ({
         });
       }}
     >
-      <Grid container spacing={4}>
+      <Grid container spacing={2}>
         <Grid item xs={12}>
+          <Typography variant="caption">Judul</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             style={{ marginRight: "4px" }}
             fullWidth
-            label="Judul"
             value={editState.judul}
             onChange={(e) => {
               setEditState((c) => ({ ...c, judul: e.target.value }));
@@ -151,45 +154,127 @@ export const EditPublikasi = ({
           />
         </Grid>
       </Grid>
-      <Grid container spacing={4}>
-        <Grid item xs={5}>
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <Typography variant="caption">Jurnal</Typography>
           <TextField
+            variant="outlined"
+            size="small"
             style={{ marginRight: "4px" }}
             fullWidth
-            label="Jurnal"
             value={editState.nama_jurnal}
             onChange={(e) => {
               setEditState((c) => ({ ...c, nama_jurnal: e.target.value }));
             }}
           />
         </Grid>
+        <Grid item xs={6}>
+          <Typography variant="caption">Hibah Dikti</Typography>
+          <Select
+            variant="outlined"
+            margin="dense"
+            value={editState.hibah_dikti}
+            onChange={(e) => {
+              setEditState((c) => ({
+                ...c,
+                hibah_dikti: e.target.value,
+              }));
+            }}
+            fullWidth
+            style={{ marginBottom: "3px" }}
+          >
+            <MenuItem value={1}>Ya</MenuItem>
+            <MenuItem value={0}>Tidak</MenuItem>
+          </Select>
+        </Grid>
+      </Grid>
+      <Grid container spacing={2}>
         <Grid item xs={3}>
+          <Typography variant="caption">Edisi</Typography>
           <TextField
             style={{ marginRight: "4px" }}
             fullWidth
-            label="Edisi"
+            variant="outlined"
+            size="small"
             value={editState.edisi}
             onChange={(e) => {
               setEditState((c) => ({ ...c, edisi: e.target.value }));
             }}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
+          <Typography variant="caption">Volume</Typography>
           <TextField
             style={{ marginRight: "4px" }}
             fullWidth
-            label="Volume"
+            variant="outlined"
+            size="small"
             value={editState.volume}
             onChange={(e) => {
               setEditState((c) => ({ ...c, volume: e.target.value }));
             }}
           />
         </Grid>
-      </Grid>
-      <Grid container spacing={4}>
-        <Grid item xs={5}>
-          <InputLabel>Program Studi</InputLabel>
+        <Grid item xs={6}>
+          <Typography variant="caption">Tingkat</Typography>
           <Select
+            variant="outlined"
+            margin="dense"
+            value={editState.id_tingkat}
+            onChange={(e) => {
+              setEditState((c) => ({
+                ...c,
+                id_tingkat: e.target.value,
+              }));
+            }}
+            style={{ marginBottom: "3px" }}
+            fullWidth
+          >
+            {dataTingkat.map((x) => (
+              <MenuItem value={x.id} key={x.id}>
+                {x.nama}
+              </MenuItem>
+            ))}
+          </Select>
+        </Grid>
+      </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={3}>
+          <Typography variant="caption">Tahun Ajaran</Typography>
+          <TextField
+            fullWidth
+            variant="outlined"
+            size="small"
+            value={editState.tahun_ajaran}
+            onChange={(e) => {
+              setEditState((c) => ({ ...c, tahun_ajaran: e.target.value }));
+            }}
+          />
+        </Grid>
+        <Grid item xs={3}>
+          <Typography variant="caption">Semester</Typography>
+          <Select
+            variant="outlined"
+            margin="dense"
+            value={editState.no_semester}
+            onChange={(e) => {
+              setEditState((c) => ({
+                ...c,
+                no_semester: e.target.value,
+              }));
+            }}
+            fullWidth
+            style={{ marginBottom: "3px" }}
+          >
+            <MenuItem value={1}>Ganjil</MenuItem>
+            <MenuItem value={2}>Genap</MenuItem>
+          </Select>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography variant="caption">Program Studi</Typography>
+          <Select
+            variant="outlined"
+            margin="dense"
             value={editState.id_program_studi}
             onChange={(e) => {
               setEditState((c) => ({
@@ -207,36 +292,24 @@ export const EditPublikasi = ({
             ))}
           </Select>
         </Grid>
-        <Grid item xs={3}>
+      </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Typography variant="caption">URL</Typography>
           <TextField
             fullWidth
-            label="Tahun Ajaran"
-            value={editState.tahun_ajaran}
+            variant="outlined"
+            size="small"
+            value={editState.url}
             onChange={(e) => {
-              setEditState((c) => ({ ...c, tahun_ajaran: e.target.value }));
+              setEditState((c) => ({ ...c, url: e.target.value }));
             }}
           />
         </Grid>
-        <Grid item xs={4}>
-          <InputLabel>Semester</InputLabel>
-          <Select
-            value={editState.no_semester}
-            onChange={(e) => {
-              setEditState((c) => ({
-                ...c,
-                no_semester: e.target.value,
-              }));
-            }}
-            fullWidth
-            style={{ marginBottom: "3px" }}
-          >
-            <MenuItem value={1}>Ganjil</MenuItem>
-            <MenuItem value={2}>Genap</MenuItem>
-          </Select>
-        </Grid>
       </Grid>
-      <Grid container spacing={4}>
+      <Grid container spacing={2}>
         <Grid item xs={4}>
+          <Typography variant="caption">Penulis 1</Typography>
           <Autocomplete
             value={firstWriter}
             onChange={(event, newValue) => {
@@ -247,11 +320,13 @@ export const EditPublikasi = ({
             options={dosen}
             fullWidth
             renderInput={(params) => (
-              <TextField {...params} label="Nama Penulis 1" />
+              <TextField {...params} />
             )}
+            style={{ marginBottom: "13px" }}
           />
         </Grid>
         <Grid item xs={4}>
+          <Typography variant="caption">Penulis 2</Typography>
           <Autocomplete
             value={secondWriter}
             onChange={(event, newValue) => {
@@ -262,11 +337,12 @@ export const EditPublikasi = ({
             options={dosen}
             fullWidth
             renderInput={(params) => (
-              <TextField {...params} label="Nama Penulis 2" />
+              <TextField {...params} />
             )}
           />
         </Grid>
         <Grid item xs={4}>
+          <Typography variant="caption">Penulis 3</Typography>
           <Autocomplete
             value={thirdWriter}
             onChange={(event, newValue) => {
@@ -277,59 +353,9 @@ export const EditPublikasi = ({
             options={dosen}
             fullWidth
             renderInput={(params) => (
-              <TextField {...params} label="Nama Penulis 3" />
+              <TextField {...params} />
             )}
           />
-        </Grid>
-      </Grid>
-      <Grid container spacing={4}>
-        <Grid item xs={4}>
-          <TextField
-            style={{ marginBottom: "13px" }}
-            fullWidth
-            label="URL"
-            value={editState.url}
-            onChange={(e) => {
-              setEditState((c) => ({ ...c, url: e.target.value }));
-            }}
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <InputLabel>Hibah Dikti</InputLabel>
-          <Select
-            value={editState.hibah_dikti}
-            onChange={(e) => {
-              setEditState((c) => ({
-                ...c,
-                hibah_dikti: e.target.value,
-              }));
-            }}
-            fullWidth
-            style={{ marginBottom: "3px" }}
-          >
-            <MenuItem value={1}>Ya</MenuItem>
-            <MenuItem value={0}>Tidak</MenuItem>
-          </Select>
-        </Grid>
-        <Grid item xs={4}>
-          <InputLabel>Tingkat</InputLabel>
-          <Select
-            value={editState.id_tingkat}
-            onChange={(e) => {
-              setEditState((c) => ({
-                ...c,
-                id_tingkat: e.target.value,
-              }));
-            }}
-            style={{ marginBottom: "3px" }}
-            fullWidth
-          >
-            {dataTingkat.map((x) => (
-              <MenuItem value={x.id} key={x.id}>
-                {x.nama}
-              </MenuItem>
-            ))}
-          </Select>
         </Grid>
       </Grid>
     </CustomModalEdit>
