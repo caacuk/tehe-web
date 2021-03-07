@@ -4,6 +4,7 @@ import CustomModalTambah from "../../components/CustomModalTambah/CustomModalTam
 import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
 import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
 import { Table } from "../../components/Table/Table";
+import Typography from '@material-ui/core/Typography';
 import {
   Grid,
   IconButton,
@@ -362,8 +363,10 @@ export default function Kerjasama() {
                   >
                     <Grid container spacing={4}>
                       <Grid item xs={6}>
-                        <InputLabel shrink>Partner</InputLabel>
+                        <Typography variant="caption">Partner</Typography>
                         <TextField
+                          size="small"
+                          variant="outlined"
                           style={{ marginRight: "6px" }}
                           fullWidth
                           value={editState.partner}
@@ -373,12 +376,12 @@ export default function Kerjasama() {
                               partner: e.target.value,
                             }));
                           }}
-                          variant="outlined"
                         />
                       </Grid>
                       <Grid item xs={6}>
-                        <InputLabel shrink>Program Studi</InputLabel>
+                        <Typography variant="caption">Nama Program Studi</Typography>
                         <Select
+                          margin="dense"
                           style={{ marginRight: "6px" }}
                           fullWidth
                           value={editState.id_program_studi}
@@ -401,8 +404,9 @@ export default function Kerjasama() {
                     </Grid>
                     <Grid container spacing={4}>
                       <Grid item xs={6}>
-                        <InputLabel shrink>Negara</InputLabel>
+                        <Typography variant="caption">Negara</Typography>
                         <Select
+                          margin="dense"
                           style={{ marginRight: "6px" }}
                           fullWidth
                           value={editState.id_negara}
@@ -423,8 +427,9 @@ export default function Kerjasama() {
                         </Select>
                       </Grid>
                       <Grid item xs={6}>
-                        <InputLabel shrink>Jenis Partner</InputLabel>
+                        <Typography variant="caption">Jenis Partner</Typography>
                         <Select
+                          margin="dense"
                           style={{ marginRight: "6px" }}
                           fullWidth
                           value={editState.id_jenis_partner}
@@ -447,8 +452,9 @@ export default function Kerjasama() {
                     </Grid>
                     <Grid container spacing={4}>
                       <Grid item xs={6}>
-                        <InputLabel shrink>Jenis Dokumen</InputLabel>
+                        <Typography variant="caption">Jenis Dokumen</Typography>
                         <Select
+                          margin="dense"
                           style={{ marginRight: "6px" }}
                           fullWidth
                           value={editState.id_jenis_dokumen}
@@ -469,8 +475,9 @@ export default function Kerjasama() {
                         </Select>
                       </Grid>
                       <Grid item xs={6}>
-                        <InputLabel shrink>Bentuk Kegiatan</InputLabel>
+                        <Typography variant="caption">Bentuk Kegiatan</Typography>
                         <Select
+                          margin="dense"
                           style={{ marginRight: "6px" }}
                           fullWidth
                           value={editState.id_bentuk_kegiatan}
@@ -493,7 +500,9 @@ export default function Kerjasama() {
                     </Grid>
                     <Grid container spacing={4}>
                       <Grid item xs={6}>
+                        <Typography variant="caption">Tanggal Awal</Typography>
                         <TextField
+                          size="small"
                           fullWidth
                           type="date"
                           value={editState.tanggal_awal}
@@ -503,12 +512,13 @@ export default function Kerjasama() {
                               tanggal_awal: e.target.value,
                             }));
                           }}
-                          label="Tanggal Awal"
                           variant="outlined"
                         />
                       </Grid>
                       <Grid item xs={6}>
+                        <Typography variant="caption">Tanggal Akhir</Typography>
                         <TextField
+                          size="small"
                           fullWidth
                           type="date"
                           value={editState.tanggal_akhir}
@@ -518,15 +528,15 @@ export default function Kerjasama() {
                               tanggal_akhir: e.target.value,
                             }));
                           }}
-                          label="Tanggal Akhir"
                           variant="outlined"
                         />
                       </Grid>
                     </Grid>
                     <Grid container spacing={4}>
                       <Grid item xs={6}>
-                        <InputLabel shrink>Status</InputLabel>
+                        <Typography variant="caption">Status</Typography>
                         <Select
+                          margin="dense"
                           style={{ marginBottom: "10px" }}
                           value={editState.status}
                           onChange={(e) => {
@@ -580,8 +590,9 @@ export default function Kerjasama() {
           >
             <Grid container spacing={4}>
               <Grid item xs={6}>
-                <InputLabel shrink>Partner</InputLabel>
+                <Typography variant="caption">Partner</Typography>
                 <TextField
+                  size="small"
                   style={{ marginRight: "6px" }}
                   fullWidth
                   value={tambahState.partner}
@@ -592,8 +603,9 @@ export default function Kerjasama() {
                 />
               </Grid>
               <Grid item xs={6}>
-                <InputLabel shrink>Program Studi</InputLabel>
+                <Typography variant="caption">Program Studi</Typography>
                 <Select
+                  margin="dense"
                   style={{ marginRight: "6px" }}
                   fullWidth
                   value={tambahState.id_program_studi}
@@ -616,8 +628,9 @@ export default function Kerjasama() {
             </Grid>
             <Grid container spacing={4}>
               <Grid item xs={6}>
-                <InputLabel shrink>Negara</InputLabel>
+                <Typography variant="caption">Negara</Typography>
                 <Select
+                  margin="dense"
                   style={{ marginRight: "6px" }}
                   fullWidth
                   value={tambahState.id_negara}
@@ -638,8 +651,9 @@ export default function Kerjasama() {
                 </Select>
               </Grid>
               <Grid item xs={6}>
-                <InputLabel shrink>Jenis Partner</InputLabel>
+                <Typography variant="caption">Jenis Partner</Typography>
                 <Select
+                  margin="dense"
                   style={{ marginRight: "6px" }}
                   fullWidth
                   value={tambahState.id_jenis_partner}
@@ -662,8 +676,9 @@ export default function Kerjasama() {
             </Grid>
             <Grid container spacing={4}>
               <Grid item xs={6}>
-                <InputLabel shrink>Jenis Dokumen</InputLabel>
+                <Typography variant="caption">Jenis Dokumen</Typography>
                 <Select
+                  margin="dense"
                   style={{ marginRight: "6px" }}
                   fullWidth
                   value={tambahState.id_jenis_dokumen}
@@ -684,8 +699,9 @@ export default function Kerjasama() {
                 </Select>
               </Grid>
               <Grid item xs={6}>
-                <InputLabel shrink>Bentuk Kegiatan</InputLabel>
+                <Typography variant="caption">Bentuk Kegiatan</Typography>
                 <Select
+                  margin="dense"
                   style={{ marginRight: "6px" }}
                   fullWidth
                   value={tambahState.id_bentuk_kegiatan}
@@ -708,8 +724,9 @@ export default function Kerjasama() {
             </Grid>
             <Grid container spacing={4}>
               <Grid item xs={6}>
-                <InputLabel shrink>Tanggal Awal</InputLabel>
+                <Typography variant="caption">Tanggal Awal</Typography>
                 <TextField
+                  size="small"
                   fullWidth
                   type="date"
                   value={tambahState.tanggal_awal}
@@ -723,8 +740,9 @@ export default function Kerjasama() {
                 />
               </Grid>
               <Grid item xs={6}>
-                <InputLabel shrink>Tanggal Akhir</InputLabel>
+                <Typography variant="caption">Tanggal Akhir</Typography>
                 <TextField
+                  size="small"
                   fullWidth
                   type="date"
                   value={tambahState.tanggal_akhir}
@@ -740,8 +758,9 @@ export default function Kerjasama() {
             </Grid>
             <Grid container spacing={4}>
               <Grid item xs={6}>
-                <InputLabel shrink>Status</InputLabel>
+                <Typography variant="caption">Status</Typography>
                 <Select
+                  margin="dense"
                   style={{ marginBottom: "13px" }}
                   value={tambahState.status}
                   onChange={(e) => {

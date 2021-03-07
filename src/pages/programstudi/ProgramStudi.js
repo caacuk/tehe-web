@@ -5,6 +5,7 @@ import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDel
 import { Table } from "../../components/Table/Table";
 import { React, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import Typography from '@material-ui/core/Typography';
 import {
   getProgramStudi,
   deleteProgramStudi,
@@ -36,7 +37,7 @@ export default function ProgramStudi() {
       const data = await getProgramStudi();
       let result = [];
 
-      data.data.map((x, i) => {
+      data.data.forEach((x, i) => {
         x = { ...x, no: i + 1 };
         result.push(x);
       });
@@ -50,7 +51,7 @@ export default function ProgramStudi() {
     const data = await getProgramStudi();
     let result = [];
 
-    data.data.map((x, i) => {
+    data.data.forEach((x, i) => {
       x = { ...x, no: i + 1 };
       result.push(x);
     });
@@ -132,14 +133,15 @@ export default function ProgramStudi() {
                       setEditState({ nama: rowData[2], id: rowData[0] });
                     }}
                   >
+                    <Typography variant="caption">Nama Program Studi</Typography>
                     <TextField
+                      variant="outlined"
+                      size="small"
                       fullWidth
                       value={editState.nama}
                       onChange={(e) => {
                         setEditState((c) => ({ ...c, nama: e.target.value }));
                       }}
-                      label="Nama Program Studi"
-                      variant="outlined"
                       style={{ marginBottom: "13px" }}
                     />
                   </CustomModalEdit>
@@ -175,14 +177,16 @@ export default function ProgramStudi() {
               insertProgramStudi();
             }}
           >
+            <Typography variant="caption">Nama Program Studi</Typography>
             <TextField
+              variant="outlined"
+              size="small"
               fullWidth
               value={tambahState.nama}
               onChange={(e) => {
                 setTambahState((c) => ({ ...c, nama: e.target.value }));
               }}
-              label="Nama Program Studi"
-              variant="outlined"
+              style={{ marginBottom: "13px" }}
             />
           </CustomModalTambah>
         }

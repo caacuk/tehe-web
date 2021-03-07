@@ -4,7 +4,7 @@ import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
 import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
 import { Table } from "../../components/Table/Table";
 import { useHistory } from "react-router-dom";
-
+import Typography from '@material-ui/core/Typography';
 import {
   Grid,
   IconButton,
@@ -41,7 +41,7 @@ export default function Mahasiswa() {
       const data = await getMahasiswa();
       let result = [];
 
-      data.data.map((x, i) => {
+      data.data.forEach((x, i) => {
         x = { ...x, no: i + 1 };
         result.push(x);
       });
@@ -55,7 +55,7 @@ export default function Mahasiswa() {
     const data = await getMahasiswa();
     let result = [];
 
-    data.data.map((x, i) => {
+    data.data.forEach((x, i) => {
       x = { ...x, no: i + 1 };
       result.push(x);
     });
@@ -149,27 +149,27 @@ export default function Mahasiswa() {
                       });
                     }}
                   >
+                    <Typography variant="caption">NIM Mahasiswa</Typography>
                     <TextField
+                      variant="outlined"
+                      size="small"
                       style={{ marginBottom: "13px" }}
                       fullWidth
                       value={editState.nim}
-                      // onChange={(e) => {
-                      //   setEditState((c) => ({ ...c, nim: e.target.value }));
-                      // }}
-                      label="Nim Mahasiswa"
                       InputProps={{
                         readOnly: true,
                       }}
-                      variant="outlined"
                     />
+                    <Typography variant="caption">Nama Mahasiswa</Typography>
                     <TextField
+                      variant="outlined"
+                      size="small"
                       fullWidth
                       value={editState.nama}
                       onChange={(e) => {
                         setEditState((c) => ({ ...c, nama: e.target.value }));
                       }}
-                      label="Nama Mahasiswa"
-                      variant="outlined"
+                      style={{ marginBottom: "13px" }}
                     />
                   </CustomModalEdit>
                 </IconButton>
@@ -204,24 +204,27 @@ export default function Mahasiswa() {
               insertMahasiswa();
             }}
           >
+            <Typography variant="caption">NIM Mahasiswa</Typography>
             <TextField
+              variant="outlined"
+              size="small"
               style={{ marginBottom: "13px" }}
               fullWidth
               value={tambahState.nim}
               onChange={(e) => {
                 setTambahState((c) => ({ ...c, nim: e.target.value }));
               }}
-              label="Nim Mahasiswa"
-              variant="outlined"
             />
+            <Typography variant="caption">Nama Mahasiswa</Typography>
             <TextField
+              variant="outlined"
+              size="small"
               fullWidth
               value={tambahState.nama}
               onChange={(e) => {
                 setTambahState((c) => ({ ...c, nama: e.target.value }));
               }}
-              label="Nama Mahasiswa"
-              variant="outlined"
+              style={{ marginBottom: "13px" }}
             />
           </CustomModalTambah>
         }

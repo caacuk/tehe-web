@@ -4,6 +4,7 @@ import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDel
 import { Table } from "../../components/Table/Table";
 import { useHistory } from "react-router-dom";
 import { React, useState, useEffect } from "react";
+import Typography from '@material-ui/core/Typography';
 import {
   Grid,
   ButtonGroup,
@@ -135,14 +136,16 @@ export default function JenisDokumen() {
                       setEditState({ nama: rowData[2], id: rowData[0] });
                     }}
                   >
+                    <Typography variant="caption">Nama Jenis Dokumen</Typography>
                     <TextField
+                      variant="outlined"
+                      size="small"
                       fullWidth
                       value={editState.nama}
                       onChange={(e) => {
                         setEditState((c) => ({ ...c, nama: e.target.value }));
                       }}
-                      label="Nama Jenis Dokumen"
-                      variant="outlined"
+                      style={{ marginBottom: "13px" }}
                     />
                   </CustomModalEdit>
                 </IconButton>
@@ -177,14 +180,16 @@ export default function JenisDokumen() {
               insertJenisDokumen();
             }}
           >
+            <Typography variant="caption">Nama Jenis Dokumen</Typography>
             <TextField
+              variant="outlined"
+              size="small"
               fullWidth
               value={tambahState.nama}
               onChange={(e) => {
                 setTambahState((c) => ({ ...c, nama: e.target.value }));
               }}
-              label="Nama Jenis Dokumen"
-              variant="outlined"
+              style={{ marginBottom: "13px" }}
             />
           </CustomModalTambah>
         }

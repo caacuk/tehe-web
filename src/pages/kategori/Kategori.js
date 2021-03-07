@@ -4,6 +4,7 @@ import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDel
 import { Table } from "../../components/Table/Table";
 import { useHistory } from "react-router-dom";
 import { React, useState, useEffect } from "react";
+import Typography from '@material-ui/core/Typography';
 import {
   Grid,
   ButtonGroup,
@@ -39,7 +40,7 @@ export default function Kategori() {
       const data = await getKategori();
       let result = [];
 
-      data.data.map((x, i) => {
+      data.data.forEach((x, i) => {
         x = { ...x, no: i + 1 };
         result.push(x);
       });
@@ -53,7 +54,7 @@ export default function Kategori() {
     const data = await getKategori();
     let result = [];
 
-    data.data.map((x, i) => {
+    data.data.forEach((x, i) => {
       x = { ...x, no: i + 1 };
       result.push(x);
     });
@@ -135,14 +136,15 @@ export default function Kategori() {
                       setEditState({ nama: rowData[2], id: rowData[0] });
                     }}
                   >
+                    <Typography variant="caption">Nama Kategori</Typography>
                     <TextField
+                      variant="outlined"
+                      size="small"
                       fullWidth
                       value={editState.nama}
                       onChange={(e) => {
                         setEditState((c) => ({ ...c, nama: e.target.value }));
                       }}
-                      label="Nama Kategori"
-                      variant="outlined"
                     />
                   </CustomModalEdit>
                 </IconButton>
@@ -177,14 +179,16 @@ export default function Kategori() {
               insertKategori();
             }}
           >
+            <Typography variant="caption">Nama Kategori</Typography>
             <TextField
+              variant="outlined"
+              size="small"
               fullWidth
               value={tambahState.nama}
               onChange={(e) => {
                 setTambahState((c) => ({ ...c, nama: e.target.value }));
               }}
-              label="Nama Kategori"
-              variant="outlined"
+              style={{ marginBottom: "13px" }}
             />
           </CustomModalTambah>
         }
