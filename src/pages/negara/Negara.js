@@ -16,7 +16,7 @@ export default function Negara() {
       const data = await getNegara();
       let result = [];
 
-      data.data.map((x, i) => {
+      data.data.forEach((x, i) => {
         x = { ...x, no: i + 1 };
         result.push(x);
       });

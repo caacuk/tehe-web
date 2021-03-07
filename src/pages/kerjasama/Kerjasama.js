@@ -13,7 +13,6 @@ import {
   TextField,
   Select,
   MenuItem,
-  InputLabel,
 } from "@material-ui/core";
 import {
   getKerjasama,

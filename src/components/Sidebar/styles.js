@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 
-const drawerWidth = 300;
+const drawerWidth = 280;
 
 export default makeStyles((theme) => ({
   menuButton: {

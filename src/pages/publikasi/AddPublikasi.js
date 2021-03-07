@@ -10,7 +10,6 @@ import {
   TextField,
   Select,
   MenuItem,
-  InputLabel,
 } from "@material-ui/core";
 
 export const AddPublikasi = ({

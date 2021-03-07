@@ -40,7 +40,7 @@ export default function JenisDokumen() {
       const data = await getJenisDokumen();
       let result = [];
 
-      data.data.map((x, i) => {
+      data.data.forEach((x, i) => {
         x = { ...x, no: i + 1 };
         result.push(x);
       });
@@ -54,7 +54,7 @@ export default function JenisDokumen() {
     const data = await getJenisDokumen();
     let result = [];
 
-    data.data.map((x, i) => {
+    data.data.forEach((x, i) => {
       x = { ...x, no: i + 1 };
       result.push(x);
     });
