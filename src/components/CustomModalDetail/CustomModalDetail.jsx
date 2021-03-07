@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Modal, IconButton, Button, Box, Divider } from "@material-ui/core";
-import { Visibility } from "@material-ui/icons";
+import { Modal, IconButton, Box, Divider } from "@material-ui/core";
+import { Visibility, Clear } from "@material-ui/icons";
 
 const getModalStyle = () => {
   const top = 50;
@@ -40,28 +40,22 @@ export const CustomModalDetail = ({ handleInitialData, children }) => {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2>Edit</h2>
-      <Divider />
-      <br />
-      {children}
-      <Divider />
-      <Box
-        mt={4}
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-      >
-        <Button
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <h2>Detil</h2>
+        <IconButton
           onClick={() => {
             handleClose();
           }}
           variant="contained"
-          color="secondary"
-          style={{ backgroundColor: "#e63900" }}
         >
-          Keluar
-        </Button>
+          <Clear style={{ color: "#e63900" }} />
+        </IconButton>
       </Box>
+
+      <Divider />
+      <br />
+      {children}
+      <Divider />
     </div>
   );
 

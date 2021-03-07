@@ -104,6 +104,7 @@ export const AddPublikasi = ({
               setTambahState((c) => ({ ...c, judul: e.target.value }));
             }}
             value={tambahState.judul}
+            variant="outlined"
           />
         </Grid>
       </Grid>
@@ -112,6 +113,7 @@ export const AddPublikasi = ({
           <TextField
             style={{ marginRight: "4px" }}
             fullWidth
+            variant="outlined"
             label="Jurnal"
             value={tambahState.nama_jurnal}
             onChange={(e) => {
@@ -123,8 +125,8 @@ export const AddPublikasi = ({
           />
         </Grid>
         <Grid item xs={6}>
-          <InputLabel>Hibah Dikti</InputLabel>
           <Select
+            variant="outlined"
             value={tambahState.hibah_dikti}
             onChange={(e) => {
               setTambahState((c) => ({
