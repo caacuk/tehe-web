@@ -40,7 +40,7 @@ export const CustomModalDetail = ({ handleInitialData, children }) => {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2>Edit</h2>
+      <h2>Detil</h2>
       <Divider />
       <br />
       {children}
