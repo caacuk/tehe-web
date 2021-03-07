@@ -203,8 +203,8 @@ export default function Kerjasama() {
       name: "id_program_studi",
       label: "Program Studi",
       options: {
-        filter: true,
-        sort: true,
+        filter: false,
+        sort: false,
         display: false,
       },
     },
@@ -320,8 +320,9 @@ export default function Kerjasama() {
       name: "dokumen",
       label: "Dokumen",
       options: {
-        filter: true,
-        sort: true,
+        filter: false,
+        sort: false,
+        display: false,
       },
     },
     {
