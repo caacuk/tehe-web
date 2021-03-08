@@ -22,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid #c2c2a3",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    overflowY: "auto",
+    maxHeight: "600px", 
   },
 }));
 
