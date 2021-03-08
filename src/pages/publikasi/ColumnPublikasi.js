@@ -24,8 +24,8 @@ export const ActionLessColumn = [
     name: "id_program_studi",
     label: "Program Studi",
     options: {
-      filter: true,
-      sort: true,
+      filter: false,
+      sort: false,
       display: false,
     },
   },
@@ -57,8 +57,8 @@ export const ActionLessColumn = [
     name: "id_tingkat",
     label: "Tingkat",
     options: {
-      filter: true,
-      sort: true,
+      filter: false,
+      sort: false,
       display: false,
     },
   },
@@ -98,8 +98,9 @@ export const ActionLessColumn = [
     name: "url",
     label: "URL",
     options: {
-      filter: true,
-      sort: true,
+      filter: false,
+      sort: false,
+      display: false,
     },
   },
   {
@@ -114,8 +115,8 @@ export const ActionLessColumn = [
     name: "id_dosen_1",
     label: "id Dosen 1",
     options: {
-      filter: true,
-      sort: true,
+      filter: false,
+      sort: false,
       display: false,
     },
   },
@@ -123,8 +124,8 @@ export const ActionLessColumn = [
     name: "nama_dosen_1",
     label: "Nama Dosen 1",
     options: {
-      filter: true,
-      sort: true,
+      filter: false,
+      sort: false,
       display: false,
     },
   },
@@ -132,8 +133,8 @@ export const ActionLessColumn = [
     name: "id_dosen_2",
     label: "id Dosen 2",
     options: {
-      filter: true,
-      sort: true,
+      filter: false,
+      sort: false,
       display: false,
     },
   },
@@ -141,8 +142,8 @@ export const ActionLessColumn = [
     name: "nama_dosen_2",
     label: "Nama Dosen 2",
     options: {
-      filter: true,
-      sort: true,
+      filter: false,
+      sort: false,
       display: false,
     },
   },
@@ -150,8 +151,8 @@ export const ActionLessColumn = [
     name: "id_dosen_3",
     label: "id Dosen 3",
     options: {
-      filter: true,
-      sort: true,
+      filter: false,
+      sort: false,
       display: false,
     },
   },
@@ -159,8 +160,8 @@ export const ActionLessColumn = [
     name: "nama_dosen_3",
     label: "Nama Dosen 3",
     options: {
-      filter: true,
-      sort: true,
+      filter: false,
+      sort: false,
       display: false,
     },
   },
@@ -168,8 +169,8 @@ export const ActionLessColumn = [
     name: "tahun_ajaran",
     label: "Tahun Ajaran",
     options: {
-      filter: true,
-      sort: true,
+      filter: false,
+      sort: false,
       display: false,
     },
   },
@@ -177,8 +178,8 @@ export const ActionLessColumn = [
     name: "no_semester",
     label: "Ganjil/Genap",
     options: {
-      filter: true,
-      sort: true,
+      filter: false,
+      sort: false,
       display: false,
     },
   },
@@ -190,7 +191,6 @@ export const ActionLessColumn = [
       sort: true,
       customBodyRender: (value, tableMeta, updateValue) => {
         const hibah = tableMeta.rowData[tableMeta.columnIndex];
-        // console.log(typeof hibah);
         if (hibah === "0") {
           return <>Tidak</>;
         } else if (hibah === "1") {
