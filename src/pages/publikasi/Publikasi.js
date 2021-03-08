@@ -67,6 +67,23 @@ export default function Publikasi() {
     hibah_dikti: "",
   });
 
+  const [firstWriter, setFirstWriter] = useState({
+    id: null,
+    nidn: 0,
+    nama: "",
+  });
+  const [secondWriter, setSecondWriter] = useState({
+    id: null,
+    nidn: 0,
+    nama: "",
+  });
+
+  const [thirdWriter, setThirdWriter] = useState({
+    id: null,
+    nidn: 0,
+    nama: "",
+  });
+
   useEffect(() => {
     async function getData() {
       const data = await getPublikasi();
@@ -198,6 +215,9 @@ export default function Publikasi() {
       tahun_ajaran: "",
       hibah_dikti: "",
     });
+    setFirstWriter("");
+    setSecondWriter("");
+    setThirdWriter("");
   };
 
   return (
@@ -209,6 +229,12 @@ export default function Publikasi() {
             insertPublikasi={insertPublikasi}
             setTambahState={setTambahState}
             tambahState={tambahState}
+            firstWriter={firstWriter}
+            setFirstWriter={setFirstWriter}
+            secondWriter={secondWriter}
+            setSecondWriter={setSecondWriter}
+            thirdWriter={thirdWriter}
+            setThirdWriter={setThirdWriter}
           />
         }
       />

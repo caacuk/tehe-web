@@ -190,7 +190,7 @@ export const ActionLessColumn = [
       sort: true,
       customBodyRender: (value, tableMeta, updateValue) => {
         const hibah = tableMeta.rowData[tableMeta.columnIndex];
-        console.log(typeof hibah);
+        // console.log(typeof hibah);
         if (hibah === "0") {
           return <>Tidak</>;
         } else if (hibah === "1") {

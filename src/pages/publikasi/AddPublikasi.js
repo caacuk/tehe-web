@@ -11,28 +11,16 @@ export const AddPublikasi = ({
   insertPublikasi,
   setTambahState,
   tambahState,
+  firstWriter,
+  setFirstWriter,
+  secondWriter,
+  setSecondWriter,
+  thirdWriter,
+  setThirdWriter,
 }) => {
   const [dosen, setDosen] = useState([]);
   const [dataTingkat, setDataTingkat] = useState([]);
   const [dataProgramStudi, setDataProgramStudi] = useState([]);
-
-  const [firstWriter, setFirstWriter] = useState({
-    id: null,
-    nidn: 0,
-    nama: "",
-  });
-
-  const [secondWriter, setSecondWriter] = useState({
-    id: null,
-    nidn: 0,
-    nama: "",
-  });
-
-  const [thirdWriter, setThirdWriter] = useState({
-    id: null,
-    nidn: 0,
-    nama: "",
-  });
 
   const fetchDosen = useRef(async () => {
     const { data } = await getDosen();
