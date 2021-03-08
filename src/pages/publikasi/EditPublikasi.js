@@ -302,7 +302,7 @@ export const EditPublikasi = ({
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        <Grid item xs={4}>
+        <Grid item xs={12}>
           <Typography variant="caption">Penulis 1</Typography>
           <Autocomplete
             value={firstWriter}
@@ -314,10 +314,11 @@ export const EditPublikasi = ({
             options={dosen}
             fullWidth
             renderInput={(params) => <TextField {...params} />}
-            style={{ marginBottom: "13px" }}
           />
         </Grid>
-        <Grid item xs={4}>
+      </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
           <Typography variant="caption">Penulis 2</Typography>
           <Autocomplete
             value={secondWriter}
@@ -331,7 +332,9 @@ export const EditPublikasi = ({
             renderInput={(params) => <TextField {...params} />}
           />
         </Grid>
-        <Grid item xs={4}>
+      </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
           <Typography variant="caption">Penulis 3</Typography>
           <Autocomplete
             value={thirdWriter}
@@ -343,6 +346,7 @@ export const EditPublikasi = ({
             options={dosen}
             fullWidth
             renderInput={(params) => <TextField {...params} />}
+            style={{ marginBottom: "13px" }}
           />
         </Grid>
       </Grid>

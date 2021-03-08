@@ -6,6 +6,7 @@ export const ActionLessColumn = [
         filter: false,
         sort: false,
         display: false,
+        download: false,
       },
     },
     {
@@ -32,9 +33,10 @@ export const ActionLessColumn = [
       name: "id_dosen",
       label: "id_dosen",
       options: {
-        filter: true,
-        sort: true,
+        filter: false,
+        sort: false,
         display: false,
+        download: false,
       },
     },
     {

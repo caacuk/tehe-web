@@ -245,7 +245,7 @@ export const AddPublikasi = ({
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        <Grid item xs={4}>
+        <Grid item xs={12}>
           <Typography variant="caption">Nama Penulis 1</Typography>
           <Autocomplete
             value={firstWriter}
@@ -259,7 +259,9 @@ export const AddPublikasi = ({
             renderInput={(params) => <TextField {...params} />}
           />
         </Grid>
-        <Grid item xs={4}>
+      </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
           <Typography variant="caption">Nama Penulis 2</Typography>
           <Autocomplete
             value={secondWriter}
@@ -271,10 +273,11 @@ export const AddPublikasi = ({
             options={dosen}
             fullWidth
             renderInput={(params) => <TextField {...params} />}
-            style={{ marginBottom: "13px" }}
           />
         </Grid>
-        <Grid item xs={4}>
+      </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
           <Typography variant="caption">Nama Penulis 3</Typography>
           <Autocomplete
             value={thirdWriter}
@@ -286,6 +289,7 @@ export const AddPublikasi = ({
             options={dosen}
             fullWidth
             renderInput={(params) => <TextField {...params} />}
+            style={{ marginBottom: "13px" }}
           />
         </Grid>
       </Grid>

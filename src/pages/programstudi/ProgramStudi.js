@@ -114,6 +114,7 @@ export default function ProgramStudi() {
       options: {
         filter: true,
         sort: true,
+        print: false,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <>
@@ -124,7 +125,7 @@ export default function ProgramStudi() {
               >
                 <IconButton size="small">
                   {/* CUSTOM MODAL EDIT */}
-                  <CustomModalEdit
+                  <CustomModalEdit 
                     handleEdit={() => {
                       editProgramStudi();
                     }}

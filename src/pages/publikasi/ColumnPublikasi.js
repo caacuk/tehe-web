@@ -6,6 +6,7 @@ export const ActionLessColumn = [
       filter: false,
       sort: false,
       display: false,
+      download: false,
     },
   },
   {
@@ -27,6 +28,7 @@ export const ActionLessColumn = [
       filter: false,
       sort: false,
       display: false,
+      download: false,
     },
   },
   {
@@ -60,6 +62,7 @@ export const ActionLessColumn = [
       filter: false,
       sort: false,
       display: false,
+      download: false,
     },
   },
   {
@@ -101,6 +104,7 @@ export const ActionLessColumn = [
       filter: false,
       sort: false,
       display: false,
+      download: false,
     },
   },
   {
@@ -118,6 +122,7 @@ export const ActionLessColumn = [
       filter: false,
       sort: false,
       display: false,
+      download: false,
     },
   },
   {
@@ -127,6 +132,7 @@ export const ActionLessColumn = [
       filter: false,
       sort: false,
       display: false,
+      download: false,
     },
   },
   {
@@ -136,6 +142,7 @@ export const ActionLessColumn = [
       filter: false,
       sort: false,
       display: false,
+      download: false,
     },
   },
   {
@@ -145,6 +152,7 @@ export const ActionLessColumn = [
       filter: false,
       sort: false,
       display: false,
+      download: false,
     },
   },
   {
@@ -154,6 +162,7 @@ export const ActionLessColumn = [
       filter: false,
       sort: false,
       display: false,
+      download: false,
     },
   },
   {
@@ -163,6 +172,7 @@ export const ActionLessColumn = [
       filter: false,
       sort: false,
       display: false,
+      download: false,
     },
   },
   {
@@ -172,6 +182,7 @@ export const ActionLessColumn = [
       filter: false,
       sort: false,
       display: false,
+      download: false,
     },
   },
   {
@@ -181,6 +192,7 @@ export const ActionLessColumn = [
       filter: false,
       sort: false,
       display: false,
+      download: false,
     },
   },
   {

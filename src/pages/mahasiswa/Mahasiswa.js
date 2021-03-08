@@ -126,6 +126,7 @@ export default function Mahasiswa() {
       options: {
         filter: true,
         sort: true,
+        print: false,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <>

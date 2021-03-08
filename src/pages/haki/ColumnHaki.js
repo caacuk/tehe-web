@@ -6,6 +6,7 @@ export const ActionLessColumn = [
         filter: false,
         sort: false,
         display: false,
+        download: false,
       },
     },
     {
@@ -48,18 +49,20 @@ export const ActionLessColumn = [
       name: "tahun_ajaran",
       label: "Tahun Ajaran",
       options: {
-        filter: true,
-        sort: true,
+        filter: false,
+        sort: false,
         display: false,
+        download: false,
       },
     },
     {
       name: "no_semester",
       label: "no_semester",
       options: {
-        filter: true,
-        sort: true,
+        filter: false,
+        sort: false,
         display: false,
+        download: false,
       },
     },
     {
@@ -74,9 +77,10 @@ export const ActionLessColumn = [
       name: "id_program_studi",
       label: "id_program_studi",
       options: {
-        filter: true,
-        sort: true,
+        filter: false,
+        sort: false,
         display: false,
+        download: false,
       },
     },
     {
@@ -91,9 +95,10 @@ export const ActionLessColumn = [
       name: "id_dosen",
       label: "id_dosen",
       options: {
-        filter: true,
-        sort: true,
+        filter: false,
+        sort: false,
         display: false,
+        download: false,
       },
     },
     {
@@ -108,9 +113,10 @@ export const ActionLessColumn = [
       name: "nidn_dosen",
       label: "nidn_dosen",
       options: {
-        filter: true,
-        sort: true,
+        filter: false,
+        sort: false,
         display: false,
+        download: false,
       },
     },
 ];

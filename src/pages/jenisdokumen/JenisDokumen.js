@@ -117,6 +117,7 @@ export default function JenisDokumen() {
       options: {
         filter: true,
         sort: true,
+        print: false,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <>
