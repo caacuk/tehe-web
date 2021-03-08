@@ -574,7 +574,7 @@ export default function PrestasiMahasiswa() {
                       <Grid item xs={8}>
                         <InputLabel shrink>Nama</InputLabel>
                         <TextField
-                          style={{ marginRight: "6px" }}
+                          style={{ marginRight: "6px", marginBottom:"15px" }}
                           fullWidth
                           value={editState.mahasiswa_3?.nama}
                           InputProps={{
@@ -827,6 +827,7 @@ export default function PrestasiMahasiswa() {
                       <Grid item xs={12}>
                         <InputLabel>Mahasiswa 3</InputLabel>
                         <Autocomplete
+                          style={{marginBottom:"15px"}}
                           value={editState.mahasiswa_3}
                           onChange={(event, newValue) => {
                             console.log("newValue");
@@ -1081,6 +1082,7 @@ export default function PrestasiMahasiswa() {
               <Grid item xs={12}>
                 <InputLabel>Mahasiswa 3</InputLabel>
                 <Autocomplete
+                  style={{marginBottom:"15px"}}
                   value={tambahState.mahasiswa_3}
                   onChange={(event, newValue) => {
                     setTambahState((c) => ({
