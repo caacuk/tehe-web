@@ -46,6 +46,7 @@ import PengabdianMasyarakat from "../../pages/pengabdianmasyarakat/PengabdianMas
 import PrestasiMahasiswa from "../../pages/prestasimahasiswa/PrestasiMahasiswa";
 import Sertifikasi from "../../pages/sertifikasi/Sertifikasi";
 import StudiLanjut from "../../pages/studilanjut/StudiLanjut";
+import Nidk from "../../pages/nidk/Nidk";
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
@@ -91,6 +92,7 @@ function Layout(props) {
             <Route path="/app/penelitian" component={Penelitian} />
             <Route path="/app/sertifikasi" component={Sertifikasi} />
             <Route path="/app/studiLanjut" component={StudiLanjut} />
+            <Route path="/app/nidk" component={Nidk} />
             <Route
               path="/app/prestasiMahasiswa"
               component={PrestasiMahasiswa}
