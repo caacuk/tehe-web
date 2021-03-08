@@ -177,8 +177,8 @@ export const EditPublikasi = ({
             fullWidth
             style={{ marginBottom: "3px" }}
           >
-            <MenuItem value={1}>Ya</MenuItem>
-            <MenuItem value={0}>Tidak</MenuItem>
+            <MenuItem value="Ya">Ya</MenuItem>
+            <MenuItem value="Tidak">Tidak</MenuItem>
           </Select>
         </Grid>
       </Grid>

@@ -189,16 +189,16 @@ export const ActionLessColumn = [
     options: {
       filter: true,
       sort: true,
-      customBodyRender: (value, tableMeta, updateValue) => {
-        const hibah = tableMeta.rowData[tableMeta.columnIndex];
-        if (hibah === "0") {
-          return <>Tidak</>;
-        } else if (hibah === "1") {
-          return <>Ya</>;
-        } else {
-          return <>{hibah}</>;
-        }
-      },
+      // customBodyRender: (value, tableMeta, updateValue) => {
+      //   const hibah = tableMeta.rowData[tableMeta.columnIndex];
+      //   if (hibah === "0") {
+      //     return <>Tidak</>;
+      //   } else if (hibah === "1") {
+      //     return <>Ya</>;
+      //   } else {
+      //     return <>{hibah}</>;
+      //   }
+      // },
     },
   },
 ];
