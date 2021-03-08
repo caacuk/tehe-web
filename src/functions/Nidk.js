@@ -48,7 +48,7 @@ export const postNidk = (Nidk) => {
 
 export const putNidk = (Nidk) => {
   const body = {
-    nidn: Nidk.nidk,
+    nidk: Nidk.nidk,
     id_dosen: Nidk.id_dosen,
   };
 
