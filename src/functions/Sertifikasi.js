@@ -19,6 +19,17 @@ export const getSertifikasi = () => {
     });
 };
 
+export const countSertifikasiByProgramStudi = () => {
+  return axios
+    .get("sertifikasi/count/programStudi", axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
+
 export const postSertifikasi = (Sertifikasi) => {
   const body = Sertifikasi;
 

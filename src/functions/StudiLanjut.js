@@ -19,6 +19,17 @@ export const getStudiLanjut = () => {
     });
 };
 
+export const countStudiLanjutByProgramStudi = () => {
+  return axios
+    .get("studiLanjut/count/programStudi", axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
+
 export const postStudiLanjut = (StudiLanjut) => {
   const body = StudiLanjut;
 

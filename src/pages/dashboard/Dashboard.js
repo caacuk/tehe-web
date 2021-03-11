@@ -25,11 +25,9 @@ import { getPengabdianMasyarakatCountByProgramStudi } from "../../functions/Peng
 import { getPublikasiCountByProgramStudi } from "../../functions/Publikasi";
 import { getProgramStudi } from "../../functions/ProgramStudi";
 import { countKerjasamaByStatus } from "../../functions/Kerjasama";
-
-const data = [
-  { name: "Aktif", value: 400 },
-  { name: "Non-Aktif", value: 300 },
-];
+import { countSertifikasiByProgramStudi } from "../../functions/Sertifikasi";
+import { countStudiLanjutByProgramStudi } from "../../functions/StudiLanjut";
+import { countHakiByProgramStudi } from "../../functions/Haki";
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -107,6 +105,7 @@ const renderActiveShape = (props) => {
 
 export default function Dashboard() {
   const [chart1, setChart1] = useState([]);
+  const [chart2, setChart2] = useState([]);
   const [chartKerjasama, setChartKerjasama] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -126,7 +125,6 @@ export default function Dashboard() {
       setChartKerjasama(dataChartKerjasama);
 
       let dataChart1 = dataProgramStudi.data;
-
       dataChart1.map((x) => {
         x.penelitian = 0;
         x.publikasi = 0;
@@ -151,6 +149,34 @@ export default function Dashboard() {
         );
       });
       setChart1(dataChart1);
+
+      const datacountSertifikasiByProgramStudi = await countSertifikasiByProgramStudi();
+      const datacountStudiLanjutByProgramStudi = await countStudiLanjutByProgramStudi();
+      const datacountHakiByProgramStudi = await countHakiByProgramStudi();
+      let dataChart2 = dataProgramStudi.data;
+      dataChart2.map((x) => {
+        x.sertifikasi = 0;
+        x.studilanjut = 0;
+        x.haki = 0;
+
+        datacountSertifikasiByProgramStudi.data.map((sertifikasi) => {
+          if (sertifikasi.program_studi.id === x.id) {
+            x.sertifikasi = parseInt(sertifikasi.count);
+          }
+        });
+        datacountStudiLanjutByProgramStudi.data.map((studilanjut) => {
+          if (studilanjut.program_studi.id === x.id) {
+            x.studilanjut = parseInt(studilanjut.count);
+          }
+        });
+        datacountHakiByProgramStudi.data.map((haki) => {
+          if (haki.program_studi.id === x.id) {
+            x.haki = parseInt(haki.count);
+          }
+        });
+      });
+      setChart2(dataChart2);
+
       setIsLoading(false);
     }
     getData();
@@ -169,6 +195,7 @@ export default function Dashboard() {
         </div>
       ) : (
         <>
+          {console.log(chart2)}
           <Grid item xs={12}>
             <Widget
               header={
@@ -206,6 +233,47 @@ export default function Dashboard() {
                   <Bar dataKey="penelitian" fill="#4ac0c0" />
                   <Bar dataKey="publikasi" fill="#36a2eb" />
                   <Bar dataKey="pengabdianMasyarakat" fill="#c1bfc0" />
+                </BarChart>
+              </ResponsiveContainer>
+            </Widget>
+          </Grid>
+          <Grid item xs={12} style={{ marginTop: 25 }}>
+            <Widget
+              header={
+                <Typography
+                  variant="h5"
+                  color="text"
+                  colorBrightness="secondary"
+                >
+                  Jumlah Sertifikasi, Studi Lanjut, dan HAKI
+                </Typography>
+              }
+            >
+              <ResponsiveContainer width="100%" minWidth={500} height={350}>
+                <BarChart
+                  width={500}
+                  height={300}
+                  data={chart2}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis
+                    dataKey="nama"
+                    interval={0}
+                    orientation="bottom"
+                    tick={false}
+                  />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="sertifikasi" fill="#4ac0c0" />
+                  <Bar dataKey="studilanjut" fill="#36a2eb" />
+                  <Bar dataKey="haki" fill="#c1bfc0" />
                 </BarChart>
               </ResponsiveContainer>
             </Widget>

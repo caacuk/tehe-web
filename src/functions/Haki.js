@@ -19,6 +19,17 @@ export const getHaki = () => {
     });
 };
 
+export const countHakiByProgramStudi = () => {
+  return axios
+    .get("haki/count/programStudi", axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
+
 export const getHakiById = (id) => {
   return axios
     .get("haki/" + id, axiosConfig)
