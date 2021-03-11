@@ -19,6 +19,17 @@ export const getPrestasiMahasiswa = () => {
     });
 };
 
+export const countPrestasiMahasiswaKategoriByProgramStudi = () => {
+  return axios
+    .get("prestasiMahasiswa/count/kategori/programStudi", axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
+
 export const getKerjasamaById = (id) => {
   console.log(id);
   return axios

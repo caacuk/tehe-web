@@ -28,6 +28,8 @@ import { countKerjasamaByStatus } from "../../functions/Kerjasama";
 import { countSertifikasiByProgramStudi } from "../../functions/Sertifikasi";
 import { countStudiLanjutByProgramStudi } from "../../functions/StudiLanjut";
 import { countHakiByProgramStudi } from "../../functions/Haki";
+import { countPrestasiMahasiswaKategoriByProgramStudi } from "../../functions/PrestasiMahasiswa";
+import { getKategori } from "../../functions/Kategori";
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -106,7 +108,9 @@ const renderActiveShape = (props) => {
 export default function Dashboard() {
   const [chart1, setChart1] = useState([]);
   const [chart2, setChart2] = useState([]);
+  const [chart3, setChart3] = useState([]);
   const [chartKerjasama, setChartKerjasama] = useState([]);
+  const [dataKategori, setDataKategori] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -126,24 +130,24 @@ export default function Dashboard() {
 
       let dataChart1 = dataProgramStudi.data;
       dataChart1.map((x) => {
-        x.penelitian = 0;
-        x.publikasi = 0;
-        x.pengabdianMasyarakat = 0;
+        x["Penelitian"] = 0;
+        x["Publikasi"] = 0;
+        x["Pengabdian Masyarakat"] = 0;
 
         dataPenelitianCountByProgramStudi.data.map((penelitian) => {
           if (penelitian.program_studi.id === x.id) {
-            x.penelitian = parseInt(penelitian.count);
+            x["Penelitian"] = parseInt(penelitian.count);
           }
         });
         dataPublikasiCountByProgramStudi.data.map((publikasi) => {
           if (publikasi.program_studi.id === x.id) {
-            x.publikasi = parseInt(publikasi.count);
+            x["Publikasi"] = parseInt(publikasi.count);
           }
         });
         dataPengabdianMasyarakatCountByProgramStudi.data.map(
           (pengabdianMasyarakat) => {
             if (pengabdianMasyarakat.program_studi.id === x.id) {
-              x.pengabdianMasyarakat = parseInt(pengabdianMasyarakat.count);
+              x["Pengabdian Masyarakat"] = parseInt(pengabdianMasyarakat.count);
             }
           },
         );
@@ -155,27 +159,51 @@ export default function Dashboard() {
       const datacountHakiByProgramStudi = await countHakiByProgramStudi();
       let dataChart2 = dataProgramStudi.data;
       dataChart2.map((x) => {
-        x.sertifikasi = 0;
-        x.studilanjut = 0;
-        x.haki = 0;
+        x["Sertifikasi"] = 0;
+        x["Studi Lanjut"] = 0;
+        x["HAKI"] = 0;
 
         datacountSertifikasiByProgramStudi.data.map((sertifikasi) => {
           if (sertifikasi.program_studi.id === x.id) {
-            x.sertifikasi = parseInt(sertifikasi.count);
+            x["Sertifikasi"] = parseInt(sertifikasi.count);
           }
         });
         datacountStudiLanjutByProgramStudi.data.map((studilanjut) => {
           if (studilanjut.program_studi.id === x.id) {
-            x.studilanjut = parseInt(studilanjut.count);
+            x["Studi Lanjut"] = parseInt(studilanjut.count);
           }
         });
         datacountHakiByProgramStudi.data.map((haki) => {
           if (haki.program_studi.id === x.id) {
-            x.haki = parseInt(haki.count);
+            x["HAKI"] = parseInt(haki.count);
           }
         });
       });
       setChart2(dataChart2);
+
+      const datacountPrestasiMahasiswaKategoriByProgramStudi = await countPrestasiMahasiswaKategoriByProgramStudi();
+      const dataKategori = await getKategori();
+      setDataKategori(dataKategori.data);
+      let dataChart3 = dataProgramStudi.data;
+      dataChart3.map((x) => {
+        dataKategori.data.map((kategori) => {
+          x[kategori.nama] = 0;
+          datacountPrestasiMahasiswaKategoriByProgramStudi.data.map(
+            (prestasiMahasiswa) => {
+              if (
+                prestasiMahasiswa.program_studi.id === x.id &&
+                prestasiMahasiswa.kategori.id === kategori.id
+              ) {
+                console.log(kategori.nama + " - " + prestasiMahasiswa.count);
+                x[kategori.nama] = parseInt(prestasiMahasiswa.count);
+              }
+            },
+          );
+        });
+      });
+      setChart3(dataChart3);
+      console.log("rrr");
+      console.log(dataChart3);
 
       setIsLoading(false);
     }
@@ -195,7 +223,6 @@ export default function Dashboard() {
         </div>
       ) : (
         <>
-          {console.log(chart2)}
           <Grid item xs={12}>
             <Widget
               header={
@@ -230,9 +257,9 @@ export default function Dashboard() {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="penelitian" fill="#4ac0c0" />
-                  <Bar dataKey="publikasi" fill="#36a2eb" />
-                  <Bar dataKey="pengabdianMasyarakat" fill="#c1bfc0" />
+                  <Bar dataKey="Penelitian" fill="#4ac0c0" />
+                  <Bar dataKey="Publikasi" fill="#36a2eb" />
+                  <Bar dataKey="Pengabdian Masyarakat" fill="#c1bfc0" />
                 </BarChart>
               </ResponsiveContainer>
             </Widget>
@@ -271,9 +298,57 @@ export default function Dashboard() {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="sertifikasi" fill="#4ac0c0" />
-                  <Bar dataKey="studilanjut" fill="#36a2eb" />
-                  <Bar dataKey="haki" fill="#c1bfc0" />
+                  <Bar dataKey="Sertifikasi" fill="#4ac0c0" />
+                  <Bar dataKey="Studi Lanjut" fill="#36a2eb" />
+                  <Bar dataKey="HAKI" fill="#c1bfc0" />
+                </BarChart>
+              </ResponsiveContainer>
+            </Widget>
+          </Grid>
+          <Grid item xs={12} style={{ marginTop: 25 }}>
+            <Widget
+              header={
+                <Typography
+                  variant="h5"
+                  color="text"
+                  colorBrightness="secondary"
+                >
+                  Jumlah Prestasi Mahasiswa
+                </Typography>
+              }
+            >
+              <ResponsiveContainer width="100%" minWidth={500} height={350}>
+                <BarChart
+                  width={500}
+                  height={300}
+                  data={chart3}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis
+                    dataKey="nama"
+                    interval={0}
+                    orientation="bottom"
+                    tick={false}
+                  />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="Bidang Sains" fill="#4ac0c0" />
+                  <Bar dataKey="Bidang Olahraga" fill="#36a2eb" />
+                  <Bar dataKey="Bidang Seni" fill="#c1bfc0" />
+                  <Bar
+                    dataKey="Bidang Lainnya (keagamaan, bakat/minat)"
+                    fill="#4ac0c0"
+                  />
+                  {/* {dataKategori.map((x) => { */}
+                  {/* // <Bar dataKey={x.nama} fill="#4ac0c0" /> */}
+                  {/* })} */}
                 </BarChart>
               </ResponsiveContainer>
             </Widget>
