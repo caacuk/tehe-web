@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, CircularProgress } from "@material-ui/core";
 
 import {
   BarChart,
@@ -108,6 +108,7 @@ const renderActiveShape = (props) => {
 export default function Dashboard() {
   const [chart1, setChart1] = useState([]);
   const [chartKerjasama, setChartKerjasama] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getData() {
@@ -150,6 +151,7 @@ export default function Dashboard() {
         );
       });
       setChart1(dataChart1);
+      setIsLoading(false);
     }
     getData();
   }, []);
@@ -161,6 +163,12 @@ export default function Dashboard() {
   return (
     <>
       <PageTitle title="Dashboard" />
+        {isLoading ? (
+          <div style={{ textAlign: "center" }}> 
+            <CircularProgress size={50} style={{ marginTop: 50 }} />
+          </div>
+        ) : (
+          <>
       <Grid item xs={12}>
         <Widget
           header={
@@ -224,6 +232,8 @@ export default function Dashboard() {
           </ResponsiveContainer>
         </Widget>
       </Grid>
+        </>
+        )}
     </>
   );
 }
