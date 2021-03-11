@@ -163,77 +163,85 @@ export default function Dashboard() {
   return (
     <>
       <PageTitle title="Dashboard" />
-        {isLoading ? (
-          <div style={{ textAlign: "center" }}> 
-            <CircularProgress size={50} style={{ marginTop: 50 }} />
-          </div>
-        ) : (
-          <>
-      <Grid item xs={12}>
-        <Widget
-          header={
-            <Typography variant="h5" color="text" colorBrightness="secondary">
-              Jumlah Penelitian, Publikasi, dan Penelitian Masyarakat
-            </Typography>
-          }
-        >
-          <ResponsiveContainer width="100%" minWidth={500} height={350}>
-            <BarChart
-              width={500}
-              height={300}
-              data={chart1}
-              margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
-              }}
+      {isLoading ? (
+        <div style={{ textAlign: "center" }}>
+          <CircularProgress size={50} style={{ marginTop: 50 }} />
+        </div>
+      ) : (
+        <>
+          <Grid item xs={12}>
+            <Widget
+              header={
+                <Typography
+                  variant="h5"
+                  color="text"
+                  colorBrightness="secondary"
+                >
+                  Jumlah Penelitian, Publikasi, dan Penelitian Masyarakat
+                </Typography>
+              }
             >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                dataKey="nama"
-                interval={0}
-                orientation="bottom"
-                tick={false}
-              />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="penelitian" fill="#4ac0c0" />
-              <Bar dataKey="publikasi" fill="#36a2eb" />
-              <Bar dataKey="pengabdianMasyarakat" fill="#c1bfc0" />
-            </BarChart>
-          </ResponsiveContainer>
-        </Widget>
-      </Grid>
-      <Grid item xs={12}>
-        <Widget
-          header={
-            <Typography variant="h5" color="text" colorBrightness="secondary">
-              Jumlah Kerjasama
-            </Typography>
-          }
-        >
-          <ResponsiveContainer width="100%" minWidth={500} height={350}>
-            <PieChart width={400} height={400}>
-              <Pie
-                activeIndex={state.activeIndex}
-                activeShape={renderActiveShape}
-                data={chartKerjasama}
-                cx="50%"
-                cy="50%"
-                innerRadius={60}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-                onMouseOver={(_, index) => setState({ activeIndex: index })}
-              />
-            </PieChart>
-          </ResponsiveContainer>
-        </Widget>
-      </Grid>
+              <ResponsiveContainer width="100%" minWidth={500} height={350}>
+                <BarChart
+                  width={500}
+                  height={300}
+                  data={chart1}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis
+                    dataKey="nama"
+                    interval={0}
+                    orientation="bottom"
+                    tick={false}
+                  />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="penelitian" fill="#4ac0c0" />
+                  <Bar dataKey="publikasi" fill="#36a2eb" />
+                  <Bar dataKey="pengabdianMasyarakat" fill="#c1bfc0" />
+                </BarChart>
+              </ResponsiveContainer>
+            </Widget>
+          </Grid>
+          <Grid item xs={12} style={{ marginTop: 25 }}>
+            <Widget
+              header={
+                <Typography
+                  variant="h5"
+                  color="text"
+                  colorBrightness="secondary"
+                >
+                  Jumlah Kerjasama
+                </Typography>
+              }
+            >
+              <ResponsiveContainer width="100%" minWidth={500} height={350}>
+                <PieChart width={400} height={400}>
+                  <Pie
+                    activeIndex={state.activeIndex}
+                    activeShape={renderActiveShape}
+                    data={chartKerjasama}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="value"
+                    onMouseOver={(_, index) => setState({ activeIndex: index })}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </Widget>
+          </Grid>
         </>
-        )}
+      )}
     </>
   );
 }
