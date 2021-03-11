@@ -194,7 +194,6 @@ export default function Dashboard() {
                 prestasiMahasiswa.program_studi.id === x.id &&
                 prestasiMahasiswa.kategori.id === kategori.id
               ) {
-                console.log(kategori.nama + " - " + prestasiMahasiswa.count);
                 x[kategori.nama] = parseInt(prestasiMahasiswa.count);
               }
             },
@@ -202,9 +201,6 @@ export default function Dashboard() {
         });
       });
       setChart3(dataChart3);
-      console.log("rrr");
-      console.log(dataChart3);
-
       setIsLoading(false);
     }
     getData();
@@ -344,7 +340,7 @@ export default function Dashboard() {
                   <Bar dataKey="Bidang Seni" fill="#c1bfc0" />
                   <Bar
                     dataKey="Bidang Lainnya (keagamaan, bakat/minat)"
-                    fill="#4ac0c0"
+                    fill="#ff8043"
                   />
                   {/* {dataKategori.map((x) => { */}
                   {/* // <Bar dataKey={x.nama} fill="#4ac0c0" /> */}
