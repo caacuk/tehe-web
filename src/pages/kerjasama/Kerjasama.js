@@ -224,7 +224,7 @@ export default function Kerjasama() {
       name: "tanggal_awal",
       label: "Tanggal Awal",
       options: {
-        filter: true,
+        filter: false,
         sort: true,
       },
     },
@@ -232,7 +232,7 @@ export default function Kerjasama() {
       name: "tanggal_akhir",
       label: "Tanggal Akhir",
       options: {
-        filter: true,
+        filter: false,
         sort: true,
       },
     },
@@ -240,7 +240,7 @@ export default function Kerjasama() {
       name: "partner",
       label: "Partner",
       options: {
-        filter: true,
+        filter: false,
         sort: true,
       },
     },
@@ -266,7 +266,7 @@ export default function Kerjasama() {
       name: "id_jenis_partner",
       label: "Jenis Partner",
       options: {
-        filter: true,
+        filter: false,
         sort: false,
         display: false,
         download: false,
@@ -284,7 +284,7 @@ export default function Kerjasama() {
       name: "id_jenis_dokumen",
       label: "Jenis Partner",
       options: {
-        filter: true,
+        filter: false,
         sort: false,
         display: false,
         download: false,
@@ -302,7 +302,7 @@ export default function Kerjasama() {
       name: "id_bentuk_kegiatan",
       label: "Jenis Partner",
       options: {
-        filter: true,
+        filter: false,
         sort: false,
         display: false,
         download: false,
