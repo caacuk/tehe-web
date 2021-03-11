@@ -31,6 +31,28 @@ export const getKerjasamaById = (id) => {
     });
 };
 
+export const getKerjasamaByStatus = (status) => {
+  return axios
+    .get("/kerjasama/status/" + status, axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
+
+export const countKerjasamaByStatus = () => {
+  return axios
+    .get("/kerjasama/count/status", axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
+
 export const postKerjasama = (kerjasama) => {
   const body = kerjasama;
 

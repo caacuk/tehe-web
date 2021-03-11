@@ -153,7 +153,7 @@ export default function Dosen() {
                   >
                     <Typography variant="caption">NIDN</Typography>
                     <TextField
-                      style={{marginBottom:"15px"}}
+                      style={{ marginBottom: "15px" }}
                       fullWidth
                       value={editState.nidn}
                       // onChange={(e) => {
@@ -167,7 +167,7 @@ export default function Dosen() {
                     />
                     <Typography variant="caption">Nama Dosen</Typography>
                     <TextField
-                      style={{marginBottom:"15px"}}
+                      style={{ marginBottom: "15px" }}
                       fullWidth
                       value={editState.nama}
                       onChange={(e) => {
@@ -222,7 +222,7 @@ export default function Dosen() {
             />
             <Typography variant="caption">Nama Dosen</Typography>
             <TextField
-              style={{marginBottom:"15px"}}
+              style={{ marginBottom: "15px" }}
               fullWidth
               value={tambahState.nama}
               onChange={(e) => {

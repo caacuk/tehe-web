@@ -29,7 +29,7 @@ export const DetailHaki = ({ setDetailState, detailState, tableMeta }) => {
             size="small"
             value={detailState.judul}
             InputProps={{
-                readOnly: true,
+              readOnly: true,
             }}
           />
         </Grid>
@@ -41,7 +41,7 @@ export const DetailHaki = ({ setDetailState, detailState, tableMeta }) => {
             size="small"
             value={detailState.no_hki}
             InputProps={{
-                readOnly: true,
+              readOnly: true,
             }}
           />
         </Grid>
@@ -53,7 +53,7 @@ export const DetailHaki = ({ setDetailState, detailState, tableMeta }) => {
             size="small"
             value={detailState.no_pendaftaran}
             InputProps={{
-                readOnly: true,
+              readOnly: true,
             }}
           />
         </Grid>
@@ -67,10 +67,9 @@ export const DetailHaki = ({ setDetailState, detailState, tableMeta }) => {
             size="small"
             value={detailState.nama_program_studi}
             InputProps={{
-                readOnly: true,
+              readOnly: true,
             }}
           />
-          
         </Grid>
         <Grid item xs={3}>
           <Typography variant="caption">Tahun Ajaran</Typography>
@@ -80,7 +79,7 @@ export const DetailHaki = ({ setDetailState, detailState, tableMeta }) => {
             size="small"
             value={detailState.tahun_ajaran}
             InputProps={{
-                readOnly: true,
+              readOnly: true,
             }}
           />
         </Grid>
@@ -91,7 +90,7 @@ export const DetailHaki = ({ setDetailState, detailState, tableMeta }) => {
             margin="dense"
             value={detailState.no_semester}
             InputProps={{
-                readOnly: true,
+              readOnly: true,
             }}
             fullWidth
           >
@@ -109,7 +108,7 @@ export const DetailHaki = ({ setDetailState, detailState, tableMeta }) => {
             size="small"
             value={detailState.nidn_dosen}
             InputProps={{
-                readOnly: true,
+              readOnly: true,
             }}
           />
         </Grid>
@@ -121,9 +120,9 @@ export const DetailHaki = ({ setDetailState, detailState, tableMeta }) => {
             size="small"
             value={detailState.nama_dosen}
             InputProps={{
-                readOnly: true,
+              readOnly: true,
             }}
-            style={{ marginBottom:"15px" }}
+            style={{ marginBottom: "15px" }}
           />
         </Grid>
       </Grid>

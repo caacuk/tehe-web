@@ -6,12 +6,7 @@ import { getProgramStudi } from "../../functions/ProgramStudi";
 import Typography from "@material-ui/core/Typography";
 import { Grid, TextField, Select, MenuItem } from "@material-ui/core";
 
-export const EditHaki = ({
-  editHaki,
-  tableMeta,
-  setEditState,
-  editState,
-}) => {
+export const EditHaki = ({ editHaki, tableMeta, setEditState, editState }) => {
   const [dosen, setDosen] = useState([]);
   const [programStudi, setProgramStudi] = useState([]);
 
@@ -30,7 +25,7 @@ export const EditHaki = ({
     const { data } = await getProgramStudi();
     setProgramStudi(data);
   });
-    
+
   const fetchAll = useRef(() => {
     fetchDosen.current();
     fetchProgramStudi.current();
@@ -76,7 +71,7 @@ export const EditHaki = ({
         });
       }}
     >
-    <Grid container spacing={2}>
+      <Grid container spacing={2}>
         <Grid item xs={6}>
           <Typography variant="caption">Judul</Typography>
           <TextField

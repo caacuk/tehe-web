@@ -125,7 +125,7 @@ export default function ProgramStudi() {
               >
                 <IconButton size="small">
                   {/* CUSTOM MODAL EDIT */}
-                  <CustomModalEdit 
+                  <CustomModalEdit
                     handleEdit={() => {
                       editProgramStudi();
                     }}

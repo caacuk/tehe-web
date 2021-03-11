@@ -6,74 +6,69 @@ import { Grid, CircularProgress } from "@material-ui/core";
 import { AddHaki } from "./AddHaki";
 import { getDosen } from "../../functions/Dosen";
 import { getProgramStudi } from "../../functions/ProgramStudi";
-import {
-  getHaki,
-  postHaki,
-  putHaki,
-  deleteHaki,
-} from "../../functions/Haki";
+import { getHaki, postHaki, putHaki, deleteHaki } from "../../functions/Haki";
 
 export default function Haki() {
-    const history = useHistory();
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [dataDosen, setDataDosen] = useState([]);
-    const [dataProgramStudi, setDataProgramStudi] = useState([]);
-    const [detailState, setDetailState] = useState({
-        judul: "",
-        no_hki: "",
-        nama_dosen: "",
-        nidn_dosen: "",
-        nama_program_studi: "",
-        no_pendaftaran: "",
-        no_semester: "",
-        tahun_ajaran: "",
-      });
-    
-    const [editState, setEditState] = useState({
-        id: "",
-        judul: "",
-        no_hki: "",
-        id_dosen: "",
-        id_program_studi: "",
-        no_pendaftaran: "",
-        semester: "",
-        tahun_ajaran: "",
-    });
+  const history = useHistory();
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [dataDosen, setDataDosen] = useState([]);
+  const [dataProgramStudi, setDataProgramStudi] = useState([]);
+  const [detailState, setDetailState] = useState({
+    judul: "",
+    no_hki: "",
+    nama_dosen: "",
+    nidn_dosen: "",
+    nama_program_studi: "",
+    no_pendaftaran: "",
+    no_semester: "",
+    tahun_ajaran: "",
+  });
 
-    const [tambahState, setTambahState] = useState({
-        judul: "",
-        no_hki: "",
-        id_dosen: "",
-        id_program_studi: "",
-        no_pendaftaran: "",
-        semester: "",
-        tahun_ajaran: "",
-    });
+  const [editState, setEditState] = useState({
+    id: "",
+    judul: "",
+    no_hki: "",
+    id_dosen: "",
+    id_program_studi: "",
+    no_pendaftaran: "",
+    semester: "",
+    tahun_ajaran: "",
+  });
 
-    const [firstWriter, setFirstWriter] = useState({
-        id: null,
-        nidn: 0,
-        nama: "",
-    });
+  const [tambahState, setTambahState] = useState({
+    judul: "",
+    no_hki: "",
+    id_dosen: "",
+    id_program_studi: "",
+    no_pendaftaran: "",
+    semester: "",
+    tahun_ajaran: "",
+  });
+
+  const [firstWriter, setFirstWriter] = useState({
+    id: null,
+    nidn: 0,
+    nama: "",
+  });
   useEffect(() => {
     async function getData() {
       const dataDosen = await getDosen();
       const dataProgramStudi = await getProgramStudi();
       setDataDosen(dataDosen.data);
       setDataProgramStudi(dataProgramStudi.data);
-      
-      getDataHaki();  
+
+      getDataHaki();
     }
     getData();
   }, []);
 
   const getDataHaki = async () => {
-    setIsLoading(true);  
+    setIsLoading(true);
     const data = await getHaki();
     let result = [];
     data.data.forEach((x, i) => {
-    const flattenData = {
+      const flattenData = {
         no: i + 1,
         id: x.id,
         id_dosen: x.dosen?.id,

@@ -5,12 +5,7 @@ import { getDosen } from "../../functions/Dosen";
 import Typography from "@material-ui/core/Typography";
 import { Grid, TextField, Select, MenuItem } from "@material-ui/core";
 
-export const EditNidk = ({
-  editNidk,
-  tableMeta,
-  setEditState,
-  editState,
-}) => {
+export const EditNidk = ({ editNidk, tableMeta, setEditState, editState }) => {
   const [dosen, setDosen] = useState([]);
 
   const [firstWriter, setFirstWriter] = useState({
@@ -73,7 +68,7 @@ export const EditNidk = ({
             fullWidth
             value={editState.nidk}
             InputProps={{
-                readOnly: true,
+              readOnly: true,
             }}
           />
         </Grid>
@@ -84,7 +79,7 @@ export const EditNidk = ({
           <Autocomplete
             value={firstWriter}
             onChange={(event, newValue) => {
-                console.log(newValue);
+              console.log(newValue);
               setFirstWriter(newValue);
             }}
             getOptionLabel={(option) => option.nama}

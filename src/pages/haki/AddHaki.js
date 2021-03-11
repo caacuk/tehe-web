@@ -20,12 +20,12 @@ export const AddHaki = ({
     const { data } = await getDosen();
     setDosen(data);
   });
-    
+
   const fetchProgramStudi = useRef(async () => {
     const { data } = await getProgramStudi();
     setProgramStudi(data);
   });
-    
+
   const fetchAll = useRef(() => {
     fetchDosen.current();
     fetchProgramStudi.current();

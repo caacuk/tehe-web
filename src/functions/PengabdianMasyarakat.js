@@ -19,6 +19,17 @@ export const getPengabdianMasyarakat = () => {
     });
 };
 
+export const getPengabdianMasyarakatCountByProgramStudi = () => {
+  return axios
+    .get("pengabdianMasyarakat/count/programStudi", axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
+
 export const getKerjasamaById = (id) => {
   console.log(id);
   return axios

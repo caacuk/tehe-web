@@ -360,7 +360,7 @@ export default function Sertifikasi() {
                       <Grid item xs={8}>
                         <InputLabel shrink>Nama</InputLabel>
                         <TextField
-                          style={{ marginRight: "6px", marginBottom:"15px" }}
+                          style={{ marginRight: "6px", marginBottom: "15px" }}
                           fullWidth
                           value={editState.dosen?.nama}
                           InputProps={{
@@ -488,7 +488,7 @@ export default function Sertifikasi() {
                       <Grid item xs={12}>
                         <InputLabel>Dosen</InputLabel>
                         <Autocomplete
-                          style={{marginBottom:"15px"}}
+                          style={{ marginBottom: "15px" }}
                           value={editState.dosen}
                           onChange={(event, newValue) => {
                             console.log("newValue");
@@ -657,7 +657,7 @@ export default function Sertifikasi() {
               <Grid item xs={12}>
                 <InputLabel shrink>Dosen</InputLabel>
                 <Autocomplete
-                  style={{marginBottom:"15px"}}
+                  style={{ marginBottom: "15px" }}
                   value={tambahState.dosen}
                   onChange={(event, newValue) => {
                     setTambahState((c) => ({

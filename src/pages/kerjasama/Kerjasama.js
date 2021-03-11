@@ -5,8 +5,8 @@ import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
 import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
 import { Table } from "../../components/Table/Table";
 import Typography from "@material-ui/core/Typography";
-import Button from '@material-ui/core/Button';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import Button from "@material-ui/core/Button";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import {
   Grid,
   IconButton,
@@ -569,7 +569,9 @@ export default function Kerjasama() {
                         </Select>
                       </Grid>
                       <Grid item xs={6}>
-                        <Typography variant="caption">Upload Dokumen</Typography>
+                        <Typography variant="caption">
+                          Upload Dokumen
+                        </Typography>
                         <input
                           accept="image/*"
                           id="contained-button-file"

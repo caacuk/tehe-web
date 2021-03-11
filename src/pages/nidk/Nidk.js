@@ -5,50 +5,45 @@ import { NidkTableContainer } from "./NidkTableContainer";
 import { Grid, CircularProgress } from "@material-ui/core";
 import { AddNidk } from "./AddNidk";
 import { getDosen } from "../../functions/Dosen";
-import {
-  getNidk,
-  postNidk,
-  putNidk,
-  deleteNidk,
-} from "../../functions/Nidk";
+import { getNidk, postNidk, putNidk, deleteNidk } from "../../functions/Nidk";
 
 export default function Nidk() {
-    const history = useHistory();
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [dataDosen, setDataDosen] = useState([]);
-    const [editState, setEditState] = useState({
-        id: "",
-        nidk: "",
-        id_dosen: "",
-    });
+  const history = useHistory();
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [dataDosen, setDataDosen] = useState([]);
+  const [editState, setEditState] = useState({
+    id: "",
+    nidk: "",
+    id_dosen: "",
+  });
 
-    const [tambahState, setTambahState] = useState({
-        nidk: "",
-        id_dosen: "",
-    });
+  const [tambahState, setTambahState] = useState({
+    nidk: "",
+    id_dosen: "",
+  });
 
-    const [firstWriter, setFirstWriter] = useState({
-        id: null,
-        nidn: 0,
-        nama: "",
-    });
+  const [firstWriter, setFirstWriter] = useState({
+    id: null,
+    nidn: 0,
+    nama: "",
+  });
   useEffect(() => {
     async function getData() {
       const dataDosen = await getDosen();
       setDataDosen(dataDosen.data);
-      
-      getDataNidk();  
+
+      getDataNidk();
     }
     getData();
   }, []);
 
   const getDataNidk = async () => {
-    setIsLoading(true);  
+    setIsLoading(true);
     const data = await getNidk();
     let result = [];
     data.data.forEach((x, i) => {
-    const flattenData = {
+      const flattenData = {
         no: i + 1,
         id: x.id,
         nidk: x.nidk,

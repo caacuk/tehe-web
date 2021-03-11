@@ -512,7 +512,7 @@ export default function PengabdianMasyarakat() {
                       <Grid item xs={8}>
                         <InputLabel shrink>Nama</InputLabel>
                         <TextField
-                          style={{ marginRight: "6px", marginBottom:"15px" }}
+                          style={{ marginRight: "6px", marginBottom: "15px" }}
                           fullWidth
                           value={editState.dosen_3?.nama}
                           InputProps={{
@@ -738,7 +738,7 @@ export default function PengabdianMasyarakat() {
                       <Grid item xs={12}>
                         <InputLabel>Penulis 3</InputLabel>
                         <Autocomplete
-                          style={{marginBottom:"15px"}}
+                          style={{ marginBottom: "15px" }}
                           value={editState.dosen_3}
                           onChange={(event, newValue) => {
                             console.log("newValue");
@@ -967,7 +967,7 @@ export default function PengabdianMasyarakat() {
               <Grid item xs={12}>
                 <InputLabel>Penulis 3</InputLabel>
                 <Autocomplete
-                  style={{marginBottom:"15px"}}
+                  style={{ marginBottom: "15px" }}
                   value={tambahState.dosen_3}
                   onChange={(event, newValue) => {
                     setTambahState((c) => ({

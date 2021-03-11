@@ -19,17 +19,16 @@ export const getPublikasi = () => {
     });
 };
 
-// export const getPublikasiById = (id) => {
-//   console.log(id);
-//   return axios
-//     .get("Publikasi/" + id, axiosConfig)
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((err) => {
-//       return err.response.data;
-//     });
-// };
+export const getPublikasiCountByProgramStudi = () => {
+  return axios
+    .get("publikasi/count/programStudi", axiosConfig)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return err.response.data;
+    });
+};
 
 export const postPublikasi = (publikasi) => {
   const body = publikasi;
