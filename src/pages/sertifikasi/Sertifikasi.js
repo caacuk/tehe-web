@@ -296,9 +296,7 @@ export default function Sertifikasi() {
                           value={editState.id_program_studi}
                           inputProps={{ readOnly: true }}
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataProgramStudi.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -425,9 +423,7 @@ export default function Sertifikasi() {
                           }}
                           variant="outlined"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataProgramStudi.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -594,9 +590,7 @@ export default function Sertifikasi() {
                   }}
                   variant="outlined"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
+                  
                   {dataProgramStudi.map((x) => (
                     <MenuItem value={x.id}>{x.nama}</MenuItem>
                   ))}

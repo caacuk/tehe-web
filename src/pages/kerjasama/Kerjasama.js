@@ -404,9 +404,7 @@ export default function Kerjasama() {
                           }}
                           variant="outlined"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataProgramStudi.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -429,9 +427,7 @@ export default function Kerjasama() {
                           }}
                           variant="outlined"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataNegara.map((x) => (
                             <MenuItem value={x.id}>{x.name}</MenuItem>
                           ))}
@@ -452,9 +448,7 @@ export default function Kerjasama() {
                           }}
                           variant="outlined"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataJenisPartner.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -477,9 +471,7 @@ export default function Kerjasama() {
                           }}
                           variant="outlined"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataJenisDokumen.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -502,9 +494,7 @@ export default function Kerjasama() {
                           }}
                           variant="outlined"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataBentukKegiatan.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -561,9 +551,7 @@ export default function Kerjasama() {
                           fullWidth
                           variant="outlined"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           <MenuItem value="Aktif">Aktif</MenuItem>
                           <MenuItem value="Non-Aktif">Non Aktif</MenuItem>
                         </Select>
@@ -641,9 +629,7 @@ export default function Kerjasama() {
                   }}
                   variant="outlined"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
+                  
                   {dataProgramStudi.map((x) => (
                     <MenuItem value={x.id}>{x.nama}</MenuItem>
                   ))}
@@ -666,9 +652,7 @@ export default function Kerjasama() {
                   }}
                   variant="outlined"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
+                  
                   {dataNegara.map((x) => (
                     <MenuItem value={x.id}>{x.name}</MenuItem>
                   ))}
@@ -689,9 +673,7 @@ export default function Kerjasama() {
                   }}
                   variant="outlined"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
+                  
                   {dataJenisPartner.map((x) => (
                     <MenuItem value={x.id}>{x.nama}</MenuItem>
                   ))}
@@ -714,9 +696,7 @@ export default function Kerjasama() {
                   }}
                   variant="outlined"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
+                  
                   {dataJenisDokumen.map((x) => (
                     <MenuItem value={x.id}>{x.nama}</MenuItem>
                   ))}
@@ -737,9 +717,7 @@ export default function Kerjasama() {
                   }}
                   variant="outlined"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
+                  
                   {dataBentukKegiatan.map((x) => (
                     <MenuItem value={x.id}>{x.nama}</MenuItem>
                   ))}
@@ -793,9 +771,7 @@ export default function Kerjasama() {
                   fullWidth
                   variant="outlined"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
+                  
                   <MenuItem value="Aktif">Aktif</MenuItem>
                   <MenuItem value="Non-Aktif">Non Aktif</MenuItem>
                 </Select>

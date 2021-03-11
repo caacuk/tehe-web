@@ -384,9 +384,7 @@ export default function PengabdianMasyarakat() {
                           value={editState.id_program_studi}
                           inputProps={{ readOnly: true }}
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataProgramStudi.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -583,9 +581,7 @@ export default function PengabdianMasyarakat() {
                           }}
                           variant="outlined"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataProgramStudi.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -845,9 +841,7 @@ export default function PengabdianMasyarakat() {
                   }}
                   variant="outlined"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
+                  
                   {dataProgramStudi.map((x) => (
                     <MenuItem value={x.id}>{x.nama}</MenuItem>
                   ))}

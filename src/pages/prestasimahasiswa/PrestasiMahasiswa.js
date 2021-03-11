@@ -460,9 +460,7 @@ export default function PrestasiMahasiswa() {
                           value={editState.id_program_studi}
                           inputProps={{ readOnly: true }}
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataProgramStudi.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -476,9 +474,7 @@ export default function PrestasiMahasiswa() {
                           value={editState.id_kategori}
                           inputProps={{ readOnly: true }}
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataKategori.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -494,9 +490,7 @@ export default function PrestasiMahasiswa() {
                           value={editState.id_tingkat}
                           inputProps={{ readOnly: true }}
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataTingkat.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -680,9 +674,7 @@ export default function PrestasiMahasiswa() {
                           }}
                           variant="outlined"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataProgramStudi.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -702,9 +694,7 @@ export default function PrestasiMahasiswa() {
                           }}
                           variant="outlined"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataKategori.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -726,9 +716,7 @@ export default function PrestasiMahasiswa() {
                           }}
                           variant="outlined"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataTingkat.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -968,9 +956,7 @@ export default function PrestasiMahasiswa() {
                   }}
                   variant="outlined"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
+                  
                   {dataProgramStudi.map((x) => (
                     <MenuItem value={x.id}>{x.nama}</MenuItem>
                   ))}
@@ -990,9 +976,7 @@ export default function PrestasiMahasiswa() {
                   }}
                   variant="outlined"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
+                  
                   {dataKategori.map((x) => (
                     <MenuItem value={x.id}>{x.nama}</MenuItem>
                   ))}
@@ -1014,9 +998,7 @@ export default function PrestasiMahasiswa() {
                   }}
                   variant="outlined"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
+                  
                   {dataTingkat.map((x) => (
                     <MenuItem value={x.id}>{x.nama}</MenuItem>
                   ))}

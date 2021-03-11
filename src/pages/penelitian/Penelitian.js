@@ -411,9 +411,7 @@ export default function Penelitian() {
                           value={editState.id_program_studi}
                           inputProps={{ readOnly: true }}
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataProgramStudi.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -611,9 +609,7 @@ export default function Penelitian() {
                           }}
                           variant="outlined"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
-                          </MenuItem>
+                          
                           {dataProgramStudi.map((x) => (
                             <MenuItem value={x.id}>{x.nama}</MenuItem>
                           ))}
@@ -873,9 +869,7 @@ export default function Penelitian() {
                   }}
                   variant="outlined"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
+                  
                   {dataProgramStudi.map((x) => (
                     <MenuItem value={x.id}>{x.nama}</MenuItem>
                   ))}

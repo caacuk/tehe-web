@@ -118,9 +118,7 @@ export default function TambahKerjasama() {
                 onChange={(e) => setProgramStudi(e.target.value)}
                 fullWidth
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
+                
                 {dataProgramStudi.map((x) => (
                   <MenuItem value={x.id}>{x.nama}</MenuItem>
                 ))}
@@ -133,9 +131,7 @@ export default function TambahKerjasama() {
                 onChange={(e) => setNegara(e.target.value)}
                 fullWidth
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
+                
                 {dataNegara.map((x) => (
                   <MenuItem value={x.id}>{x.nicename}</MenuItem>
                 ))}
@@ -148,9 +144,7 @@ export default function TambahKerjasama() {
                 onChange={(e) => setJenisPartner(e.target.value)}
                 fullWidth
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
+                
                 {dataJenisPartner.map((x) => (
                   <MenuItem value={x.id}>{x.nama}</MenuItem>
                 ))}
@@ -163,9 +157,7 @@ export default function TambahKerjasama() {
                 onChange={(e) => setJenisDokumen(e.target.value)}
                 fullWidth
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
+                
                 {dataJenisDokumen.map((x) => (
                   <MenuItem value={x.id}>{x.nama}</MenuItem>
                 ))}
@@ -178,9 +170,7 @@ export default function TambahKerjasama() {
                 onChange={(e) => setBentukKegiatan(e.target.value)}
                 fullWidth
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
+                
                 {dataBentukKegiatan.map((x) => (
                   <MenuItem value={x.id}>{x.nama}</MenuItem>
                 ))}
@@ -219,9 +209,7 @@ export default function TambahKerjasama() {
                 onChange={(e) => setStatus(e.target.value)}
                 fullWidth
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
+                
                 <MenuItem value={1}>Aktif</MenuItem>
                 <MenuItem value={0}>Non Aktif</MenuItem>
               </Select>
