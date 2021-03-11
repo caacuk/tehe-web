@@ -34,6 +34,7 @@ export const postNidk = (Nidk) => {
   const body = {
     nidk: Nidk.nidk,
     id_dosen: Nidk.id_dosen,
+    nama: Nidk.nama,
   };
 
   return axios
@@ -50,6 +51,7 @@ export const putNidk = (Nidk) => {
   const body = {
     nidk: Nidk.nidk,
     id_dosen: Nidk.id_dosen,
+    nama: Nidk.nama,
   };
 
   return axios

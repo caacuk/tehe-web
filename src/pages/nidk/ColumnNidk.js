@@ -40,7 +40,7 @@ export const ActionLessColumn = [
     },
   },
   {
-    name: "nama_dosen",
+    name: "nama",
     label: "Nama Dosen",
     options: {
       filter: true,

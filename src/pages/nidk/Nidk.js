@@ -48,6 +48,7 @@ export default function Nidk() {
         id: x.id,
         nidk: x.nidk,
         id_dosen: x.dosen?.id,
+        nama: x.nama,
         nama_dosen: x.dosen?.nama,
         nidn_dosen: x.dosen?.nidn,
       };
@@ -69,6 +70,7 @@ export default function Nidk() {
       id: "",
       nidk: "",
       id_dosen: "",
+      nama: "",
     });
   };
   const insertNidk = async () => {
@@ -82,6 +84,7 @@ export default function Nidk() {
     setTambahState({
       nidk: "",
       id_dosen: "",
+      nama: "",
     });
     setFirstWriter("");
   };

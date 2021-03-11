@@ -55,6 +55,7 @@ export const EditNidk = ({ editNidk, tableMeta, setEditState, editState }) => {
           id: rowData[0],
           nidk: rowData[2],
           id_dosen: rowData[3],
+          nama: rowData[4],
         });
       }}
     >
@@ -76,6 +77,17 @@ export const EditNidk = ({ editNidk, tableMeta, setEditState, editState }) => {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Typography variant="caption">Nama Dosen</Typography>
+          <TextField
+            variant="outlined"
+            size="small"
+            style={{ marginRight: "4px" }}
+            fullWidth
+            value={editState.nama}
+            onChange={(e) => {
+              setEditState((c) => ({ ...c, nama: e.target.value }));
+            }}
+          />
+          {/* <Typography variant="caption">Nama Dosen</Typography>
           <Autocomplete
             value={firstWriter}
             onChange={(event, newValue) => {
@@ -88,7 +100,7 @@ export const EditNidk = ({ editNidk, tableMeta, setEditState, editState }) => {
             fullWidth
             renderInput={(params) => <TextField {...params} />}
             style={{ marginBottom: "15px" }}
-          />
+          /> */}
         </Grid>
       </Grid>
     </CustomModalEdit>

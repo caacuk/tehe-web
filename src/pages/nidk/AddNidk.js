@@ -39,7 +39,6 @@ export const AddNidk = ({
   return (
     <CustomModalTambah
       handleTambah={() => {
-        console.log(tambahState);
         insertNidk();
       }}
     >
@@ -60,6 +59,16 @@ export const AddNidk = ({
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Typography variant="caption">Nama Dosen</Typography>
+          <TextField
+            fullWidth
+            onChange={(e) => {
+              setTambahState((c) => ({ ...c, nama: e.target.value }));
+            }}
+            value={tambahState.nama}
+            variant="outlined"
+            size="small"
+          />
+          {/* <Typography variant="caption">Nama Dosen</Typography>
           <Autocomplete
             value={firstWriter}
             onChange={(event, newValue) => {
@@ -71,7 +80,7 @@ export const AddNidk = ({
             fullWidth
             renderInput={(params) => <TextField {...params} />}
             style={{ marginBottom: "15px" }}
-          />
+          /> */}
         </Grid>
       </Grid>
     </CustomModalTambah>
