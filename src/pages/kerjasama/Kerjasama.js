@@ -5,6 +5,8 @@ import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
 import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
 import { Table } from "../../components/Table/Table";
 import Typography from "@material-ui/core/Typography";
+import Button from '@material-ui/core/Button';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import {
   Grid,
   IconButton,
@@ -188,6 +190,7 @@ export default function Kerjasama() {
         filter: false,
         sort: false,
         display: false,
+        download: false,
       },
     },
     {
@@ -206,6 +209,7 @@ export default function Kerjasama() {
         filter: false,
         sort: false,
         display: false,
+        download: false,
       },
     },
     {
@@ -245,8 +249,9 @@ export default function Kerjasama() {
       label: "Negara",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
+        download: false,
       },
     },
     {
@@ -262,8 +267,9 @@ export default function Kerjasama() {
       label: "Jenis Partner",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
+        download: false,
       },
     },
     {
@@ -279,8 +285,9 @@ export default function Kerjasama() {
       label: "Jenis Partner",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
+        download: false,
       },
     },
     {
@@ -296,8 +303,9 @@ export default function Kerjasama() {
       label: "Jenis Partner",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
+        download: false,
       },
     },
     {
@@ -331,6 +339,7 @@ export default function Kerjasama() {
         filter: false,
         sort: false,
         empty: true,
+        print: false,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <>
@@ -559,6 +568,15 @@ export default function Kerjasama() {
                           <MenuItem value="Non-Aktif">Non Aktif</MenuItem>
                         </Select>
                       </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="caption">Upload Dokumen</Typography>
+                        <input
+                          accept="image/*"
+                          id="contained-button-file"
+                          // multiple
+                          type="file"
+                        />
+                      </Grid>
                     </Grid>
                   </CustomModalEdit>
                 </IconButton>
@@ -779,6 +797,15 @@ export default function Kerjasama() {
                   <MenuItem value="Aktif">Aktif</MenuItem>
                   <MenuItem value="Non-Aktif">Non Aktif</MenuItem>
                 </Select>
+              </Grid>
+              <Grid item xs={6}>
+                <Typography variant="caption">Upload Dokumen</Typography>
+                <input
+                  accept="image/*"
+                  id="contained-button-file"
+                  // multiple
+                  type="file"
+                />
               </Grid>
             </Grid>
           </CustomModalTambah>

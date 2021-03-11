@@ -545,6 +545,7 @@ export default function Penelitian() {
                           InputProps={{
                             readOnly: true,
                           }}
+                          style={{marginBottom:"15px"}}
                         />
                       </Grid>
                     </Grid>
@@ -765,6 +766,7 @@ export default function Penelitian() {
                       <Grid item xs={12}>
                         <InputLabel>Penulis 3</InputLabel>
                         <Autocomplete
+                          style={{marginBottom:"15px"}}
                           value={editState.dosen_3}
                           onChange={(event, newValue) => {
                             console.log("newValue");
@@ -993,6 +995,7 @@ export default function Penelitian() {
               <Grid item xs={12}>
                 <InputLabel>Penulis 3</InputLabel>
                 <Autocomplete
+                  style={{marginBottom:"15px"}}
                   value={tambahState.dosen_3}
                   onChange={(event, newValue) => {
                     setTambahState((c) => ({

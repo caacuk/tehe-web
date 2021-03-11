@@ -151,7 +151,7 @@ export default function StudiLanjut() {
       label: "Program Studi",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -209,7 +209,7 @@ export default function StudiLanjut() {
       label: "id_dosen",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -218,7 +218,7 @@ export default function StudiLanjut() {
       label: "dosen",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -228,6 +228,7 @@ export default function StudiLanjut() {
         filter: false,
         sort: false,
         empty: true,
+        print: false,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <>
@@ -335,7 +336,7 @@ export default function StudiLanjut() {
                       <Grid item xs={6}>
                         <InputLabel shrink>Status</InputLabel>
                         <TextField
-                          style={{ marginRight: "6px" }}
+                          style={{ marginBottom: "15px" }}
                           fullWidth
                           value={editState.status}
                           InputProps={{
@@ -487,7 +488,7 @@ export default function StudiLanjut() {
                       <Grid item xs={6}>
                         <InputLabel shrink>Status</InputLabel>
                         <Select
-                          style={{ marginRight: "6px" }}
+                          style={{ marginBottom: "15px" }}
                           fullWidth
                           value={editState.status}
                           onChange={(e) => {
@@ -639,7 +640,7 @@ export default function StudiLanjut() {
               <Grid item xs={6}>
                 <InputLabel shrink>Status</InputLabel>
                 <Select
-                  style={{ marginRight: "6px" }}
+                  style={{ marginBottom: "15px" }}
                   fullWidth
                   value={tambahState.status}
                   onChange={(e) => {

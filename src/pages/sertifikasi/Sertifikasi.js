@@ -157,7 +157,7 @@ export default function Sertifikasi() {
       label: "Program Studi",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -166,7 +166,7 @@ export default function Sertifikasi() {
       label: "Tahun Ajaran",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -175,7 +175,7 @@ export default function Sertifikasi() {
       label: "Semester",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -224,7 +224,7 @@ export default function Sertifikasi() {
       label: "id_dosen",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -233,7 +233,7 @@ export default function Sertifikasi() {
       label: "dosen",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -243,6 +243,7 @@ export default function Sertifikasi() {
         filter: false,
         sort: false,
         empty: true,
+        print: false,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <>
@@ -359,7 +360,7 @@ export default function Sertifikasi() {
                       <Grid item xs={8}>
                         <InputLabel shrink>Nama</InputLabel>
                         <TextField
-                          style={{ marginRight: "6px" }}
+                          style={{ marginRight: "6px", marginBottom:"15px" }}
                           fullWidth
                           value={editState.dosen?.nama}
                           InputProps={{
@@ -487,6 +488,7 @@ export default function Sertifikasi() {
                       <Grid item xs={12}>
                         <InputLabel>Dosen</InputLabel>
                         <Autocomplete
+                          style={{marginBottom:"15px"}}
                           value={editState.dosen}
                           onChange={(event, newValue) => {
                             console.log("newValue");
@@ -655,6 +657,7 @@ export default function Sertifikasi() {
               <Grid item xs={12}>
                 <InputLabel shrink>Dosen</InputLabel>
                 <Autocomplete
+                  style={{marginBottom:"15px"}}
                   value={tambahState.dosen}
                   onChange={(event, newValue) => {
                     setTambahState((c) => ({

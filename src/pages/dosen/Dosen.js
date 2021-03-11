@@ -4,7 +4,7 @@ import CustomModalEdit from "../../components/CustomModalEdit/CustomModalEdit";
 import CustomModalDelete from "../../components/CustomModalDelete/CustomModalDelete";
 import { Table } from "../../components/Table/Table";
 import { useHistory } from "react-router-dom";
-
+import Typography from "@material-ui/core/Typography";
 import {
   Grid,
   IconButton,
@@ -127,6 +127,7 @@ export default function Dosen() {
       options: {
         filter: true,
         sort: true,
+        print: false,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <>
@@ -150,26 +151,29 @@ export default function Dosen() {
                       });
                     }}
                   >
+                    <Typography variant="caption">NIDN</Typography>
                     <TextField
-                      style={{ marginBottom: "13px" }}
+                      style={{marginBottom:"15px"}}
                       fullWidth
                       value={editState.nidn}
                       // onChange={(e) => {
                       //   setEditState((c) => ({ ...c, nidn: e.target.value }));
                       // }}
-                      label="NIDN Dosen"
+                      // label="NIDN Dosen"
                       InputProps={{
                         readOnly: true,
                       }}
                       variant="outlined"
                     />
+                    <Typography variant="caption">Nama Dosen</Typography>
                     <TextField
+                      style={{marginBottom:"15px"}}
                       fullWidth
                       value={editState.nama}
                       onChange={(e) => {
                         setEditState((c) => ({ ...c, nama: e.target.value }));
                       }}
-                      label="Nama Dosen"
+                      // label="Nama Dosen"
                       variant="outlined"
                     />
                   </CustomModalEdit>
@@ -205,23 +209,26 @@ export default function Dosen() {
               insertDosen();
             }}
           >
+            <Typography variant="caption">NIDN</Typography>
             <TextField
-              style={{ marginBottom: "13px" }}
+              style={{ marginBottom: "15px" }}
               fullWidth
               value={tambahState.nidn}
               onChange={(e) => {
                 setTambahState((c) => ({ ...c, nidn: e.target.value }));
               }}
-              label="NIDN Dosen"
+              // label="NIDN Dosen"
               variant="outlined"
             />
+            <Typography variant="caption">Nama Dosen</Typography>
             <TextField
+              style={{marginBottom:"15px"}}
               fullWidth
               value={tambahState.nama}
               onChange={(e) => {
                 setTambahState((c) => ({ ...c, nama: e.target.value }));
               }}
-              label="Nama Dosen"
+              // label="Nama Dosen"
               variant="outlined"
             />
           </CustomModalTambah>

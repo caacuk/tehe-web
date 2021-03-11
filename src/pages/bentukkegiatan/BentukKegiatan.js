@@ -93,6 +93,7 @@ export default function BentukKegiatan() {
         filter: false,
         sort: false,
         display: false,
+        download: false,
       },
     },
     {
@@ -117,6 +118,7 @@ export default function BentukKegiatan() {
       options: {
         filter: true,
         sort: true,
+        print: false,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <>

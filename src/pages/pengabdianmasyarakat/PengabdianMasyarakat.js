@@ -176,7 +176,7 @@ export default function PengabdianMasyarakat() {
       label: "Program Studi",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -185,7 +185,7 @@ export default function PengabdianMasyarakat() {
       label: "Tahun Ajaran",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -194,7 +194,7 @@ export default function PengabdianMasyarakat() {
       label: "Semester",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -243,7 +243,7 @@ export default function PengabdianMasyarakat() {
       label: "Penulis",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -252,7 +252,7 @@ export default function PengabdianMasyarakat() {
       label: "Penulis",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -261,7 +261,7 @@ export default function PengabdianMasyarakat() {
       label: "Penulis",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -270,7 +270,7 @@ export default function PengabdianMasyarakat() {
       label: "dosen_1",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -279,7 +279,7 @@ export default function PengabdianMasyarakat() {
       label: "dosen_2",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -288,7 +288,7 @@ export default function PengabdianMasyarakat() {
       label: "dosen_3",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -297,7 +297,7 @@ export default function PengabdianMasyarakat() {
       label: "nama_dosen_1",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -306,7 +306,7 @@ export default function PengabdianMasyarakat() {
       label: "nama_dosen_2",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -315,7 +315,7 @@ export default function PengabdianMasyarakat() {
       label: "nama_dosen_3",
       options: {
         filter: true,
-        sort: true,
+        sort: false,
         display: false,
       },
     },
@@ -325,6 +325,7 @@ export default function PengabdianMasyarakat() {
         filter: false,
         sort: false,
         empty: true,
+        print: false,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <>
@@ -511,7 +512,7 @@ export default function PengabdianMasyarakat() {
                       <Grid item xs={8}>
                         <InputLabel shrink>Nama</InputLabel>
                         <TextField
-                          style={{ marginRight: "6px" }}
+                          style={{ marginRight: "6px", marginBottom:"15px" }}
                           fullWidth
                           value={editState.dosen_3?.nama}
                           InputProps={{
@@ -737,6 +738,7 @@ export default function PengabdianMasyarakat() {
                       <Grid item xs={12}>
                         <InputLabel>Penulis 3</InputLabel>
                         <Autocomplete
+                          style={{marginBottom:"15px"}}
                           value={editState.dosen_3}
                           onChange={(event, newValue) => {
                             console.log("newValue");
@@ -965,6 +967,7 @@ export default function PengabdianMasyarakat() {
               <Grid item xs={12}>
                 <InputLabel>Penulis 3</InputLabel>
                 <Autocomplete
+                  style={{marginBottom:"15px"}}
                   value={tambahState.dosen_3}
                   onChange={(event, newValue) => {
                     setTambahState((c) => ({

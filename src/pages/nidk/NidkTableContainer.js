@@ -21,6 +21,8 @@ export const NidkTableContainer = ({
         filter: false,
         sort: false,
         empty: true,
+        download: false,
+        print: false,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <>
